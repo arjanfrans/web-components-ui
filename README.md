@@ -10,7 +10,7 @@ See [index.html](./index.html) for example usage.
 
 ## Demo
 
-https://arjanfrans.github.io/web-components-ui
+https://web-components.arjanfrans.com
 
 ## Development
 
