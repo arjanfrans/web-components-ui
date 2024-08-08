@@ -27,7 +27,6 @@ export class Theme extends HTMLElement {
 
   constructor() {
     super();
-    // Attach the shadow root
     this.shadow = this.attachShadow({ mode: "open" });
 
     const slot = document.createElement("slot");
@@ -123,6 +122,13 @@ export class Theme extends HTMLElement {
 
     this.styleElement.textContent = `
             :host {
+                display: flex;
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                height: 100%;
+                width: 100%;
+                
                 --hb-font-family-default: ${fontFamilyDefault};
                 --hb-font-family-heading: ${fontFamilyHeading};
                 --hb-font-size-default: ${fontSizeDefault};

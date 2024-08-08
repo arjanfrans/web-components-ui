@@ -63,6 +63,7 @@ export class Stack extends HTMLElement {
                 margin-inline: ${marginInline};
                 margin-block: ${marginBlock};
                 justify-content: ${justifyContent};
+                flex-wrap: wrap;
             }
         `;
   }

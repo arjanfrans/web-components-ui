@@ -14,6 +14,7 @@ export class Container extends HTMLElement {
                 background-color: var(--semantic-background-default);
                 color: var(--semantic-text-default);
                 font-family: var(--hb-font-family-default);
+                width: 100%;
             }
         `;
     shadow.appendChild(style);

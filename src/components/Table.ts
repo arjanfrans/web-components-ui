@@ -40,7 +40,7 @@ export class Table extends HTMLElement {
                 border-bottom: 0;
             }
 
-            :host table tr td:last-child,th:last-child {
+            :host table tr td:last-child, table tr th:last-child {
                 border-right: 0;
             }
         `;

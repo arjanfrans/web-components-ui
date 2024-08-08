@@ -188,6 +188,23 @@ export function generateCSSVariables(palette: ColorPalette): string {
       --semantic-stroke-highlight: var(--${mode}-primary-500);
       --semantic-text-highlight: var(--${mode}-primary-500);
       --semantic-background-highlight: var(--${mode}-primary-500);
+      
+      --semantic-text-hover: ${
+        mode === "dark"
+          ? `var(--${mode}-primary-100)`
+          : `var(--${mode}-primary-900)`
+      };
+      --semantic-stroke-hover: ${
+        mode === "dark"
+          ? `var(--${mode}-primary-100)`
+          : `var(--${mode}-primary-900)`
+      };
+      --semantic-background-hover: ${
+        mode === "dark"
+          ? `var(--${mode}-primary-100)`
+          : `var(--${mode}-primary-900)`
+      };
+      
       --semantic-background-inverted: var(--${invertedMode}-background);
     `;
   }

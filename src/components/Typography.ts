@@ -84,7 +84,6 @@ export class Typography extends HTMLElement {
                 line-height: 2.66;
                 letter-spacing: 0.08333em;
                 text-transform: uppercase;
-                margin-bottom: 0.35em;
             }
             
             :host([display="button"]) {
@@ -93,7 +92,6 @@ export class Typography extends HTMLElement {
                 line-height: 1.75;
                 letter-spacing: 0.02857em;
                 text-transform: uppercase;
-                margin-bottom: 0.35em;
             }
         `;
     this.shadow.appendChild(style);
