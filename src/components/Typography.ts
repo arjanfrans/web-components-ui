@@ -16,7 +16,6 @@ type Display =
   | "overline";
 export class Typography extends HTMLElement {
   private shadow: ShadowRoot;
-  private content?: HTMLElement = undefined;
 
   constructor() {
     super();
@@ -24,11 +23,8 @@ export class Typography extends HTMLElement {
 
     // Create a style element
     const style = document.createElement("style");
-    style.textContent = `
-            :host {
-            }
-            
-            :host h1, h2, h3, h4, h5, h6 {
+    style.textContent = `          
+            ::slotted(h1), ::slotted(h2), ::slotted(h3), ::slotted(h4), ::slotted(h5), ::slotted(h6) {
               font-size: 1em; /* Reset font size to a neutral value */
               font-weight: normal; /* Reset font weight to normal */
               margin: 0; /* Remove default margin */
@@ -38,7 +34,7 @@ export class Typography extends HTMLElement {
               text-align: inherit; /* Inherit text alignment from parent */
             }
             
-            :host p {
+            ::slotted(p) {
                 margin: 0;
                 padding: 0;
                 font-size: 1em;
@@ -46,47 +42,41 @@ export class Typography extends HTMLElement {
                 font-family: inherit;
             }
             
-            :host([display="h1"]) {
-                * {
-                    font-family: var(--hb-font-family-heading);
-                    font-size: var(--hb-font-size-title);
-                    font-weight: 700;
-                    border-bottom: 1px solid transparent;
-                    border-image: linear-gradient(90deg,var(--semantic-stroke-highlight),transparent 50%);
-                    border-image-slice: 1;
-                }
+            :host([display="h1"]) ::slotted(*), :host([display="h1"])  {
+                  font-family: var(--hb-font-family-heading);
+                  font-size: var(--hb-font-size-title);
+                  font-weight: 700;
+                  border-bottom: 1px solid transparent;
+                  border-image: linear-gradient(90deg,var(--semantic-stroke-highlight),transparent 50%);
+                  border-image-slice: 1;
+              }
+            
+            :host([display="h2"]) ::slotted(*), :host([display="h2"]) {
+                  font-family: var(--hb-font-family-heading);
+                  font-size: var(--hb-font-size-lg);
             }
             
-            :host([display="h2"]) {
-                * {
-                    font-family: var(--hb-font-family-heading);
-                    font-size: var(--hb-font-size-lg);
-                }
+            :host([display="h3"]) ::slotted(*), :host([display="h3"]) {
+                font-family: var(--hb-font-family-heading);
+                font-size: var(--hb-font-size-lg);
             }
             
-            :host([display="h3"]) {
-                * {
-                    font-family: var(--hb-font-family-heading);
-                    font-size: var(--hb-font-size-lg);
-                }
-            }
-            
-            :host([display="body1"]) {
+            :host([display="body1"]) ::slotted(*), :host([display="body1"]) {
                 font-size: var(--hb-font-size-default);
             }
             
-            :host([display="body2"]) {
+            :host([display="body2"]) ::slotted(*), :host([display="body2"]) {
                 font-size: var(--hb-font-size-default);
             }
             
-            :host([display="overline"]) {
+            :host([display="overline"]) ::slotted(*), :host([display="overline"]) {
                 font-size: var(--hb-font-size-sm);
                 line-height: 2.66;
                 letter-spacing: 0.08333em;
                 text-transform: uppercase;
             }
             
-            :host([display="button"]) {
+            :host([display="button"]) ::slotted(*), :host([display="button"]) {
                 font-size: var(--hb-font-size-default);
                 font-weight: bold;
                 line-height: 1.75;
@@ -96,7 +86,9 @@ export class Typography extends HTMLElement {
         `;
     this.shadow.appendChild(style);
 
-    this.updateContent();
+    const slot = document.createElement("slot");
+
+    this.shadow.append(slot);
   }
 
   set display(display: Display) {
@@ -107,40 +99,8 @@ export class Typography extends HTMLElement {
     return (this.getAttribute("display") as Display) || "";
   }
 
-  set tag(tag: string) {
-    this.setAttribute("tag", tag);
-  }
-
-  get tag() {
-    return this.getAttribute("tag") || "";
-  }
-
   static get observedAttributes() {
-    return ["tag", "display"];
-  }
-
-  private updateContent() {
-    if (this.content) {
-      this.shadow.removeChild(this.content);
-    }
-
-    this.content = document.createElement(this.tag);
-    const slot = document.createElement("slot");
-
-    this.content.append(slot);
-    this.shadow.append(this.content);
-  }
-
-  attributeChangedCallback(
-    name: string,
-    oldValue: string | null,
-    newValue: string | null,
-  ) {
-    if (name === "tag" && oldValue !== newValue) {
-      this.updateContent();
-    } else if (name === "display" && oldValue !== newValue) {
-      this.updateContent();
-    }
+    return ["display"];
   }
 }
 
