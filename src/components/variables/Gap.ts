@@ -1,1 +1,1 @@
-export type Gap = "none" | "small" | "medium" | "large" | "extra-large"
+export type Gap = "none" | "small" | "medium" | "large" | "extra-large";

@@ -1,30 +1,30 @@
-import { register } from "./framework/register"
+import { register } from "./framework/register";
 
 type Display =
-    | "h1"
-    | "h2"
-    | "h3"
-    | "h4"
-    | "h5"
-    | "h6"
-    | "subtitle1"
-    | "subtitle2"
-    | "body1"
-    | "body2"
-    | "button"
-    | "caption"
-    | "overline"
+  | "h1"
+  | "h2"
+  | "h3"
+  | "h4"
+  | "h5"
+  | "h6"
+  | "subtitle1"
+  | "subtitle2"
+  | "body1"
+  | "body2"
+  | "button"
+  | "caption"
+  | "overline";
 export class Typography extends HTMLElement {
-    private shadow: ShadowRoot
-    private content?: HTMLElement = undefined
+  private shadow: ShadowRoot;
+  private content?: HTMLElement = undefined;
 
-    constructor() {
-        super()
-        this.shadow = this.attachShadow({ mode: "open" })
+  constructor() {
+    super();
+    this.shadow = this.attachShadow({ mode: "open" });
 
-        // Create a style element
-        const style = document.createElement("style")
-        style.textContent = `
+    // Create a style element
+    const style = document.createElement("style");
+    style.textContent = `
             :host {
             }
             
@@ -95,51 +95,55 @@ export class Typography extends HTMLElement {
                 text-transform: uppercase;
                 margin-bottom: 0.35em;
             }
-        `
-        this.shadow.appendChild(style)
+        `;
+    this.shadow.appendChild(style);
 
-        this.updateContent()
+    this.updateContent();
+  }
+
+  set display(display: Display) {
+    this.setAttribute("display", display);
+  }
+
+  get display() {
+    return (this.getAttribute("display") as Display) || "";
+  }
+
+  set tag(tag: string) {
+    this.setAttribute("tag", tag);
+  }
+
+  get tag() {
+    return this.getAttribute("tag") || "";
+  }
+
+  static get observedAttributes() {
+    return ["tag", "display"];
+  }
+
+  private updateContent() {
+    if (this.content) {
+      this.shadow.removeChild(this.content);
     }
 
-    set display(display: Display) {
-        this.setAttribute("display", display)
+    this.content = document.createElement(this.tag);
+    const slot = document.createElement("slot");
+
+    this.content.append(slot);
+    this.shadow.append(this.content);
+  }
+
+  attributeChangedCallback(
+    name: string,
+    oldValue: string | null,
+    newValue: string | null,
+  ) {
+    if (name === "tag" && oldValue !== newValue) {
+      this.updateContent();
+    } else if (name === "display" && oldValue !== newValue) {
+      this.updateContent();
     }
-
-    get display() {
-        return (this.getAttribute("display") as Display) || ""
-    }
-
-    set tag(tag: string) {
-        this.setAttribute("tag", tag)
-    }
-
-    get tag() {
-        return this.getAttribute("tag") || ""
-    }
-
-    static get observedAttributes() {
-        return ["tag", "display"]
-    }
-
-    private updateContent() {
-        if (this.content) {
-            this.shadow.removeChild(this.content)
-        }
-
-        this.content = document.createElement(this.tag)
-        const slot = document.createElement("slot")
-
-        this.content.append(slot)
-        this.shadow.append(this.content)
-    }
-
-    attributeChangedCallback(name: string, oldValue: string | null, newValue: string | null) {
-        if (name === "tag" && oldValue !== newValue) {
-            this.updateContent()
-        } else if (name === "display" && oldValue !== newValue) {
-            this.updateContent()
-        }
-    }
+  }
 }
 
-register("typography", Typography)
+register("typography", Typography);

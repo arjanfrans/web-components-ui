@@ -1,15 +1,15 @@
-import { InvalidChildrenError } from "./framework/InvalidChildrenError"
-import { register } from "./framework/register"
+import { InvalidChildrenError } from "./framework/InvalidChildrenError";
+import { register } from "./framework/register";
 
 export class Select extends HTMLElement {
-    constructor() {
-        super()
-        // Attach the shadow root
-        const shadow = this.attachShadow({ mode: "open" })
+  constructor() {
+    super();
+    // Attach the shadow root
+    const shadow = this.attachShadow({ mode: "open" });
 
-        // Create a style element
-        const style = document.createElement("style")
-        style.textContent = `
+    // Create a style element
+    const style = document.createElement("style");
+    style.textContent = `
             :host {
                 display: flex;
                 flex-direction: column;
@@ -65,25 +65,25 @@ export class Select extends HTMLElement {
 
                 padding-right: var(--select-offset);
             }
-        `
+        `;
 
-        const label = document.createElement("div")
+    const label = document.createElement("div");
 
-        label.classList.add("label")
+    label.classList.add("label");
 
-        const select = this.querySelector("select")
-        const selectContainer = document.createElement("div")
+    const select = this.querySelector("select");
+    const selectContainer = document.createElement("div");
 
-        selectContainer.classList.add("container")
+    selectContainer.classList.add("container");
 
-        if (!select) {
-            throw new InvalidChildrenError(this, ["select"])
-        }
-
-        selectContainer.append(select)
-
-        shadow.append(style, label, selectContainer)
+    if (!select) {
+      throw new InvalidChildrenError(this, ["select"]);
     }
+
+    selectContainer.append(select);
+
+    shadow.append(style, label, selectContainer);
+  }
 }
 
-register("select", Select)
+register("select", Select);

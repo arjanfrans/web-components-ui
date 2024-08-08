@@ -1,15 +1,15 @@
-import { register } from "./framework/register"
+import { register } from "./framework/register";
 
 export class Block extends HTMLElement {
-    constructor() {
-        super()
-        const shadow = this.attachShadow({ mode: "open" })
+  constructor() {
+    super();
+    const shadow = this.attachShadow({ mode: "open" });
 
-        const slot = document.createElement("slot")
+    const slot = document.createElement("slot");
 
-        shadow.appendChild(slot)
-    }
+    shadow.appendChild(slot);
+  }
 }
 
 // Register the custom element
-register("block", Block)
+register("block", Block);

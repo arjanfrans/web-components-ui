@@ -1,15 +1,15 @@
-import { getPrefix, register } from "./framework/register"
-import { CardContent } from "./CardContent"
+import { getPrefix, register } from "./framework/register";
+import { CardContent } from "./CardContent";
 
 export class Card extends HTMLElement {
-    constructor() {
-        super()
-        // Attach the shadow root
-        const shadow = this.attachShadow({ mode: "open" })
+  constructor() {
+    super();
+    // Attach the shadow root
+    const shadow = this.attachShadow({ mode: "open" });
 
-        // Create a style element
-        const style = document.createElement("style")
-        style.textContent = `
+    // Create a style element
+    const style = document.createElement("style");
+    style.textContent = `
             :host {
                 border: 1px solid var(--semantic-stroke-default);
                 border-radius: 15px;
@@ -24,28 +24,28 @@ export class Card extends HTMLElement {
                 display: block;
                 width: 100%;
             }
-        `
-        shadow.appendChild(style)
+        `;
+    shadow.appendChild(style);
 
-        let cardContentElement = this.querySelector(`${getPrefix()}-card-content`)
+    let cardContentElement = this.querySelector(`${getPrefix()}-card-content`);
 
-        if (!cardContentElement) {
-            cardContentElement = new CardContent()
-        }
-
-        shadow.append(cardContentElement)
-
-        const slot = document.createElement("slot")
-
-        const cardMedia = this.querySelector(`${getPrefix()}-card-media`)
-
-        if (!cardMedia) {
-            cardContentElement.append(slot)
-        } else {
-            this.removeChild(cardMedia)
-            shadow.prepend(cardMedia)
-        }
+    if (!cardContentElement) {
+      cardContentElement = new CardContent();
     }
+
+    shadow.append(cardContentElement);
+
+    const slot = document.createElement("slot");
+
+    const cardMedia = this.querySelector(`${getPrefix()}-card-media`);
+
+    if (!cardMedia) {
+      cardContentElement.append(slot);
+    } else {
+      this.removeChild(cardMedia);
+      shadow.prepend(cardMedia);
+    }
+  }
 }
 
-register("card", Card)
+register("card", Card);

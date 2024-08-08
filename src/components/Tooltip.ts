@@ -1,20 +1,23 @@
 import { register } from "./framework/register";
 
 export class Tooltip extends HTMLElement {
-    private tooltip: HTMLDivElement;
-    private anchorElement?: HTMLElement = undefined;
+  private tooltip: HTMLDivElement;
+  private anchorElement?: HTMLElement = undefined;
 
-    constructor() {
-        super();
-        const shadow = this.attachShadow({ mode: 'open' });
+  constructor() {
+    super();
+    const shadow = this.attachShadow({ mode: "open" });
 
-        // Create the tooltip container element
-        this.tooltip = document.createElement('div');
-        this.tooltip.classList.add('tooltip');
+    this.style.display = "inline";
+    this.style.width = "max-content";
 
-        // Tooltip styles
-        const style = document.createElement('style');
-        style.textContent = `
+    // Create the tooltip container element
+    this.tooltip = document.createElement("div");
+    this.tooltip.classList.add("tooltip");
+
+    // Tooltip styles
+    const style = document.createElement("style");
+    style.textContent = `
             .tooltip {
                 position: absolute;
                 background-color: #333;
@@ -29,44 +32,85 @@ export class Tooltip extends HTMLElement {
             }
         `;
 
-        shadow.append(style, this.tooltip);
+    shadow.append(style, this.tooltip);
 
-        // Slot for original content (not inside the tooltip)
-        const slot = document.createElement('slot');
-        shadow.appendChild(slot);
+    // Slot for original content (not inside the tooltip)
+    const slot = document.createElement("slot");
+    shadow.appendChild(slot);
 
-        // Hover event listeners
-        this.addEventListener('mouseenter', this.showTooltip.bind(this));
-        this.addEventListener('mouseleave', this.hideTooltip.bind(this));
+    // Hover event listeners
+    this.addEventListener("mouseenter", this.showTooltip.bind(this));
+    this.addEventListener("mouseleave", this.hideTooltip.bind(this));
+  }
+
+  connectedCallback() {
+    // Ensure the anchorElement is correctly identified
+    this.anchorElement = this.querySelector("span") || this;
+    this.anchorElement.addEventListener(
+      "mouseenter",
+      this.showTooltip.bind(this),
+    );
+    this.anchorElement.addEventListener(
+      "mouseleave",
+      this.hideTooltip.bind(this),
+    );
+  }
+
+  showTooltip() {
+    if (this.anchorElement) {
+      const anchorRect = this.anchorElement.getBoundingClientRect();
+      const tooltipRect = this.tooltip.getBoundingClientRect();
+      const viewportWidth = window.innerWidth;
+      const viewportHeight = window.innerHeight;
+      const scrollX = window.scrollX;
+      const scrollY = window.scrollY;
+
+      // Set tooltip content from the 'text' attribute
+      this.tooltip.textContent = this.getAttribute("text") || "Tooltip content";
+
+      // Default position above the anchor element
+      let tooltipLeft =
+        anchorRect.left + scrollX + (anchorRect.width - tooltipRect.width) / 2;
+      let tooltipTop = anchorRect.top + scrollY - tooltipRect.height - 5; // Position above the element with a small gap
+
+      // Check if the tooltip fits within the viewport above the anchor
+      if (tooltipTop < scrollY) {
+        // Tooltip does not fit above; reposition below the anchor
+        tooltipTop = anchorRect.bottom + scrollY + 5; // Position below the element with a small gap
+      }
+
+      // Adjust tooltip position if it exceeds viewport bounds
+      if (tooltipLeft + tooltipRect.width > viewportWidth + scrollX) {
+        // Tooltip exceeds the right edge of the viewport
+        tooltipLeft = Math.max(anchorRect.left + scrollX, 10); // Add a small gap from the right edge
+      }
+
+      if (tooltipTop + tooltipRect.height > viewportHeight + scrollY) {
+        // Tooltip exceeds the bottom edge of the viewport
+        tooltipTop = Math.max(
+          anchorRect.top + scrollY - tooltipRect.height - 5,
+          10,
+        ); // Position above the element with a small gap
+      }
+
+      if (tooltipLeft < scrollX) {
+        // Tooltip exceeds the left edge of the viewport
+        tooltipLeft = 10; // Add a small gap from the left edge
+      }
+
+      // Apply computed position
+      this.tooltip.style.left = `${tooltipLeft}px`;
+      this.tooltip.style.top = `${tooltipTop}px`;
+
+      // Show the tooltip
+      this.tooltip.style.display = "block";
     }
+  }
 
-    connectedCallback() {
-        // Ensure the anchorElement is correctly identified
-        this.anchorElement = this.querySelector('span') || this;
-        this.anchorElement.addEventListener('mouseenter', this.showTooltip.bind(this));
-        this.anchorElement.addEventListener('mouseleave', this.hideTooltip.bind(this));
-    }
-
-    showTooltip() {
-        if (this.anchorElement) {
-            const rect = this.anchorElement.getBoundingClientRect();
-
-            // Set tooltip content from the 'text' attribute
-            this.tooltip.textContent = this.getAttribute('text') || 'Tooltip content';
-
-            // Position the tooltip
-            this.tooltip.style.left = `${rect.left + window.scrollX}px`;
-            this.tooltip.style.top = `${rect.bottom + window.scrollY + 5}px`; // Adjust positioning with a small gap
-
-            // Show the tooltip
-            this.tooltip.style.display = 'block';
-        }
-    }
-
-    hideTooltip() {
-        // Hide the tooltip
-        this.tooltip.style.display = 'none';
-    }
+  hideTooltip() {
+    // Hide the tooltip
+    this.tooltip.style.display = "none";
+  }
 }
 
-register('tooltip', Tooltip);
+register("tooltip", Tooltip);
