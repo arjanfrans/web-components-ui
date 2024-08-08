@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <base href="">
+    <script type="module" src="/src/main.ts"></script>
+</head>
+
+<body>
+<hb-theme
+        theme="light"
+        --hb-font-family-heading="Neue Aachen Regular, sans-serif"
+        --hb-font-family-default="sans-serif"
+        --hb-font-size-default="16px"
+        --hb-font-size-title="42px"
+        --hb-font-size-lg="32px"
+        --hb-font-size-md="24px"
+        --hb-font-size-sm="14px"
+        --hb-color-primary="#ed1c24"
+        --hb-color-text-light="#000000"
+        --hb-color-text-dark="#ffffff"
+        --hb-color-background-light="#ffffff"
+        --hb-color-background-dark="#000000"
+>
+    <hb-container>
+        <hb-stack gap="extra-large" margin-inline="large" margin-block="large">
+            <hb-block>
+
+                <hb-stack gap="medium">
+                    <hb-block>
+                        <hb-typography display="h1" tag="h2">
+                            Typography
+                        </hb-typography>
+                    </hb-block>
+
+                    <hb-stack gap="small">
+                        <hb-typography display="button" tag="span">
+                            Button
+                        </hb-typography>
+
+                        <hb-typography display="overline" tag="span">
+                            Overline
+                        </hb-typography>
+                    </hb-stack>
+                </hb-stack>
+            </hb-block>
+
+            <hb-block>
+                <hb-stack gap="medium">
+                    <hb-block>
+                        <hb-typography display="h1" tag="h2">
+                            Stack
+                        </hb-typography>
+                    </hb-block>
+
+                    <hb-block>
+                        <hb-grid xs="1" md="2" lg="2">
+                            <hb-card>
+                                <hb-stack direction="horizontal" justify-content="center">
+                                    <hb-typography display="h2" tag="p">
+                                        Centered Stack
+                                    </hb-typography>
+                                </hb-stack>
+                                <hb-stack direction="horizontal" justify-content="center" gap="small">
+                                    <span>Center Left</span>
+                                    <span>Center Right</span>
+                                </hb-stack>
+                            </hb-card>
+                            <hb-card>
+                                <hb-stack direction="vertical" justify-content="space-between" gap="small">
+                                    <span>Horizontal</span>
+                                    <span>Stack</span>
+                                    <span>with space-between</span>
+                                </hb-stack>
+                            </hb-card>
+
+                        </hb-grid>
+                    </hb-block>
+                </hb-stack>
+            </hb-block>
+
+
+            <hb-block>
+                <hb-stack gap="medium">
+                    <hb-block>
+                        <hb-typography display="h1" tag="h2">
+                            Grid
+                        </hb-typography>
+                    </hb-block>
+
+                    <hb-block>
+                        <hb-grid xs="1" md="3" lg="4">
+                            <hb-card>Item 1</hb-card>
+                            <hb-card>Item 2</hb-card>
+                            <hb-card>Item 3</hb-card>
+                            <hb-card>Item 4</hb-card>
+                            <hb-card>Item 5</hb-card>
+                            <hb-card>Item 6</hb-card>
+                        </hb-grid>
+                    </hb-block>
+                </hb-stack>
+            </hb-block>
+
+            <hb-block>
+                <hb-stack gap="medium">
+                    <hb-block>
+                        <hb-typography display="h1" tag="h2">
+                            Chip
+                        </hb-typography>
+                    </hb-block>
+
+                    <hb-block>
+                        <hb-stack gap="small">
+                            <hb-chip value="Regular Small"></hb-chip>
+                            <hb-chip value="Active Small" active></hb-chip>
+                            <hb-chip value="Regular Large" size="large"></hb-chip>
+                        </hb-stack>
+                    </hb-block>
+                </hb-stack>
+
+            </hb-block>
+
+            <hb-block>
+                <hb-stack gap="medium">
+                    <hb-block>
+                        <hb-typography display="h1" tag="h2">
+                            Link
+                        </hb-typography>
+                    </hb-block>
+
+                    <hb-block>
+                        <hb-link><a href="https://www.hardbulls.com">Example Link</a></hb-link>
+                    </hb-block>
+                </hb-stack>
+            </hb-block>
+
+            <hb-block>
+                <hb-stack gap="medium">
+                    <hb-block>
+                        <hb-typography display="h1" tag="h2">
+                            Table
+                        </hb-typography>
+                    </hb-block>
+
+                    <hb-block>
+                        <hb-table>
+                            <table>
+                                <thead>
+                                <tr>
+                                    <th>
+                                        <hb-tooltip value="Column Description">
+                                            Column 1
+                                        </hb-tooltip>
+                                    </th>
+                                    <th>Column 2</th>
+                                    <th>Column 3</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>Row 1, Cell 1</td>
+                                    <td>Row 1, Cell 2</td>
+                                    <td>Row 1, Cell 3</td>
+                                </tr>
+                                <tr>
+                                    <td>Row 2, Cell 1</td>
+                                    <td>Row 2, Cell 2</td>
+                                    <td>Row 2, Cell 3</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </hb-table>
+                    </hb-block>
+
+                </hb-stack>
+            </hb-block>
+
+            <hb-block>
+                <hb-stack gap="medium">
+                    <hb-block>
+                        <hb-typography display="h1" tag="h2">
+                            Tooltip
+                        </hb-typography>
+                    </hb-block>
+
+                    <hb-block>
+                        <hb-stack gap="small">
+                            <hb-tooltip value="Tooltip text">
+                                Text with tooltip
+                            </hb-tooltip>
+
+                            <hb-tooltip value="Button tooltip text">
+                                <button>
+                                    Element with tooltip
+                                </button>
+                            </hb-tooltip>
+                        </hb-stack>
+                    </hb-block>
+
+                </hb-stack>
+            </hb-block>
+
+            <hb-block>
+                <hb-stack gap="medium">
+                    <hb-typography display="h1" tag="h2">
+                        Select
+                    </hb-typography>
+
+                    <hb-select>
+                        <select>
+                            <option value="a">Option A</option>
+                            <option value="b">Option B</option>
+                            <option value="c">Option C</option>
+                        </select>
+                    </hb-select>
+                </hb-stack>
+            </hb-block>
+
+
+            <hb-block>
+                <hb-stack gap="medium">
+                    <hb-block>
+                        <hb-typography display="h1" tag="h2">
+                            Card
+                        </hb-typography>
+                    </hb-block>
+
+                    <hb-block>
+                        <hb-grid xs="1" md="2" lg="3">
+                            <hb-card>
+                                <hb-typography display="h3" tag="p">Card Title</hb-typography>
+
+                                <hb-typography display="body1" tag="p">Card content</hb-typography>
+
+                                <hb-chip value="Card Chip"></hb-chip>
+                            </hb-card>
+
+                            <hb-card>
+                                <hb-card-media
+                                        src="https://via.placeholder.com/300.png"
+                                        size="medium"
+                                >
+                                </hb-card-media>
+                                <hb-card-content>
+                                    <hb-typography display="h3" tag="p">Image Card Title</hb-typography>
+                                    <hb-typography display="body1" tag="p">Image card content.</hb-typography>
+                                </hb-card-content>
+                            </hb-card>
+
+
+                            <hb-card>
+                                <hb-card-media src="https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" size="large"></hb-card-media>
+                                <hb-card-content>
+                                    <hb-typography display="h3" tag="p">Video Card Title</hb-typography>
+                                    <hb-typography display="body1" tag="p">Video card content.</hb-typography>
+                                </hb-card-content>
+                                </hb-card-content>
+                            </hb-card>
+
+                        </hb-grid>
+                    </hb-block>
+                </hb-stack>
+            </hb-block>
+
+            <hb-block>
+                <hb-stack gap="medium">
+                    <hb-block>
+                        <hb-typography display="h1" tag="h2">
+                            Spinner
+                        </hb-typography>
+                    </hb-block>
+
+                    <hb-block>
+                        <hb-spinner size="large" color="#ff0000"></hb-spinner>
+                    </hb-block>
+                </hb-stack>
+            </hb-block>
+    </hb-container>
+</hb-theme>
+
+</body>
+
+</html>
