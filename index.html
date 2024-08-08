@@ -20,7 +20,7 @@
         --hb-color-text-light="#000000"
         --hb-color-text-dark="#ffffff"
         --hb-color-background-light="#ffffff"
-        --hb-color-background-dark="#000000"
+        --hb-color-background-dark="#1f1f1f"
 >
     <hb-container>
         <hb-stack gap="extra-large" margin-inline="large" margin-block="large">
@@ -226,9 +226,9 @@
                             </hb-tooltip>
 
                             <hb-tooltip value="Button tooltip text">
-                                <button>
-                                    Element with tooltip
-                                </button>
+                                <hb-button variant="filled" size="small">
+                                    <hb-typography display="button" tag="span">Button with tooltip</hb-typography>
+                                </hb-button>
                             </hb-tooltip>
                         </hb-stack>
                     </hb-block>
