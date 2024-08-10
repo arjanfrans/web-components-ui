@@ -103,24 +103,12 @@
 
                         <hb-block>
                             <hb-stack direction="horizontal" gap="small">
-                                <hb-button size="small" variant="filled">
-                                    <hb-typography display="button">Small Filled</hb-typography>
-                                </hb-button>
-                                <hb-button size="small" variant="outlined">
-                                    <hb-typography display="button">Small Outlined</hb-typography>
-                                </hb-button>
-                                <hb-button size="medium" variant="filled">
-                                    <hb-typography display="button">Medium Filled</hb-typography>
-                                </hb-button>
-                                <hb-button size="medium" variant="outlined">
-                                    <hb-typography display="button">Medium Outlined</hb-typography>
-                                </hb-button>
-                                <hb-button size="large" variant="filled">
-                                    <hb-typography display="button">Large Filled</hb-typography>
-                                </hb-button>
-                                <hb-button size="large" variant="outlined">
-                                    <hb-typography display="button">Large Outlined</hb-typography>
-                                </hb-button>
+                                <hb-button size="small" variant="filled">Small Filled</hb-button>
+                                <hb-button size="small" variant="outlined">Small Outlined</hb-button>
+                                <hb-button size="medium" variant="filled">Medium Filled</hb-button>
+                                <hb-button size="medium" variant="outlined">Medium Outlined</hb-button>
+                                <hb-button size="large" variant="filled">Large Filled</hb-button>
+                                <hb-button size="large" variant="outlined">Large Outlined</hb-button>
                             </hb-stack>
                         </hb-block>
                     </hb-stack>
@@ -144,6 +132,27 @@
                     </hb-stack>
 
                 </hb-block>
+
+
+                <hb-block>
+                    <hb-stack gap="medium">
+                        <hb-block>
+                            <hb-typography display="h1">
+                                <h2>Switch</h2>
+                            </hb-typography>
+                        </hb-block>
+
+                        <hb-block>
+                            <hb-stack gap="small">
+                                <hb-switch label="Label"></hb-switch>
+                                <hb-switch label="Required" required></hb-switch>
+                                <hb-switch label="Disabled" disabled></hb-switch>
+                            </hb-stack>
+                        </hb-block>
+                    </hb-stack>
+
+                </hb-block>
+
 
                 <hb-block>
                     <hb-stack gap="medium">
@@ -217,9 +226,7 @@
                                 </hb-tooltip>
 
                                 <hb-tooltip value="Button tooltip text">
-                                    <hb-button variant="filled" size="small">
-                                        <hb-typography display="button">Button with tooltip</hb-typography>
-                                    </hb-button>
+                                    <hb-button variant="filled" size="small">Button with tooltip</hb-button>
                                 </hb-tooltip>
                             </hb-stack>
                         </hb-block>
@@ -304,6 +311,17 @@
                             <hb-spinner size="large" color="#ff0000"></hb-spinner>
                         </hb-block>
                     </hb-stack>
+                </hb-block>
+            </hb-stack>
+
+            <hb-stack justify-content="center" direction="horizontal" margin-block="medium">
+                <hb-block>
+                    <hb-typography display="overline">
+                        &copy; 2020 Arjan Frans - 
+                        <hb-link>
+                            <a target="_blank" src="https://github.com/arjanfrans/web-components-ui">Source Code</a>
+                        </hb-link>
+                    </hb-typography>
                 </hb-block>
             </hb-stack>
         </hb-container>

@@ -1,4 +1,5 @@
 import { register } from "./framework/register";
+import { Typography } from "./Typography.ts";
 import { Size } from "./variables/Size.ts";
 
 type ButtonVariant = "filled" | "outlined";
@@ -80,9 +81,15 @@ export class Button extends HTMLElement {
     `;
     shadow.appendChild(style);
 
+    const label = new Typography();
+
+    label.display = "button";
+
     // Create a slot for button content
     const slot = document.createElement("slot");
-    this.button.appendChild(slot);
+
+    label.append(slot);
+    this.button.appendChild(label);
 
     shadow.appendChild(this.button);
 

@@ -16,3 +16,4 @@ export { Grid } from "./components/Grid";
 export { Stack } from "./components/Stack";
 export { Block } from "./components/Block";
 export { Button } from "./components/Button";
+export { Switch } from "./components/Switch";
