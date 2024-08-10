@@ -20,8 +20,8 @@ export class Tooltip extends HTMLElement {
     style.textContent = `
             .tooltip {
                 position: absolute;
-                background-color: #333;
-                color: #fff;
+                background-color: rgb(from var(--semantic-background-inverted) r g b / 90%);
+                color: var(--semantic-text-inverted);
                 padding: 5px;
                 border-radius: 3px;
                 font-size: 12px;
