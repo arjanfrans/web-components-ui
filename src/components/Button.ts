@@ -42,9 +42,9 @@ export class Button extends HTMLElement {
         background-color: var(--semantic-background-hover);
         color: var(--semantic-text-inverted);
         box-shadow: 
-            rgb(from var(--semantic-background-default) r g b / 16%) 0px 3px 1px -2px,
-            rgb(from var(--semantic-background-default) r g b / 14%) 0px 2px 2px 0px,
-            rgb(from var(--semantic-background-default) r g b / 12%) 0px 1px 5px 0px;
+            rgb(from var(--semantic-background-inverted) r g b / 16%) 0px 3px 1px -2px,
+            rgb(from var(--semantic-background-inverted) r g b / 14%) 0px 2px 2px 0px,
+            rgb(from var(--semantic-background-inverted) r g b / 12%) 0px 1px 5px 0px;
       }
 
       :host([variant="outlined"]) .button {

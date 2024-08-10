@@ -10,7 +10,9 @@ See [index.html](./index.html) for example usage.
 
 ## Demo
 
-https://web-components.arjanfrans.com
+Light Theme: https://web-components.arjanfrans.com
+
+Dark Theme: https://web-components.arjanfrans.com/?mode=dark
 
 ## Development
 
