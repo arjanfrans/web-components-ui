@@ -3,6 +3,7 @@ import { register } from "./framework/register";
 export class Tooltip extends HTMLElement {
   private tooltip: HTMLDivElement;
   private anchorElement?: HTMLElement = undefined;
+  private touchStartTimeout?: number;
 
   constructor() {
     super();
@@ -18,19 +19,19 @@ export class Tooltip extends HTMLElement {
     // Tooltip styles
     const style = document.createElement("style");
     style.textContent = `
-            .tooltip {
-                position: absolute;
-                background-color: rgb(from var(--semantic-background-inverted) r g b / 90%);
-                color: var(--semantic-text-inverted);
-                padding: 5px;
-                border-radius: 3px;
-                font-size: 12px;
-                z-index: 1000; /* Ensure it appears on top */
-                max-width: 200px;
-                display: none; /* Hide by default */
-                pointer-events: none; /* Ensure it doesn't interfere with mouse events */
-            }
-        `;
+      .tooltip {
+        position: absolute;
+        background-color: rgba(var(--semantic-background-inverted_rgb), 0.9);
+        color: var(--semantic-text-inverted);
+        padding: 5px;
+        border-radius: 3px;
+        font-size: var(--hb-font-size-small);
+        z-index: 1000; /* Ensure it appears on top */
+        max-width: 200px;
+        display: none; /* Hide by default */
+        pointer-events: none; /* Ensure it doesn't interfere with mouse events */
+      }
+    `;
 
     shadow.append(style, this.tooltip);
 
@@ -38,9 +39,11 @@ export class Tooltip extends HTMLElement {
     const slot = document.createElement("slot");
     shadow.appendChild(slot);
 
-    // Hover event listeners
+    // Event listeners for mouse and touch
     this.addEventListener("mouseenter", this.showTooltip.bind(this));
     this.addEventListener("mouseleave", this.hideTooltip.bind(this));
+    this.addEventListener("touchstart", this.handleTouchStart.bind(this));
+    this.addEventListener("touchend", this.handleTouchEnd.bind(this));
   }
 
   connectedCallback() {
@@ -53,6 +56,14 @@ export class Tooltip extends HTMLElement {
     this.anchorElement.addEventListener(
       "mouseleave",
       this.hideTooltip.bind(this),
+    );
+    this.anchorElement.addEventListener(
+      "touchstart",
+      this.handleTouchStart.bind(this),
+    );
+    this.anchorElement.addEventListener(
+      "touchend",
+      this.handleTouchEnd.bind(this),
     );
   }
 
@@ -110,6 +121,20 @@ export class Tooltip extends HTMLElement {
   hideTooltip() {
     // Hide the tooltip
     this.tooltip.style.display = "none";
+  }
+
+  handleTouchStart(event: Event) {
+    // Prevent default behavior and show tooltip on touch
+    event.preventDefault();
+    this.showTooltip();
+    this.touchStartTimeout = window.setTimeout(() => this.hideTooltip(), 3000); // Hide after 3 seconds
+  }
+
+  handleTouchEnd() {
+    // Clear timeout if touch ends early
+    if (this.touchStartTimeout) {
+      clearTimeout(this.touchStartTimeout);
+    }
   }
 }
 

@@ -15,7 +15,7 @@ export class Table extends HTMLElement {
             }
 
             :host table th {
-                border-bottom: 2px solid rgb(from var(--semantic-stroke-highlight) r g b / 40%);
+                border-bottom: 2px solid rgba(var(--semantic-stroke-highlight_rgb), 0.4);
                 color: var(--semantic-text-default);
             }
 
@@ -33,7 +33,7 @@ export class Table extends HTMLElement {
             }
 
             :host table tbody > tr:hover {
-                background-color: rgb(from var(--semantic-stroke-highlight) r g b / 5%);
+                background-color: rgba(var(--semantic-stroke-highlight_rgb), 0.05);
             }
 
             :host table tr:last-child td {

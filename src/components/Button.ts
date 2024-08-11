@@ -43,9 +43,9 @@ export class Button extends HTMLElement {
         background-color: var(--semantic-background-hover);
         color: var(--semantic-text-inverted);
         box-shadow: 
-            rgb(from var(--semantic-background-inverted) r g b / 16%) 0px 3px 1px -2px,
-            rgb(from var(--semantic-background-inverted) r g b / 14%) 0px 2px 2px 0px,
-            rgb(from var(--semantic-background-inverted) r g b / 12%) 0px 1px 5px 0px;
+            rgba(var(--semantic-background-inverted_rgb), 0.16) 0px 3px 1px -2px,
+            rgba(var(--semantic-background-inverted_rgb), 0.14) 0px 2px 2px 0px,
+            rgba(var(--semantic-background-inverted_rgb), 0.12) 0px 1px 5px 0px;
       }
 
       :host([variant="outlined"]) .button {
@@ -57,7 +57,7 @@ export class Button extends HTMLElement {
       :host([variant="outlined"]:hover) .button {
         border-color: var(--semantic-stroke-hover);
         color: var(--semantic-text-hover);
-        background-color: rgb(from var(--semantic-background-highlight) r g b / 10%);
+        background-color: rgba(var(--semantic-background-highlight_rgb), 0.1);
       }
 
       :host([size="small"]) .button {

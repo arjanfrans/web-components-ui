@@ -35,7 +35,7 @@ export class Select extends HTMLElement {
                 top: 0;
                 right: 0;
                 padding: var(--icon-offset);
-                background: rgb(from var(--semantic-background-inverted) r g b / 10%);
+                background: rgba(var(--semantic-background-inverted_rgb), 0.1);
                 transition: .25s all ease;
                 pointer-events: none;
             }
@@ -59,7 +59,7 @@ export class Select extends HTMLElement {
                 padding-inline: var(--hb-gap-2xs);
                 padding-block: 0;
                 color: var(--text-default);
-                background: rgb(from var(--semantic-background-inverted) r g b / 10%);
+                background: rgba(var(--semantic-background-inverted_rgb), 0.1);
                 background-image: none;
                 cursor: pointer;
 

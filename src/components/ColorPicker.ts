@@ -32,7 +32,7 @@ export class ColorPicker extends HTMLElement {
         border-radius: 50%;
         border: 2px solid #ccc;
         background-color: #ffffff;
-        box-shadow: 0 0 3px rgb(from var(--semantic-background-inverted) r g b / 20%);
+        box-shadow: 0 0 3px rgba(var(--semantic-background-inverted_rgb), 0.2);
         cursor: pointer;
       }
 
@@ -46,10 +46,10 @@ export class ColorPicker extends HTMLElement {
         align-items: center;
         justify-content: center;
         cursor: pointer;
-        background-color: var(--semantic-background-default); /* Badge-like background */
+        background-color: var(--semantic-background-default);
         border-radius: 50%;
-        border: 1px solid var(--semantic-stroke-default); /* Border to enhance visibility */
-        box-shadow: 0 0 1px rgb(from var(--semantic-background-inverted) r g b / 30%); /* Shadow to make it stand out */
+        border: 1px solid var(--semantic-stroke-default);
+        box-shadow: 0 0 1px rgba(var(--semantic-background-inverted_rgb), 0.3);
         transform: translate(30%, 30%); /* Adjust badge position */
         pointer-events: all;
       }
