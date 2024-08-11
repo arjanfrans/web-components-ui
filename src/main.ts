@@ -1,4 +1,7 @@
 import "./components/framework/reset.css";
+import { configurePrefix } from "./components/framework/register";
+
+configurePrefix("x");
 
 export { Theme } from "./components/Theme";
 export { Chip } from "./components/Chip";

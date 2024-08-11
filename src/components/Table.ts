@@ -1,4 +1,4 @@
-import { register } from "./framework/register";
+import { register, variable } from "./framework/register";
 import { InvalidChildrenError } from "./framework/InvalidChildrenError";
 
 export class Table extends HTMLElement {
@@ -22,7 +22,7 @@ export class Table extends HTMLElement {
             :host table th, :host table td  {
                 text-align: left;
                 border-collapse: collapse;
-                padding: var(--hb-gap-5xs);
+                padding: ${variable("gap-5xs")};
                 border-right: 1px solid var(--semantic-stroke-default);
                 color: var(--semantic-text-default);
             }

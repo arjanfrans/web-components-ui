@@ -1,4 +1,4 @@
-import { register } from "./framework/register";
+import { register, variable } from "./framework/register";
 
 type ChipSize = "small" | "large";
 
@@ -34,15 +34,15 @@ export class Chip extends HTMLElement {
             }
             
             :host([size="small"]) {
-                font-size: var(--hb-font-size-sm);
-                padding-block: var(--hb-gap-5xs);
-                padding-inline: var(--hb-gap-2xs);
+                font-size: ${variable("font-size-sm")};
+                padding-block: ${variable("gap-5xs")};
+                padding-inline: ${variable("gap-2xs")};
             }
             
             :host([size="large"]) {
-                font-size: var(--hb-font-size-md);
-                padding-block: var(--hb-gap-5xs);
-                padding-inline: var(--hb-gap-2xs);
+                font-size: ${variable("font-size-md")};
+                padding-block: ${variable("gap-5xs")};
+                padding-inline: ${variable("gap-2xs")};
             }
         `;
 

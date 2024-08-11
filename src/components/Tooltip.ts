@@ -1,4 +1,4 @@
-import { register } from "./framework/register";
+import { register, variable } from "./framework/register";
 
 export class Tooltip extends HTMLElement {
   private tooltip: HTMLDivElement;
@@ -25,7 +25,7 @@ export class Tooltip extends HTMLElement {
         color: var(--semantic-text-inverted);
         padding: 5px;
         border-radius: 3px;
-        font-size: var(--hb-font-size-small);
+        font-size: ${variable("font-size-small")};
         z-index: 1000; /* Ensure it appears on top */
         max-width: 200px;
         display: none; /* Hide by default */

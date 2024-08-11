@@ -1,5 +1,5 @@
 import { InvalidChildrenError } from "./framework/InvalidChildrenError";
-import { register } from "./framework/register";
+import { register, variable } from "./framework/register";
 
 export class Select extends HTMLElement {
   constructor() {
@@ -45,7 +45,7 @@ export class Select extends HTMLElement {
             }
 
             :host select {
-                --select-offset: calc(var(--hb-gap-2xs) + 26px);
+                --select-offset: calc(${variable("gap-2xs")} + 26px);
                 /* Reset Select */
                 appearance: none;
                 outline: 10px red;
@@ -56,7 +56,7 @@ export class Select extends HTMLElement {
 
                 /* Personalize */
                 flex: 1;
-                padding-inline: var(--hb-gap-2xs);
+                padding-inline: ${variable("gap-2xs")};
                 padding-block: 0;
                 color: var(--text-default);
                 background: rgba(var(--semantic-background-inverted_rgb), 0.1);

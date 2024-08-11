@@ -1,4 +1,4 @@
-import { register } from "./framework/register";
+import { register, variable } from "./framework/register";
 import { Typography } from "./Typography.ts";
 import { Size } from "./variables/Size.ts";
 
@@ -28,7 +28,7 @@ export class Button extends HTMLElement {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        padding: var(--hb-gap-md);
+        padding: ${variable("gap-md")};
         text-align: center;
         transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1), border-color 250ms cubic-bezier(0.4, 0, 0.2, 1), color 250ms cubic-bezier(0.4, 0, 0.2, 1);
         white-space: nowrap;
@@ -64,18 +64,18 @@ export class Button extends HTMLElement {
       }
 
       :host([size="small"]) .button {
-        padding-block: var(--hb-gap-5xs);
-        padding-inline: var(--hb-gap-3xs);
+        padding-block: ${variable("gap-5xs")};
+        padding-inline: ${variable("gap-3xs")};
       }
 
       :host([size="medium"]) .button {
-        padding-block: var(--hb-gap-4xs);
-        padding-inline: var(--hb-gap-2xs);
+        padding-block: ${variable("gap-4xs")};
+        padding-inline: ${variable("gap-2xs")};
       }
 
       :host([size="large"]) .button {
-        padding-block: var(--hb-gap-2xs);
-        padding-inline: var(--hb-gap-sm);
+        padding-block: ${variable("gap-2xs")};
+        padding-inline: ${variable("gap-sm")};
       }
 
       .button:focus {

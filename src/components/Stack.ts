@@ -1,4 +1,4 @@
-import { register } from "./framework/register";
+import { register, variable } from "./framework/register";
 import type { Gap } from "./variables/Gap";
 
 export class Stack extends HTMLElement {
@@ -73,15 +73,15 @@ export class Stack extends HTMLElement {
       case "none":
         return "0px";
       case "small":
-        return "var(--hb-gap-2xs)"; // 16px
+        return variable("gap-2xs");
       case "medium":
-        return "var(--hb-gap-md)"; // 32px
+        return variable("gap-md");
       case "large":
-        return "var(--hb-gap-lg)"; // 40px
+        return variable("gap-lg");
       case "extra-large":
-        return "var(--hb-gap-xl)"; // 56px
+        return variable("gap-xl");
       default:
-        return "var(--hb-gap-md)"; // Default to medium if no match
+        return variable("gap-md");
     }
   }
 

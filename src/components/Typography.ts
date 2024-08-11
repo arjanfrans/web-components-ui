@@ -1,4 +1,4 @@
-import { register } from "./framework/register";
+import { register, variable } from "./framework/register";
 
 type Display =
   | "h1"
@@ -43,8 +43,8 @@ export class Typography extends HTMLElement {
             }
             
             :host([display="h1"]) ::slotted(*), :host([display="h1"])  {
-                  font-family: var(--hb-font-family-heading);
-                  font-size: var(--hb-font-size-title);
+                  font-family: ${variable("font-family-heading")};
+                  font-size: ${variable("font-size-title")};
                   font-weight: 700;
                   border-bottom: 1px solid transparent;
                   border-image: linear-gradient(90deg,var(--semantic-stroke-highlight),transparent 50%);
@@ -52,32 +52,32 @@ export class Typography extends HTMLElement {
               }
             
             :host([display="h2"]) ::slotted(*), :host([display="h2"]) {
-                  font-family: var(--hb-font-family-heading);
-                  font-size: var(--hb-font-size-lg);
+                  font-family: ${variable("font-family-heading")};
+                  font-size: ${variable("font-size-lg")};
             }
             
             :host([display="h3"]) ::slotted(*), :host([display="h3"]) {
-                font-family: var(--hb-font-family-heading);
-                font-size: var(--hb-font-size-lg);
+                font-family: ${variable("font-family-heading")};
+                font-size: ${variable("font-size-lg")};
             }
             
             :host([display="body1"]) ::slotted(*), :host([display="body1"]) {
-                font-size: var(--hb-font-size-default);
+                font-size: ${variable("font-size-default")};
             }
             
             :host([display="body2"]) ::slotted(*), :host([display="body2"]) {
-                font-size: var(--hb-font-size-default);
+                font-size: ${variable("font-size-default")};
             }
             
             :host([display="overline"]) ::slotted(*), :host([display="overline"]) {
-                font-size: var(--hb-font-size-sm);
+                font-size: ${variable("font-size-sm")};
                 line-height: 2.66;
                 letter-spacing: 0.08333em;
                 text-transform: uppercase;
             }
             
             :host([display="button"]) ::slotted(*), :host([display="button"]) {
-                font-size: var(--hb-font-size-default);
+                font-size: ${variable("font-size-default")};
                 font-weight: bold;
                 line-height: 1.75;
                 letter-spacing: 0.02857em;

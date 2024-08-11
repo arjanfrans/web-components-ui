@@ -1,4 +1,4 @@
-import { register } from "./framework/register";
+import { register, variable } from "./framework/register";
 
 export class Grid extends HTMLElement {
   private styleElement: HTMLStyleElement;
@@ -42,7 +42,7 @@ export class Grid extends HTMLElement {
     this.styleElement.textContent = `
             :host {
                 display: grid;
-                gap: var(--hb-gap-2xs);
+                gap: ${variable("gap-2xs")};
                 grid-template-columns: repeat(${xs}, 1fr);
             }
 

@@ -1,4 +1,4 @@
-import { register } from "./framework/register";
+import { register, variable } from "./framework/register";
 
 export class Container extends HTMLElement {
   constructor() {
@@ -13,7 +13,7 @@ export class Container extends HTMLElement {
                 display: block;
                 background-color: var(--semantic-background-default);
                 color: var(--semantic-text-default);
-                font-family: var(--hb-font-family-default);
+                font-family: ${variable("font-family-default")};
                 width: 100%;
             }
         `;

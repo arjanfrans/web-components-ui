@@ -1,4 +1,4 @@
-import { register } from "./framework/register";
+import { register, variable } from "./framework/register";
 
 export class CardContent extends HTMLElement {
   constructor() {
@@ -12,7 +12,7 @@ export class CardContent extends HTMLElement {
             :host {
                 display: flex;
                 flex-direction: column;
-                padding: var(--hb-gap-2xs);
+                padding: ${variable("gap-2xs")};
                 flex: 1;
             }
         `;

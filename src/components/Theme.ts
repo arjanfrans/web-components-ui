@@ -1,4 +1,4 @@
-import { register } from "./framework/register";
+import { register, getPrefix } from "./framework/register";
 import {
   generateColorPalette,
   generateCSSVariables,
@@ -125,28 +125,28 @@ export class Theme extends HTMLElement {
                 height: 100%;
                 width: 100%;
                 
-                --hb-font-family-default: ${fontFamilyDefault};
-                --hb-font-family-heading: ${fontFamilyHeading};
-                --hb-font-size-default: ${fontSizeDefault};
-                --hb-font-size-title: ${fontSizeTitle};
-                --hb-font-size-lg: ${fontSizeLarge};
-                --hb-font-size-md: ${fontSizeMedium};
-                --hb-font-size-sm: ${fontSizeSmall};
-                --hb-gap-5xs: 4px;
-                --hb-gap-4xs: 8px;
-                --hb-gap-3xs: 12px;
-                --hb-gap-2xs: 16px;
-                --hb-gap-xs: 20px;
-                --hb-gap-sm: 24px;
-                --hb-gap-md: 32px;
-                --hb-gap-lg: 40px;
-                --hb-gap-xl: 56px;
-                --hb-gap-2xl: 64px;
-                --hb-gap-3xl: 72px;
-                --hb-gap-4xl: 96px;
-                --hb-card-media-size-sm: ${cardMediaSizeSmall};
-                --hb-card-media-size-md: ${cardMediaSizeMedium};
-                --hb-card-media-size-lg: ${cardMediaSizeLarge};
+                --${getPrefix()}-font-family-default: ${fontFamilyDefault};
+                --${getPrefix()}-font-family-heading: ${fontFamilyHeading};
+                --${getPrefix()}-font-size-default: ${fontSizeDefault};
+                --${getPrefix()}-font-size-title: ${fontSizeTitle};
+                --${getPrefix()}-font-size-lg: ${fontSizeLarge};
+                --${getPrefix()}-font-size-md: ${fontSizeMedium};
+                --${getPrefix()}-font-size-sm: ${fontSizeSmall};
+                --${getPrefix()}-gap-5xs: 4px;
+                --${getPrefix()}-gap-4xs: 8px;
+                --${getPrefix()}-gap-3xs: 12px;
+                --${getPrefix()}-gap-2xs: 16px;
+                --${getPrefix()}-gap-xs: 20px;
+                --${getPrefix()}-gap-sm: 24px;
+                --${getPrefix()}-gap-md: 32px;
+                --${getPrefix()}-gap-lg: 40px;
+                --${getPrefix()}-gap-xl: 56px;
+                --${getPrefix()}-gap-2xl: 64px;
+                --${getPrefix()}-gap-3xl: 72px;
+                --${getPrefix()}-gap-4xl: 96px;
+                --${getPrefix()}-card-media-size-sm: ${cardMediaSizeSmall};
+                --${getPrefix()}-card-media-size-md: ${cardMediaSizeMedium};
+                --${getPrefix()}-card-media-size-lg: ${cardMediaSizeLarge};
             }
             
             ${cssVariables}

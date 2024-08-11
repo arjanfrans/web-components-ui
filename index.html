@@ -9,236 +9,236 @@
 </head>
 
 <body>
-    <hb-theme theme="light" font-family-heading="Neue Aachen Regular, sans-serif" font-family-default="sans-serif"
+    <x-theme theme="light" font-family-heading="Neue Aachen Regular, sans-serif" font-family-default="sans-serif"
         font-size-default="16px" font-size-title="42px" font-size-lg="32px" font-size-md="24px" font-size-sm="14px"
         color-primary="#ed1c24" color-text-light="#000000" color-text-dark="#ffffff" color-background-light="#ffffff"
         color-background-dark="#1f1f1f">
-        <hb-container>
-            <hb-stack direction="horizontal" gap="medium" margin-inline="medium" margin-block="large">
-                <hb-switch id="dark-mode" label="Dark Mode"></hb-switch>
-                <hb-color-picker id="color-primary" value="#ed1c24" label="Primary"></hb-color-picker>
-                <hb-color-picker id="color-background-light" value="#ffffff" label="Background Light"></hb-color-picker>
-                <hb-color-picker id="color-background-dark" value="#1f1f1f" label="Background Dark"></hb-color-picker>
-                <hb-color-picker id="color-text-light" value="#000000" label="Text Light"></hb-color-picker>
-                <hb-color-picker id="color-text-dark" value="#ffffff" label="Text Dark"></hb-color-picker>
-            </hb-stack>
-            <hb-stack gap="extra-large" margin-inline="large" margin-block="large">
-                <hb-block>
+        <x-container>
+            <x-stack direction="horizontal" gap="medium" margin-inline="medium" margin-block="large">
+                <x-switch id="dark-mode" label="Dark Mode"></x-switch>
+                <x-color-picker id="color-primary" value="#ed1c24" label="Primary"></x-color-picker>
+                <x-color-picker id="color-background-light" value="#ffffff" label="Background Light"></x-color-picker>
+                <x-color-picker id="color-background-dark" value="#1f1f1f" label="Background Dark"></x-color-picker>
+                <x-color-picker id="color-text-light" value="#000000" label="Text Light"></x-color-picker>
+                <x-color-picker id="color-text-dark" value="#ffffff" label="Text Dark"></x-color-picker>
+            </x-stack>
+            <x-stack gap="extra-large" margin-inline="large" margin-block="large">
+                <x-block>
 
-                    <hb-stack gap="medium">
-                        <hb-block>
-                            <hb-typography display="h1">
+                    <x-stack gap="medium">
+                        <x-block>
+                            <x-typography display="h1">
                                 <h2>Typography</h2>
-                            </hb-typography>
-                        </hb-block>
-                        <hb-stack gap="small">
-                            <hb-typography display="h2">
+                            </x-typography>
+                        </x-block>
+                        <x-stack gap="small">
+                            <x-typography display="h2">
                                 Heading 2
-                            </hb-typography>
-                            <hb-typography display="h3">
+                            </x-typography>
+                            <x-typography display="h3">
                                 Heading 3
-                            </hb-typography>
-                            <hb-typography display="h4">
+                            </x-typography>
+                            <x-typography display="h4">
                                 Heading 4
-                            </hb-typography>
-                            <hb-typography display="h5">
+                            </x-typography>
+                            <x-typography display="h5">
                                 Heading 5
-                            </hb-typography>
-                            <hb-typography display="h6">
+                            </x-typography>
+                            <x-typography display="h6">
                                 Heading 6
-                            </hb-typography>
-                            <hb-typography display="subtitle1">
+                            </x-typography>
+                            <x-typography display="subtitle1">
                                 Subtitle 1
-                            </hb-typography>
-                            <hb-typography display="subtitle2">
+                            </x-typography>
+                            <x-typography display="subtitle2">
                                 Subtitle 2
-                            </hb-typography>
-                            <hb-typography display="body1">
+                            </x-typography>
+                            <x-typography display="body1">
                                 Body 1
-                            </hb-typography>
-                            <hb-typography display="body2">
+                            </x-typography>
+                            <x-typography display="body2">
                                 Body 2
-                            </hb-typography>
-                            <hb-typography display="button">
+                            </x-typography>
+                            <x-typography display="button">
                                 Button
-                            </hb-typography>
+                            </x-typography>
 
-                            <hb-typography display="caption">
+                            <x-typography display="caption">
                                 Caption
-                            </hb-typography>
+                            </x-typography>
 
-                            <hb-typography display="overline">
+                            <x-typography display="overline">
                                 Overline
-                            </hb-typography>
-                        </hb-stack>
-                    </hb-stack>
-                </hb-block>
+                            </x-typography>
+                        </x-stack>
+                    </x-stack>
+                </x-block>
 
-                <hb-block>
-                    <hb-stack gap="medium">
-                        <hb-block>
-                            <hb-typography display="h1">
+                <x-block>
+                    <x-stack gap="medium">
+                        <x-block>
+                            <x-typography display="h1">
                                 <h2>Stack</h2>
-                            </hb-typography>
-                        </hb-block>
+                            </x-typography>
+                        </x-block>
 
-                        <hb-block>
-                            <hb-grid xs="1" md="2" lg="2">
-                                <hb-card>
-                                    <hb-stack direction="horizontal" justify-content="center">
-                                        <hb-typography display="h2">
+                        <x-block>
+                            <x-grid xs="1" md="2" lg="2">
+                                <x-card>
+                                    <x-stack direction="horizontal" justify-content="center">
+                                        <x-typography display="h2">
                                             <p>Centered Stack</p>
-                                        </hb-typography>
-                                    </hb-stack>
-                                    <hb-stack direction="horizontal" justify-content="center" gap="small">
+                                        </x-typography>
+                                    </x-stack>
+                                    <x-stack direction="horizontal" justify-content="center" gap="small">
                                         <span>Center Left</span>
                                         <span>Center Right</span>
-                                    </hb-stack>
-                                </hb-card>
-                                <hb-card>
-                                    <hb-stack direction="vertical" justify-content="space-between" gap="small">
+                                    </x-stack>
+                                </x-card>
+                                <x-card>
+                                    <x-stack direction="vertical" justify-content="space-between" gap="small">
                                         <span>Horizontal</span>
                                         <span>Stack</span>
                                         <span>with space-between</span>
-                                    </hb-stack>
-                                </hb-card>
+                                    </x-stack>
+                                </x-card>
 
-                            </hb-grid>
-                        </hb-block>
-                    </hb-stack>
-                </hb-block>
+                            </x-grid>
+                        </x-block>
+                    </x-stack>
+                </x-block>
 
 
-                <hb-block>
-                    <hb-stack gap="medium">
-                        <hb-block>
-                            <hb-typography display="h1">
+                <x-block>
+                    <x-stack gap="medium">
+                        <x-block>
+                            <x-typography display="h1">
                                 <h2>Grid</h2>
-                            </hb-typography>
-                        </hb-block>
+                            </x-typography>
+                        </x-block>
 
-                        <hb-block>
-                            <hb-grid xs="1" md="3" lg="4">
-                                <hb-card>Item 1</hb-card>
-                                <hb-card>Item 2</hb-card>
-                                <hb-card>Item 3</hb-card>
-                                <hb-card>Item 4</hb-card>
-                                <hb-card>Item 5</hb-card>
-                                <hb-card>Item 6</hb-card>
-                            </hb-grid>
-                        </hb-block>
-                    </hb-stack>
-                </hb-block>
+                        <x-block>
+                            <x-grid xs="1" md="3" lg="4">
+                                <x-card>Item 1</x-card>
+                                <x-card>Item 2</x-card>
+                                <x-card>Item 3</x-card>
+                                <x-card>Item 4</x-card>
+                                <x-card>Item 5</x-card>
+                                <x-card>Item 6</x-card>
+                            </x-grid>
+                        </x-block>
+                    </x-stack>
+                </x-block>
 
 
-                <hb-block>
-                    <hb-stack gap="medium">
-                        <hb-block>
-                            <hb-typography display="h1">
+                <x-block>
+                    <x-stack gap="medium">
+                        <x-block>
+                            <x-typography display="h1">
                                 <h2>Button</h2>
-                            </hb-typography>
-                        </hb-block>
+                            </x-typography>
+                        </x-block>
 
-                        <hb-block>
-                            <hb-stack direction="horizontal" gap="small">
-                                <hb-button size="small" variant="filled">Small Filled</hb-button>
-                                <hb-button size="small" variant="outlined">Small Outlined</hb-button>
-                                <hb-button size="medium" variant="filled">Medium Filled</hb-button>
-                                <hb-button size="medium" variant="outlined">Medium Outlined</hb-button>
-                                <hb-button size="large" variant="filled">Large Filled</hb-button>
-                                <hb-button size="large" variant="outlined">Large Outlined</hb-button>
-                            </hb-stack>
-                        </hb-block>
-                    </hb-stack>
-                </hb-block>
+                        <x-block>
+                            <x-stack direction="horizontal" gap="small">
+                                <x-button size="small" variant="filled">Small Filled</x-button>
+                                <x-button size="small" variant="outlined">Small Outlined</x-button>
+                                <x-button size="medium" variant="filled">Medium Filled</x-button>
+                                <x-button size="medium" variant="outlined">Medium Outlined</x-button>
+                                <x-button size="large" variant="filled">Large Filled</x-button>
+                                <x-button size="large" variant="outlined">Large Outlined</x-button>
+                            </x-stack>
+                        </x-block>
+                    </x-stack>
+                </x-block>
 
-                <hb-block>
-                    <hb-stack gap="medium">
-                        <hb-block>
-                            <hb-typography display="h1">
+                <x-block>
+                    <x-stack gap="medium">
+                        <x-block>
+                            <x-typography display="h1">
                                 <h2>Chip</h2>
-                            </hb-typography>
-                        </hb-block>
+                            </x-typography>
+                        </x-block>
 
-                        <hb-block>
-                            <hb-stack gap="small">
-                                <hb-chip value="Regular Small"></hb-chip>
-                                <hb-chip value="Active Small" active></hb-chip>
-                                <hb-chip value="Regular Large" size="large"></hb-chip>
-                            </hb-stack>
-                        </hb-block>
-                    </hb-stack>
+                        <x-block>
+                            <x-stack gap="small">
+                                <x-chip value="Regular Small"></x-chip>
+                                <x-chip value="Active Small" active></x-chip>
+                                <x-chip value="Regular Large" size="large"></x-chip>
+                            </x-stack>
+                        </x-block>
+                    </x-stack>
 
-                </hb-block>
+                </x-block>
 
 
-                <hb-block>
-                    <hb-stack gap="medium">
-                        <hb-block>
-                            <hb-typography display="h1">
+                <x-block>
+                    <x-stack gap="medium">
+                        <x-block>
+                            <x-typography display="h1">
                                 <h2>Switch</h2>
-                            </hb-typography>
-                        </hb-block>
+                            </x-typography>
+                        </x-block>
 
-                        <hb-block>
-                            <hb-stack gap="small">
-                                <hb-switch label="Label"></hb-switch>
-                                <hb-switch label="Required" required></hb-switch>
-                                <hb-switch label="Disabled" disabled></hb-switch>
-                            </hb-stack>
-                        </hb-block>
-                    </hb-stack>
+                        <x-block>
+                            <x-stack gap="small">
+                                <x-switch label="Label"></x-switch>
+                                <x-switch label="Required" required></x-switch>
+                                <x-switch label="Disabled" disabled></x-switch>
+                            </x-stack>
+                        </x-block>
+                    </x-stack>
 
-                </hb-block>
+                </x-block>
 
-                <hb-block>
-                    <hb-stack gap="medium">
-                        <hb-block>
-                            <hb-typography display="h1">
+                <x-block>
+                    <x-stack gap="medium">
+                        <x-block>
+                            <x-typography display="h1">
                                 <h2>Badge</h2>
-                            </hb-typography>
-                        </hb-block>
+                            </x-typography>
+                        </x-block>
 
-                        <hb-block>
-                            <hb-badge content="5">
-                                <hb-typography dispay="body1">Badge</hb-typography>
-                            </hb-badge>
-                        </hb-block>
-                    </hb-stack>
-                </hb-block>
+                        <x-block>
+                            <x-badge content="5">
+                                <x-typography dispay="body1">Badge</x-typography>
+                            </x-badge>
+                        </x-block>
+                    </x-stack>
+                </x-block>
 
 
-                <hb-block>
-                    <hb-stack gap="medium">
-                        <hb-block>
-                            <hb-typography display="h1">
+                <x-block>
+                    <x-stack gap="medium">
+                        <x-block>
+                            <x-typography display="h1">
                                 <h2>Link</h2>
-                            </hb-typography>
-                        </hb-block>
+                            </x-typography>
+                        </x-block>
 
-                        <hb-block>
-                            <hb-link><a href="https://www.hardbulls.com">Example Link</a></hb-link>
-                        </hb-block>
-                    </hb-stack>
-                </hb-block>
+                        <x-block>
+                            <x-link><a href="https://www.hardbulls.com">Example Link</a></x-link>
+                        </x-block>
+                    </x-stack>
+                </x-block>
 
-                <hb-block>
-                    <hb-stack gap="medium">
-                        <hb-block>
-                            <hb-typography display="h1">
+                <x-block>
+                    <x-stack gap="medium">
+                        <x-block>
+                            <x-typography display="h1">
                                 <h2>Table</h2>
-                            </hb-typography>
-                        </hb-block>
+                            </x-typography>
+                        </x-block>
 
-                        <hb-block>
-                            <hb-table>
+                        <x-block>
+                            <x-table>
                                 <table>
                                     <thead>
                                         <tr>
                                             <th>
-                                                <hb-tooltip text="Column Description">
+                                                <x-tooltip text="Column Description">
                                                     Column 1
-                                                </hb-tooltip>
+                                                </x-tooltip>
                                             </th>
                                             <th>Column 2</th>
                                             <th>Column 3</th>
@@ -257,150 +257,150 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                            </hb-table>
-                        </hb-block>
+                            </x-table>
+                        </x-block>
 
-                    </hb-stack>
-                </hb-block>
+                    </x-stack>
+                </x-block>
 
-                <hb-block>
-                    <hb-stack gap="medium">
-                        <hb-block>
-                            <hb-typography display="h1">
+                <x-block>
+                    <x-stack gap="medium">
+                        <x-block>
+                            <x-typography display="h1">
                                 <h2>Tooltip</h2>
-                            </hb-typography>
-                        </hb-block>
+                            </x-typography>
+                        </x-block>
 
-                        <hb-block>
-                            <hb-stack gap="small">
-                                <hb-tooltip value="Tooltip text">
-                                    <hb-typography display="body1">
+                        <x-block>
+                            <x-stack gap="small">
+                                <x-tooltip value="Tooltip text">
+                                    <x-typography display="body1">
                                         Text with tooltip
-                                    </hb-typography>
-                                </hb-tooltip>
+                                    </x-typography>
+                                </x-tooltip>
 
-                                <hb-tooltip value="Button tooltip text">
-                                    <hb-button variant="filled" size="small">Button with tooltip</hb-button>
-                                </hb-tooltip>
-                            </hb-stack>
-                        </hb-block>
+                                <x-tooltip value="Button tooltip text">
+                                    <x-button variant="filled" size="small">Button with tooltip</x-button>
+                                </x-tooltip>
+                            </x-stack>
+                        </x-block>
 
-                    </hb-stack>
-                </hb-block>
+                    </x-stack>
+                </x-block>
 
-                <hb-block>
-                    <hb-stack gap="medium">
-                        <hb-typography display="h1">
+                <x-block>
+                    <x-stack gap="medium">
+                        <x-typography display="h1">
                             <h2>Select</h2>
-                        </hb-typography>
+                        </x-typography>
 
-                        <hb-select>
+                        <x-select>
                             <select>
                                 <option value="a">Option A</option>
                                 <option value="b">Option B</option>
                                 <option value="c">Option C</option>
                             </select>
-                        </hb-select>
-                    </hb-stack>
-                </hb-block>
+                        </x-select>
+                    </x-stack>
+                </x-block>
 
 
-                <hb-block>
-                    <hb-stack gap="medium">
-                        <hb-block>
-                            <hb-typography display="h1">
+                <x-block>
+                    <x-stack gap="medium">
+                        <x-block>
+                            <x-typography display="h1">
                                 <h2>Card</h2>
-                            </hb-typography>
-                        </hb-block>
+                            </x-typography>
+                        </x-block>
 
-                        <hb-block>
-                            <hb-grid xs="1" md="2" lg="3">
-                                <hb-card>
-                                    <hb-typography display="h3">Card Title</hb-typography>
+                        <x-block>
+                            <x-grid xs="1" md="2" lg="3">
+                                <x-card>
+                                    <x-typography display="h3">Card Title</x-typography>
 
-                                    <hb-typography display="body1">
+                                    <x-typography display="body1">
                                         <p>Card content</p>
-                                    </hb-typography>
+                                    </x-typography>
 
-                                    <hb-chip value="Card Chip"></hb-chip>
-                                </hb-card>
+                                    <x-chip value="Card Chip"></x-chip>
+                                </x-card>
 
-                                <hb-card>
-                                    <hb-card-media src="https://via.placeholder.com/300.png" size="medium">
-                                    </hb-card-media>
-                                    <hb-card-content>
-                                        <hb-typography display="h3">Image Card Title</hb-typography>
-                                        <hb-typography display="body1">
+                                <x-card>
+                                    <x-card-media src="https://via.placeholder.com/300.png" size="medium">
+                                    </x-card-media>
+                                    <x-card-content>
+                                        <x-typography display="h3">Image Card Title</x-typography>
+                                        <x-typography display="body1">
                                             <p>Image card content.</p>
-                                        </hb-typography>
-                                    </hb-card-content>
-                                </hb-card>
+                                        </x-typography>
+                                    </x-card-content>
+                                </x-card>
 
 
-                                <hb-card>
-                                    <hb-card-media
+                                <x-card>
+                                    <x-card-media
                                         src="https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
-                                        size="large"></hb-card-media>
-                                    <hb-card-content>
-                                        <hb-typography display="h3">Video Card Title</hb-typography>
-                                        <hb-typography display="body1">Video card content.</hb-typography>
-                                    </hb-card-content>
-                                    </hb-card-content>
-                                </hb-card>
+                                        size="large"></x-card-media>
+                                    <x-card-content>
+                                        <x-typography display="h3">Video Card Title</x-typography>
+                                        <x-typography display="body1">Video card content.</x-typography>
+                                    </x-card-content>
+                                    </x-card-content>
+                                </x-card>
 
-                            </hb-grid>
-                        </hb-block>
-                    </hb-stack>
-                </hb-block>
+                            </x-grid>
+                        </x-block>
+                    </x-stack>
+                </x-block>
 
-                <hb-block>
-                    <hb-stack gap="medium">
-                        <hb-block>
-                            <hb-typography display="h1">
+                <x-block>
+                    <x-stack gap="medium">
+                        <x-block>
+                            <x-typography display="h1">
                                 <h2>Spinner</h2>
-                            </hb-typography>
-                        </hb-block>
+                            </x-typography>
+                        </x-block>
 
-                        <hb-block>
-                            <hb-spinner size="large" color="#ff0000"></hb-spinner>
-                        </hb-block>
-                    </hb-stack>
-                </hb-block>
+                        <x-block>
+                            <x-spinner size="large" color="#ff0000"></x-spinner>
+                        </x-block>
+                    </x-stack>
+                </x-block>
 
-                <hb-block>
-                    <hb-stack gap="medium">
-                        <hb-block>
-                            <hb-typography display="h1">
+                <x-block>
+                    <x-stack gap="medium">
+                        <x-block>
+                            <x-typography display="h1">
                                 <h2>Color Picker</h2>
-                            </hb-typography>
-                        </hb-block>
+                            </x-typography>
+                        </x-block>
 
-                        <hb-block>
-                            <hb-stack gap="small" direction="horizontal">
-                                <hb-color-picker value="#ff0000"></hb-color-picker>
-                                <hb-color-picker value="#00ff00" label="Label"></hb-color-picker>
-                            </hb-stack>
-                        </hb-block>
-                    </hb-stack>
-                </hb-block>
-            </hb-stack>
+                        <x-block>
+                            <x-stack gap="small" direction="horizontal">
+                                <x-color-picker value="#ff0000"></x-color-picker>
+                                <x-color-picker value="#00ff00" label="Label"></x-color-picker>
+                            </x-stack>
+                        </x-block>
+                    </x-stack>
+                </x-block>
+            </x-stack>
 
-            <hb-stack justify-content="center" direction="horizontal" margin-block="medium">
-                <hb-block>
-                    <hb-typography display="overline">
+            <x-stack justify-content="center" direction="horizontal" margin-block="medium">
+                <x-block>
+                    <x-typography display="overline">
                         &copy; 2024 Arjan Frans -
-                        <hb-link>
+                        <x-link>
                             <a href="https://github.com/arjanfrans/web-components-ui" target="_blank">Source Code</a>
-                        </hb-link>
-                    </hb-typography>
-                </hb-block>
-            </hb-stack>
-        </hb-container>
-    </hb-theme>
+                        </x-link>
+                    </x-typography>
+                </x-block>
+            </x-stack>
+        </x-container>
+    </x-theme>
 
     <script>
         (function () {
-            const theme = document.querySelector('hb-theme');
+            const theme = document.querySelector('x-theme');
             const darkModeSwitch = document.querySelector('#dark-mode');
             const colorPrimary = document.querySelector('#color-primary');
             const colorBackgroundLight = document.querySelector('#color-background-light');

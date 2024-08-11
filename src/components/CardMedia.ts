@@ -1,4 +1,4 @@
-import { register } from "./framework/register";
+import { register, variable } from "./framework/register";
 
 export class CardMedia extends HTMLElement {
   private styleElement: HTMLStyleElement;
@@ -28,13 +28,13 @@ export class CardMedia extends HTMLElement {
             }
             
             .small {
-                height: var(--hb-card-media-size-sm);
+                height: ${variable("card-media-size-sm")};
             }
             .medium {
-                height: var(--hb-card-media-size-md);
+                height: ${variable("card-media-size-md")};
             }
             .large {
-                height: var(--hb-card-media-size-lg);
+                height: ${variable("card-media-size-lg")};
             }
         `;
     shadow.appendChild(this.styleElement);

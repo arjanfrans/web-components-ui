@@ -1,4 +1,4 @@
-import { register } from "./framework/register";
+import { register, variable } from "./framework/register";
 import { Typography } from "./Typography";
 import { ZIndex } from "./variables/ZIndex";
 
@@ -17,7 +17,7 @@ export class ColorPicker extends HTMLElement {
       :host {
         display: inline-flex;
         align-items: center;
-        gap: var(--hb-gap-4xs);
+        gap: ${variable("gap-4xs")};
         font-family: sans-serif;
         width: max-content;
       }
