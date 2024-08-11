@@ -35,7 +35,7 @@ export class Spinner extends HTMLElement {
             circle {
                 fill: none;
                 stroke-width: 4;
-                stroke: var(--spinner-color, #000);
+                stroke: var(--semantic-stroke-highlight);
                 stroke-dasharray: 150, 200;
                 stroke-dashoffset: 0;
                 animation: dash 1.5s ease-in-out infinite;

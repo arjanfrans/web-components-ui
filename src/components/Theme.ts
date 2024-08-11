@@ -45,8 +45,10 @@ export class Theme extends HTMLElement {
       "font-size-sm",
       "font-size-default",
       "color-primary",
-      "color-text",
-      "color-background",
+      "color-text-dark",
+      "color-background-dark",
+      "color-text-light",
+      "color-background-light",
     ];
   }
 

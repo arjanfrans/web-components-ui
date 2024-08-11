@@ -8,15 +8,18 @@
 </head>
 
 <body>
-    <hb-theme theme="light" font-family-heading="Neue Aachen Regular, sans-serif"
-        font-family-default="sans-serif" font-size-default="16px" font-size-title="42px"
-        font-size-lg="32px" font-size-md="24px" font-size-sm="14px" color-primary="#ed1c24"
-        color-text-light="#000000" color-text-dark="#ffffff" color-background-light="#ffffff"
+    <hb-theme theme="light" font-family-heading="Neue Aachen Regular, sans-serif" font-family-default="sans-serif"
+        font-size-default="16px" font-size-title="42px" font-size-lg="32px" font-size-md="24px" font-size-sm="14px"
+        color-primary="#ed1c24" color-text-light="#000000" color-text-dark="#ffffff" color-background-light="#ffffff"
         color-background-dark="#1f1f1f">
         <hb-container>
             <hb-stack direction="horizontal" gap="medium" margin-inline="medium" margin-block="large">
                 <hb-switch id="dark-mode" label="Dark Mode"></hb-switch>
-                <hb-color-picker id="color-primary" value="#ff0000" label="Primary"></hb-color-picker>
+                <hb-color-picker id="color-primary" value="#ed1c24" label="Primary"></hb-color-picker>
+                <hb-color-picker id="color-background-light" value="#ffffff" label="Background Light"></hb-color-picker>
+                <hb-color-picker id="color-background-dark" value="#1f1f1f" label="Background Dark"></hb-color-picker>
+                <hb-color-picker id="color-text-light" value="#000000" label="Text Light"></hb-color-picker>
+                <hb-color-picker id="color-text-dark" value="#ffffff" label="Text Dark"></hb-color-picker>
             </hb-stack>
             <hb-stack gap="extra-large" margin-inline="large" margin-block="large">
                 <hb-block>
@@ -367,12 +370,12 @@
                     <hb-stack gap="medium">
                         <hb-block>
                             <hb-typography display="h1">
-                                <h2>Color Picket</h2>
+                                <h2>Color Picker</h2>
                             </hb-typography>
                         </hb-block>
 
                         <hb-block>
-                            <hb-stack gap="small">
+                            <hb-stack gap="small" direction="horizontal">
                                 <hb-color-picker value="#ff0000"></hb-color-picker>
                                 <hb-color-picker value="#00ff00" label="Label"></hb-color-picker>
                             </hb-stack>
@@ -384,7 +387,7 @@
             <hb-stack justify-content="center" direction="horizontal" margin-block="medium">
                 <hb-block>
                     <hb-typography display="overline">
-                        &copy; 2024 Arjan Frans - 
+                        &copy; 2024 Arjan Frans -
                         <hb-link>
                             <a href="https://github.com/arjanfrans/web-components-ui" target="_blank">Source Code</a>
                         </hb-link>
@@ -398,7 +401,11 @@
         (function () {
             const theme = document.querySelector('hb-theme');
             const darkModeSwitch = document.querySelector('#dark-mode');
-            const colorPrimary = document.querySelector('#color-primary')
+            const colorPrimary = document.querySelector('#color-primary');
+            const colorBackgroundLight = document.querySelector('#color-background-light');
+            const colorBackgroundDark = document.querySelector('#color-background-dark');
+            const colorTextLight = document.querySelector('#color-text-light');
+            const colorTextDark = document.querySelector('#color-text-dark');
 
             darkModeSwitch.addEventListener('change', () => {
                 if (darkModeSwitch.checked) {
@@ -408,12 +415,41 @@
                 }
             })
 
-   
 
             colorPrimary.addEventListener('color-change', (event) => {
                 const color = event.detail.color;
 
                 theme.setAttribute('color-primary', color);
+            });
+
+            colorPrimary.addEventListener('color-change', (event) => {
+                const color = event.detail.color;
+
+                theme.setAttribute('color-primary', color);
+            });
+
+            colorBackgroundLight.addEventListener('color-change', (event) => {
+                const color = event.detail.color;
+
+                theme.setAttribute('color-background-light', color);
+            });
+
+            colorBackgroundDark.addEventListener('color-change', (event) => {
+                const color = event.detail.color;
+                
+                theme.setAttribute('color-background-dark', color);
+            });
+
+            colorTextLight.addEventListener('color-change', (event) => {
+                const color = event.detail.color;
+
+                theme.setAttribute('color-text-light', color);
+            });
+
+            colorTextDark.addEventListener('color-change', (event) => {
+                const color = event.detail.color;
+
+                theme.setAttribute('color-text-dark', color);
             });
 
 

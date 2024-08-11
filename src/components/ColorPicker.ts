@@ -1,5 +1,6 @@
 import { register } from "./framework/register";
-import { Typography } from "./Typography.ts";
+import { Typography } from "./Typography";
+import { ZIndex } from "./variables/ZIndex";
 
 export class ColorPicker extends HTMLElement {
   private readonly colorInput: HTMLInputElement;
@@ -50,6 +51,7 @@ export class ColorPicker extends HTMLElement {
         border: 1px solid var(--semantic-stroke-default); /* Border to enhance visibility */
         box-shadow: 0 0 1px rgb(from var(--semantic-background-inverted) r g b / 30%); /* Shadow to make it stand out */
         transform: translate(30%, 30%); /* Adjust badge position */
+        pointer-events: all;
       }
 
       .icon svg {
@@ -59,9 +61,13 @@ export class ColorPicker extends HTMLElement {
       }
 
       input[type="color"] {
+        z-index: ${ZIndex.TOP};
         opacity: 0;
         position: absolute;
-        transform: translate(12px);
+        width: 32px;
+        height: 32px;
+        transform: translate(-1px, -1px);
+        cursor: pointer;
       }
     `;
 
