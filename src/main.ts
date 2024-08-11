@@ -17,3 +17,4 @@ export { Stack } from "./components/Stack";
 export { Block } from "./components/Block";
 export { Button } from "./components/Button";
 export { Switch } from "./components/Switch";
+export { Badge } from "./components/Badge";

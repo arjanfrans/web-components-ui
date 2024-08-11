@@ -14,6 +14,9 @@
         --hb-color-text-light="#000000" --hb-color-text-dark="#ffffff" --hb-color-background-light="#ffffff"
         --hb-color-background-dark="#1f1f1f">
         <hb-container>
+            <hb-stack direction="horizontal" gap="medium" margin-inline="medium" margin-block="large">
+                <hb-switch id="dark-mode" label="Dark Mode"></hb-switch>
+            </hb-stack>
             <hb-stack gap="extra-large" margin-inline="large" margin-block="large">
                 <hb-block>
 
@@ -23,10 +26,40 @@
                                 <h2>Typography</h2>
                             </hb-typography>
                         </hb-block>
-
                         <hb-stack gap="small">
+                            <hb-typography display="h2">
+                                Heading 2
+                            </hb-typography>
+                            <hb-typography display="h3">
+                                Heading 3
+                            </hb-typography>
+                            <hb-typography display="h4">
+                                Heading 4
+                            </hb-typography>
+                            <hb-typography display="h5">
+                                Heading 5
+                            </hb-typography>
+                            <hb-typography display="h6">
+                                Heading 6
+                            </hb-typography>
+                            <hb-typography display="subtitle1">
+                                Subtitle 1
+                            </hb-typography>
+                            <hb-typography display="subtitle2">
+                                Subtitle 2
+                            </hb-typography>
+                            <hb-typography display="body1">
+                                Body 1
+                            </hb-typography>
+                            <hb-typography display="body2">
+                                Body 2
+                            </hb-typography>
                             <hb-typography display="button">
                                 Button
+                            </hb-typography>
+
+                            <hb-typography display="caption">
+                                Caption
                             </hb-typography>
 
                             <hb-typography display="overline">
@@ -151,6 +184,22 @@
                         </hb-block>
                     </hb-stack>
 
+                </hb-block>
+
+                <hb-block>
+                    <hb-stack gap="medium">
+                        <hb-block>
+                            <hb-typography display="h1">
+                                <h2>Badge</h2>
+                            </hb-typography>
+                        </hb-block>
+
+                        <hb-block>
+                            <hb-badge content="5">
+                                <hb-typography dispay="body1">Badge</hb-typography>
+                            </hb-badge>
+                        </hb-block>
+                    </hb-stack>
                 </hb-block>
 
 
@@ -329,12 +378,16 @@
 
     <script>
         (function () {
-            const urlParams = new URLSearchParams(window.location.search);
-            const mode = urlParams.get('mode') || "light";
-
             const theme = document.querySelector('hb-theme');
+            const darkModeSwitch = document.querySelector('#dark-mode');
 
-            theme.setAttribute('theme', mode);
+            darkModeSwitch.addEventListener('change', () => {
+                if (darkModeSwitch.checked) {
+                    theme.setAttribute('theme', 'dark');
+                } else {
+                    theme.setAttribute('theme', 'light')
+                }
+            })
         })()
     </script>
 </body>
