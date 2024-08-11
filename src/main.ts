@@ -18,3 +18,4 @@ export { Block } from "./components/Block";
 export { Button } from "./components/Button";
 export { Switch } from "./components/Switch";
 export { Badge } from "./components/Badge";
+export { ColorPicker } from "./components/ColorPicker";

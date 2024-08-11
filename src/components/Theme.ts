@@ -37,16 +37,16 @@ export class Theme extends HTMLElement {
 
   static get observedAttributes() {
     return [
-      "--hb-font-family-heading",
-      "--hb-font-family-default",
-      "--hb-font-size-title",
-      "--hb-font-size-lg",
-      "--hb-font-size-md",
-      "--hb-font-size-sm",
-      "--hb-font-size-default",
-      "--hb-color-primary",
-      "--hb-color-text",
-      "--hb-color-background",
+      "font-family-heading",
+      "font-family-default",
+      "font-size-title",
+      "font-size-lg",
+      "font-size-md",
+      "font-size-sm",
+      "font-size-default",
+      "color-primary",
+      "color-text",
+      "color-background",
     ];
   }
 
@@ -56,53 +56,47 @@ export class Theme extends HTMLElement {
 
   updateStyles() {
     const fontSizeTitle =
-      this.getAttribute("--hb-font-size-title") ||
-      this.defaultStyles.fontSizeTitle;
+      this.getAttribute("font-size-title") || this.defaultStyles.fontSizeTitle;
     const fontSizeLarge =
-      this.getAttribute("--hb-font-size-lg") ||
-      this.defaultStyles.fontSizeLarge;
+      this.getAttribute("font-size-lg") || this.defaultStyles.fontSizeLarge;
     const fontSizeMedium =
-      this.getAttribute("--hb-font-size-md") ||
-      this.defaultStyles.fontSizeMedium;
+      this.getAttribute("font-size-md") || this.defaultStyles.fontSizeMedium;
     const fontSizeSmall =
-      this.getAttribute("--hb-font-size-sm") ||
-      this.defaultStyles.fontSizeSmall;
+      this.getAttribute("font-size-sm") || this.defaultStyles.fontSizeSmall;
     const fontSizeDefault =
-      this.getAttribute("--hb-font-size-default") ||
+      this.getAttribute("font-size-default") ||
       this.defaultStyles.fontSizeDefault;
 
     const fontFamilyDefault =
-      this.getAttribute("--hb-font-family-default") ||
+      this.getAttribute("font-family-default") ||
       this.defaultStyles.fontFamilyDefault;
     const fontFamilyHeading =
-      this.getAttribute("--hb-font-family-heading") ||
+      this.getAttribute("font-family-heading") ||
       this.defaultStyles.fontFamilyHeading;
 
     const colorPrimary =
-      this.getAttribute("--hb-color-primary") ||
-      this.defaultStyles.colorPrimary;
+      this.getAttribute("color-primary") || this.defaultStyles.colorPrimary;
     const colorTextLight =
-      this.getAttribute("--hb-color-text-light") ||
+      this.getAttribute("color-text-light") ||
       this.defaultStyles.colorTextLight;
     const colorTextDark =
-      this.getAttribute("--hb-color-text-dark") ||
-      this.defaultStyles.colorTextDark;
+      this.getAttribute("color-text-dark") || this.defaultStyles.colorTextDark;
 
     const colorBackgroundLight =
-      this.getAttribute("--hb-color-background-light") ||
+      this.getAttribute("color-background-light") ||
       this.defaultStyles.colorBackgroundLight;
     const colorBackgroundDark =
-      this.getAttribute("--hb-color-background-dark") ||
+      this.getAttribute("color-background-dark") ||
       this.defaultStyles.colorBackgroundDark;
 
     const cardMediaSizeLarge =
-      this.getAttribute("--hb-card-media-size-lg") ||
+      this.getAttribute("card-media-size-lg") ||
       this.defaultStyles.cardMediaSizeLarge;
     const cardMediaSizeMedium =
-      this.getAttribute("--hb-card-media-size-md") ||
+      this.getAttribute("card-media-size-md") ||
       this.defaultStyles.cardMediaSizeMedium;
     const cardMediaSizeSmall =
-      this.getAttribute("--hb-card-media-size-sm") ||
+      this.getAttribute("card-media-size-sm") ||
       this.defaultStyles.fontSizeSmall;
 
     const palette = generateColorPalette(

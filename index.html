@@ -8,14 +8,15 @@
 </head>
 
 <body>
-    <hb-theme theme="light" --hb-font-family-heading="Neue Aachen Regular, sans-serif"
-        --hb-font-family-default="sans-serif" --hb-font-size-default="16px" --hb-font-size-title="42px"
-        --hb-font-size-lg="32px" --hb-font-size-md="24px" --hb-font-size-sm="14px" --hb-color-primary="#ed1c24"
-        --hb-color-text-light="#000000" --hb-color-text-dark="#ffffff" --hb-color-background-light="#ffffff"
-        --hb-color-background-dark="#1f1f1f">
+    <hb-theme theme="light" font-family-heading="Neue Aachen Regular, sans-serif"
+        font-family-default="sans-serif" font-size-default="16px" font-size-title="42px"
+        font-size-lg="32px" font-size-md="24px" font-size-sm="14px" color-primary="#ed1c24"
+        color-text-light="#000000" color-text-dark="#ffffff" color-background-light="#ffffff"
+        color-background-dark="#1f1f1f">
         <hb-container>
             <hb-stack direction="horizontal" gap="medium" margin-inline="medium" margin-block="large">
                 <hb-switch id="dark-mode" label="Dark Mode"></hb-switch>
+                <hb-color-picker id="color-primary" value="#ff0000" label="Primary"></hb-color-picker>
             </hb-stack>
             <hb-stack gap="extra-large" margin-inline="large" margin-block="large">
                 <hb-block>
@@ -361,6 +362,23 @@
                         </hb-block>
                     </hb-stack>
                 </hb-block>
+
+                <hb-block>
+                    <hb-stack gap="medium">
+                        <hb-block>
+                            <hb-typography display="h1">
+                                <h2>Color Picket</h2>
+                            </hb-typography>
+                        </hb-block>
+
+                        <hb-block>
+                            <hb-stack gap="small">
+                                <hb-color-picker value="#ff0000"></hb-color-picker>
+                                <hb-color-picker value="#00ff00" label="Label"></hb-color-picker>
+                            </hb-stack>
+                        </hb-block>
+                    </hb-stack>
+                </hb-block>
             </hb-stack>
 
             <hb-stack justify-content="center" direction="horizontal" margin-block="medium">
@@ -380,6 +398,7 @@
         (function () {
             const theme = document.querySelector('hb-theme');
             const darkModeSwitch = document.querySelector('#dark-mode');
+            const colorPrimary = document.querySelector('#color-primary')
 
             darkModeSwitch.addEventListener('change', () => {
                 if (darkModeSwitch.checked) {
@@ -388,6 +407,16 @@
                     theme.setAttribute('theme', 'light')
                 }
             })
+
+   
+
+            colorPrimary.addEventListener('color-change', (event) => {
+                const color = event.detail.color;
+
+                theme.setAttribute('color-primary', color);
+            });
+
+
         })()
     </script>
 </body>
