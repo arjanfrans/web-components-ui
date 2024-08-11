@@ -59,11 +59,9 @@ export class ColorPicker extends HTMLElement {
       }
 
       input[type="color"] {
-        visibility: hidden;
+        opacity: 0;
         position: absolute;
         transform: translate(12px);
-        width: 0;
-        height: 0;
       }
     `;
 
