@@ -1,6 +1,7 @@
 import "./components/framework/reset.css";
 import {
   configurePrefix,
+  removeProgressBar,
   waitForComponents,
 } from "./components/framework/register";
 
@@ -26,3 +27,5 @@ export { Button } from "./components/Button";
 export { Switch } from "./components/Switch";
 export { Badge } from "./components/Badge";
 export { ColorPicker } from "./components/ColorPicker";
+
+removeProgressBar();
