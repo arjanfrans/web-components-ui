@@ -24,6 +24,10 @@ export class Typography extends HTMLElement {
     // Create a style element
     const style = document.createElement("style");
     style.textContent = `          
+            :host {
+              display: inline;
+            }
+            
             ::slotted(h1), ::slotted(h2), ::slotted(h3), ::slotted(h4), ::slotted(h5), ::slotted(h6) {
               font-size: 1em; /* Reset font size to a neutral value */
               font-weight: normal; /* Reset font weight to normal */

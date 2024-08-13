@@ -2,460 +2,526 @@
 <html>
 
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <base href="">
     <title>Web Components UI Library</title>
+
+    <style>
+        /* Inline CSS for the loading bar */
+        x-loading {
+            display: block; /* Ensure the loading bar is displayed */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px; /* Thin height for the loading bar */
+            z-index: 9999; /* Ensure it is on top of other content */
+        }
+
+        @keyframes loadingAnimation {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(100%);
+            }
+        }
+    </style>
+
     <script type="module" src="/src/main.ts"></script>
 </head>
 
 <body>
-    <x-theme theme="light" font-family-heading="Neue Aachen Regular, sans-serif" font-family-default="sans-serif"
-        font-size-default="16px" font-size-title="42px" font-size-lg="32px" font-size-md="24px" font-size-sm="14px"
-        color-primary="#ed1c24" color-text-light="#000000" color-text-dark="#ffffff" color-background-light="#ffffff"
-        color-background-dark="#1f1f1f">
-        <x-container>
-            <x-stack direction="horizontal" gap="medium" margin-inline="medium" margin-block="large">
-                <x-switch id="dark-mode" label="Dark Mode"></x-switch>
-                <x-color-picker id="color-primary" value="#ed1c24" label="Primary"></x-color-picker>
-                <x-color-picker id="color-background-light" value="#ffffff" label="Background Light"></x-color-picker>
-                <x-color-picker id="color-background-dark" value="#1f1f1f" label="Background Dark"></x-color-picker>
-                <x-color-picker id="color-text-light" value="#000000" label="Text Light"></x-color-picker>
-                <x-color-picker id="color-text-dark" value="#ffffff" label="Text Dark"></x-color-picker>
-            </x-stack>
-            <x-stack gap="extra-large" margin-inline="large" margin-block="large">
-                <x-block>
+<x-loading></x-loading>
 
-                    <x-stack gap="medium">
-                        <x-block>
-                            <x-typography display="h1">
-                                <h2>Typography</h2>
-                            </x-typography>
-                        </x-block>
-                        <x-stack gap="small">
-                            <x-typography display="h2">
-                                Heading 2
-                            </x-typography>
-                            <x-typography display="h3">
-                                Heading 3
-                            </x-typography>
-                            <x-typography display="h4">
-                                Heading 4
-                            </x-typography>
-                            <x-typography display="h5">
-                                Heading 5
-                            </x-typography>
-                            <x-typography display="h6">
-                                Heading 6
-                            </x-typography>
-                            <x-typography display="subtitle1">
-                                Subtitle 1
-                            </x-typography>
-                            <x-typography display="subtitle2">
-                                Subtitle 2
-                            </x-typography>
-                            <x-typography display="body1">
-                                Body 1
-                            </x-typography>
-                            <x-typography display="body2">
-                                Body 2
-                            </x-typography>
-                            <x-typography display="button">
-                                Button
-                            </x-typography>
+<x-theme style="display: none" theme="light" font-family-heading="Neue Aachen Regular, sans-serif" font-family-default="sans-serif"
+         font-size-default="16px" font-size-title="42px" font-size-lg="32px" font-size-md="24px" font-size-sm="14px"
+         color-primary="#ed1c24" color-text-light="#000000" color-text-dark="#ffffff" color-background-light="#ffffff"
+         color-background-dark="#1f1f1f">
+    <x-container>
+        <x-stack direction="horizontal" gap="medium" margin-inline="medium" margin-block="large">
+            <x-switch id="dark-mode" label="Dark Mode"></x-switch>
+            <x-color-picker id="color-primary" value="#ed1c24" label="Primary"></x-color-picker>
+            <x-color-picker id="color-background-light" value="#ffffff" label="Background Light"></x-color-picker>
+            <x-color-picker id="color-background-dark" value="#1f1f1f" label="Background Dark"></x-color-picker>
+            <x-color-picker id="color-text-light" value="#000000" label="Text Light"></x-color-picker>
+            <x-color-picker id="color-text-dark" value="#ffffff" label="Text Dark"></x-color-picker>
+        </x-stack>
+        <x-stack gap="extra-large" margin-inline="large" margin-block="large">
+            <x-block>
 
-                            <x-typography display="caption">
-                                Caption
-                            </x-typography>
+                <x-stack gap="medium">
+                    <x-block>
+                        <x-typography display="h1">
+                            <h2>Typography</h2>
+                        </x-typography>
+                    </x-block>
+                    <x-stack gap="small">
+                        <x-typography display="h2">
+                            Heading 2
+                        </x-typography>
+                        <x-typography display="h3">
+                            Heading 3
+                        </x-typography>
+                        <x-typography display="h4">
+                            Heading 4
+                        </x-typography>
+                        <x-typography display="h5">
+                            Heading 5
+                        </x-typography>
+                        <x-typography display="h6">
+                            Heading 6
+                        </x-typography>
+                        <x-typography display="subtitle1">
+                            Subtitle 1
+                        </x-typography>
+                        <x-typography display="subtitle2">
+                            Subtitle 2
+                        </x-typography>
+                        <x-typography display="body1">
+                            Body 1
+                        </x-typography>
+                        <x-typography display="body2">
+                            Body 2
+                        </x-typography>
+                        <x-typography display="button">
+                            Button
+                        </x-typography>
 
-                            <x-typography display="overline">
-                                Overline
-                            </x-typography>
+                        <x-typography display="caption">
+                            Caption
+                        </x-typography>
+
+                        <x-typography display="overline">
+                            Overline
+                        </x-typography>
+                    </x-stack>
+                </x-stack>
+            </x-block>
+
+            <x-block>
+                <x-stack gap="medium">
+                    <x-block>
+                        <x-typography display="h1">
+                            <h2>Stack</h2>
+                        </x-typography>
+                    </x-block>
+
+                    <x-block>
+                        <x-grid xs="1" md="2" lg="2">
+                            <x-card>
+                                <x-stack direction="horizontal" justify-content="center">
+                                    <x-typography display="h2">
+                                        <p>Centered Stack</p>
+                                    </x-typography>
+                                </x-stack>
+                                <x-stack direction="horizontal" justify-content="center" gap="small">
+                                    <span>Center Left</span>
+                                    <span>Center Right</span>
+                                </x-stack>
+                            </x-card>
+                            <x-card>
+                                <x-stack direction="vertical" justify-content="space-between" gap="small">
+                                    <span>Horizontal</span>
+                                    <span>Stack</span>
+                                    <span>with space-between</span>
+                                </x-stack>
+                            </x-card>
+
+                        </x-grid>
+                    </x-block>
+                </x-stack>
+            </x-block>
+
+
+            <x-block>
+                <x-stack gap="medium">
+                    <x-block>
+                        <x-typography display="h1">
+                            <h2>Grid</h2>
+                        </x-typography>
+                    </x-block>
+
+                    <x-block>
+                        <x-grid xs="1" md="3" lg="4">
+                            <x-card>Item 1</x-card>
+                            <x-card>Item 2</x-card>
+                            <x-card>Item 3</x-card>
+                            <x-card>Item 4</x-card>
+                            <x-card>Item 5</x-card>
+                            <x-card>Item 6</x-card>
+                        </x-grid>
+                    </x-block>
+                </x-stack>
+            </x-block>
+
+
+            <x-block>
+                <x-stack gap="medium">
+                    <x-block>
+                        <x-typography display="h1">
+                            <h2>Button</h2>
+                        </x-typography>
+                    </x-block>
+
+                    <x-block>
+                        <x-stack direction="horizontal" gap="small">
+                            <x-button size="small" variant="filled">Small Filled</x-button>
+                            <x-button size="small" variant="outlined">Small Outlined</x-button>
+                            <x-button size="medium" variant="filled">Medium Filled</x-button>
+                            <x-button size="medium" variant="outlined">Medium Outlined</x-button>
+                            <x-button size="large" variant="filled">Large Filled</x-button>
+                            <x-button size="large" variant="outlined">Large Outlined</x-button>
                         </x-stack>
-                    </x-stack>
-                </x-block>
+                    </x-block>
+                </x-stack>
+            </x-block>
 
-                <x-block>
-                    <x-stack gap="medium">
-                        <x-block>
-                            <x-typography display="h1">
-                                <h2>Stack</h2>
-                            </x-typography>
-                        </x-block>
+            <x-block>
+                <x-stack gap="medium">
+                    <x-block>
+                        <x-typography display="h1">
+                            <h2>Chip</h2>
+                        </x-typography>
+                    </x-block>
 
-                        <x-block>
-                            <x-grid xs="1" md="2" lg="2">
-                                <x-card>
-                                    <x-stack direction="horizontal" justify-content="center">
-                                        <x-typography display="h2">
-                                            <p>Centered Stack</p>
-                                        </x-typography>
-                                    </x-stack>
-                                    <x-stack direction="horizontal" justify-content="center" gap="small">
-                                        <span>Center Left</span>
-                                        <span>Center Right</span>
-                                    </x-stack>
-                                </x-card>
-                                <x-card>
-                                    <x-stack direction="vertical" justify-content="space-between" gap="small">
-                                        <span>Horizontal</span>
-                                        <span>Stack</span>
-                                        <span>with space-between</span>
-                                    </x-stack>
-                                </x-card>
+                    <x-block>
+                        <x-stack gap="small">
+                            <x-chip value="Regular Small"></x-chip>
+                            <x-chip value="Active Small" active></x-chip>
+                            <x-chip value="Regular Large" size="large"></x-chip>
+                        </x-stack>
+                    </x-block>
+                </x-stack>
 
-                            </x-grid>
-                        </x-block>
-                    </x-stack>
-                </x-block>
+            </x-block>
 
 
-                <x-block>
-                    <x-stack gap="medium">
-                        <x-block>
-                            <x-typography display="h1">
-                                <h2>Grid</h2>
-                            </x-typography>
-                        </x-block>
+            <x-block>
+                <x-stack gap="medium">
+                    <x-block>
+                        <x-typography display="h1">
+                            <h2>Switch</h2>
+                        </x-typography>
+                    </x-block>
 
-                        <x-block>
-                            <x-grid xs="1" md="3" lg="4">
-                                <x-card>Item 1</x-card>
-                                <x-card>Item 2</x-card>
-                                <x-card>Item 3</x-card>
-                                <x-card>Item 4</x-card>
-                                <x-card>Item 5</x-card>
-                                <x-card>Item 6</x-card>
-                            </x-grid>
-                        </x-block>
-                    </x-stack>
-                </x-block>
+                    <x-block>
+                        <x-stack gap="small">
+                            <x-switch label="Label"></x-switch>
+                            <x-switch label="Required" required></x-switch>
+                            <x-switch label="Disabled" disabled></x-switch>
+                        </x-stack>
+                    </x-block>
+                </x-stack>
 
+            </x-block>
 
-                <x-block>
-                    <x-stack gap="medium">
-                        <x-block>
-                            <x-typography display="h1">
-                                <h2>Button</h2>
-                            </x-typography>
-                        </x-block>
+            <x-block>
+                <x-stack gap="medium">
+                    <x-block>
+                        <x-typography display="h1">
+                            <h2>Badge</h2>
+                        </x-typography>
+                    </x-block>
 
-                        <x-block>
-                            <x-stack direction="horizontal" gap="small">
-                                <x-button size="small" variant="filled">Small Filled</x-button>
-                                <x-button size="small" variant="outlined">Small Outlined</x-button>
-                                <x-button size="medium" variant="filled">Medium Filled</x-button>
-                                <x-button size="medium" variant="outlined">Medium Outlined</x-button>
-                                <x-button size="large" variant="filled">Large Filled</x-button>
-                                <x-button size="large" variant="outlined">Large Outlined</x-button>
-                            </x-stack>
-                        </x-block>
-                    </x-stack>
-                </x-block>
-
-                <x-block>
-                    <x-stack gap="medium">
-                        <x-block>
-                            <x-typography display="h1">
-                                <h2>Chip</h2>
-                            </x-typography>
-                        </x-block>
-
-                        <x-block>
-                            <x-stack gap="small">
-                                <x-chip value="Regular Small"></x-chip>
-                                <x-chip value="Active Small" active></x-chip>
-                                <x-chip value="Regular Large" size="large"></x-chip>
-                            </x-stack>
-                        </x-block>
-                    </x-stack>
-
-                </x-block>
-
-
-                <x-block>
-                    <x-stack gap="medium">
-                        <x-block>
-                            <x-typography display="h1">
-                                <h2>Switch</h2>
-                            </x-typography>
-                        </x-block>
-
-                        <x-block>
-                            <x-stack gap="small">
-                                <x-switch label="Label"></x-switch>
-                                <x-switch label="Required" required></x-switch>
-                                <x-switch label="Disabled" disabled></x-switch>
-                            </x-stack>
-                        </x-block>
-                    </x-stack>
-
-                </x-block>
-
-                <x-block>
-                    <x-stack gap="medium">
-                        <x-block>
-                            <x-typography display="h1">
-                                <h2>Badge</h2>
-                            </x-typography>
-                        </x-block>
-
-                        <x-block>
+                    <x-block>
+                        <x-stack gap="small">
                             <x-badge content="5">
                                 <x-typography dispay="body1">Badge</x-typography>
                             </x-badge>
-                        </x-block>
-                    </x-stack>
-                </x-block>
+
+                            <x-badge content="120">
+                                <x-typography dispay="overline">Badge</x-typography>
+                            </x-badge>
+                        </x-stack>
+                    </x-block>
+                </x-stack>
+            </x-block>
 
 
-                <x-block>
-                    <x-stack gap="medium">
-                        <x-block>
-                            <x-typography display="h1">
-                                <h2>Link</h2>
-                            </x-typography>
-                        </x-block>
-
-                        <x-block>
-                            <x-link><a href="https://www.hardbulls.com">Example Link</a></x-link>
-                        </x-block>
-                    </x-stack>
-                </x-block>
-
-                <x-block>
-                    <x-stack gap="medium">
-                        <x-block>
-                            <x-typography display="h1">
-                                <h2>Table</h2>
-                            </x-typography>
-                        </x-block>
-
-                        <x-block>
-                            <x-table>
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th>
-                                                <x-tooltip text="Column Description">
-                                                    Column 1
-                                                </x-tooltip>
-                                            </th>
-                                            <th>Column 2</th>
-                                            <th>Column 3</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Row 1, Cell 1</td>
-                                            <td>Row 1, Cell 2</td>
-                                            <td>Row 1, Cell 3</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Row 2, Cell 1</td>
-                                            <td>Row 2, Cell 2</td>
-                                            <td>Row 2, Cell 3</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </x-table>
-                        </x-block>
-
-                    </x-stack>
-                </x-block>
-
-                <x-block>
-                    <x-stack gap="medium">
-                        <x-block>
-                            <x-typography display="h1">
-                                <h2>Tooltip</h2>
-                            </x-typography>
-                        </x-block>
-
-                        <x-block>
-                            <x-stack gap="small">
-                                <x-tooltip value="Tooltip text">
-                                    <x-typography display="body1">
-                                        Text with tooltip
-                                    </x-typography>
-                                </x-tooltip>
-
-                                <x-tooltip value="Button tooltip text">
-                                    <x-button variant="filled" size="small">Button with tooltip</x-button>
-                                </x-tooltip>
-                            </x-stack>
-                        </x-block>
-
-                    </x-stack>
-                </x-block>
-
-                <x-block>
-                    <x-stack gap="medium">
+            <x-block>
+                <x-stack gap="medium">
+                    <x-block>
                         <x-typography display="h1">
-                            <h2>Select</h2>
+                            <h2>Link</h2>
                         </x-typography>
+                    </x-block>
 
-                        <x-select>
-                            <select>
-                                <option value="a">Option A</option>
-                                <option value="b">Option B</option>
-                                <option value="c">Option C</option>
-                            </select>
-                        </x-select>
-                    </x-stack>
-                </x-block>
+                    <x-block>
+                        <x-link><a href="https://www.hardbulls.com">Example Link</a></x-link>
+                    </x-block>
+                </x-stack>
+            </x-block>
+
+            <x-block>
+                <x-stack gap="medium">
+                    <x-block>
+                        <x-typography display="h1">
+                            <h2>Table</h2>
+                        </x-typography>
+                    </x-block>
+
+                    <x-block>
+                        <x-table>
+                            <table>
+                                <thead>
+                                <tr>
+                                    <th>
+                                        <x-tooltip text="Column Description">
+                                            Column 1
+                                        </x-tooltip>
+                                    </th>
+                                    <th>Column 2</th>
+                                    <th>Column 3</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>Row 1, Cell 1</td>
+                                    <td>Row 1, Cell 2</td>
+                                    <td>Row 1, Cell 3</td>
+                                </tr>
+                                <tr>
+                                    <td>Row 2, Cell 1</td>
+                                    <td>Row 2, Cell 2</td>
+                                    <td>Row 2, Cell 3</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </x-table>
+                    </x-block>
+
+                </x-stack>
+            </x-block>
+
+            <x-block>
+                <x-stack gap="medium">
+                    <x-block>
+                        <x-typography display="h1">
+                            <h2>Tooltip</h2>
+                        </x-typography>
+                    </x-block>
+
+                    <x-block>
+                        <x-stack gap="small">
+                            <x-tooltip value="Tooltip text">
+                                <x-typography display="body1">
+                                    Text with tooltip
+                                </x-typography>
+                            </x-tooltip>
+
+                            <x-tooltip value="Button tooltip text">
+                                <x-button variant="filled" size="small">Button with tooltip</x-button>
+                            </x-tooltip>
+                        </x-stack>
+                    </x-block>
+
+                </x-stack>
+            </x-block>
+
+            <x-block>
+                <x-stack gap="medium">
+                    <x-typography display="h1">
+                        <h2>Select</h2>
+                    </x-typography>
+
+                    <x-select>
+                        <select>
+                            <option value="a">Option A</option>
+                            <option value="b">Option B</option>
+                            <option value="c">Option C</option>
+                        </select>
+                    </x-select>
+                </x-stack>
+            </x-block>
 
 
-                <x-block>
-                    <x-stack gap="medium">
-                        <x-block>
-                            <x-typography display="h1">
-                                <h2>Card</h2>
-                            </x-typography>
-                        </x-block>
+            <x-block>
+                <x-stack gap="medium">
+                    <x-block>
+                        <x-typography display="h1">
+                            <h2>Card</h2>
+                        </x-typography>
+                    </x-block>
 
-                        <x-block>
-                            <x-grid xs="1" md="2" lg="3">
-                                <x-card>
-                                    <x-typography display="h3">Card Title</x-typography>
+                    <x-block>
+                        <x-grid xs="1" md="2" lg="3">
+                            <x-card>
+                                <x-typography display="h3">Card Title</x-typography>
 
+                                <x-typography display="body1">
+                                    <p>Card content</p>
+                                </x-typography>
+
+                                <x-chip value="Card Chip"></x-chip>
+                            </x-card>
+
+                            <x-card>
+                                <x-card-media src="https://via.placeholder.com/300.png" size="medium">
+                                </x-card-media>
+                                <x-card-content>
+                                    <x-typography display="h3">Image Card Title</x-typography>
                                     <x-typography display="body1">
-                                        <p>Card content</p>
+                                        <p>Image card content.</p>
                                     </x-typography>
-
-                                    <x-chip value="Card Chip"></x-chip>
-                                </x-card>
-
-                                <x-card>
-                                    <x-card-media src="https://via.placeholder.com/300.png" size="medium">
-                                    </x-card-media>
-                                    <x-card-content>
-                                        <x-typography display="h3">Image Card Title</x-typography>
-                                        <x-typography display="body1">
-                                            <p>Image card content.</p>
-                                        </x-typography>
-                                    </x-card-content>
-                                </x-card>
+                                </x-card-content>
+                            </x-card>
 
 
-                                <x-card>
-                                    <x-card-media
+                            <x-card>
+                                <x-card-media
                                         src="https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
                                         size="large"></x-card-media>
-                                    <x-card-content>
-                                        <x-typography display="h3">Video Card Title</x-typography>
-                                        <x-typography display="body1">Video card content.</x-typography>
-                                    </x-card-content>
-                                    </x-card-content>
-                                </x-card>
+                                <x-card-content>
+                                    <x-typography display="h3">Video Card Title</x-typography>
+                                    <x-typography display="body1">Video card content.</x-typography>
+                                </x-card-content>
+                            </x-card>
 
-                            </x-grid>
-                        </x-block>
-                    </x-stack>
-                </x-block>
+                        </x-grid>
+                    </x-block>
+                </x-stack>
+            </x-block>
 
-                <x-block>
-                    <x-stack gap="medium">
-                        <x-block>
-                            <x-typography display="h1">
-                                <h2>Spinner</h2>
-                            </x-typography>
-                        </x-block>
+            <x-block>
+                <x-stack gap="medium">
+                    <x-block>
+                        <x-typography display="h1">
+                            <h2>Spinner</h2>
+                        </x-typography>
+                    </x-block>
 
-                        <x-block>
-                            <x-spinner size="large" color="#ff0000"></x-spinner>
-                        </x-block>
-                    </x-stack>
-                </x-block>
+                    <x-block>
+                        <x-spinner size="large" color="#ff0000"></x-spinner>
+                    </x-block>
+                </x-stack>
+            </x-block>
 
-                <x-block>
-                    <x-stack gap="medium">
-                        <x-block>
-                            <x-typography display="h1">
-                                <h2>Color Picker</h2>
-                            </x-typography>
-                        </x-block>
+            <x-block>
+                <x-stack gap="medium">
+                    <x-block>
+                        <x-typography display="h1">
+                            <h2>Color Picker</h2>
+                        </x-typography>
+                    </x-block>
 
-                        <x-block>
-                            <x-stack gap="small" direction="horizontal">
-                                <x-color-picker value="#ff0000"></x-color-picker>
-                                <x-color-picker value="#00ff00" label="Label"></x-color-picker>
-                            </x-stack>
-                        </x-block>
-                    </x-stack>
-                </x-block>
-            </x-stack>
+                    <x-block>
+                        <x-stack gap="small" direction="horizontal">
+                            <x-color-picker value="#ff0000"></x-color-picker>
+                            <x-color-picker value="#00ff00" label="Label"></x-color-picker>
+                        </x-stack>
+                    </x-block>
+                </x-stack>
+            </x-block>
+        </x-stack>
 
-            <x-stack justify-content="center" direction="horizontal" margin-block="medium">
-                <x-block>
-                    <x-typography display="overline">
-                        &copy; 2024 Arjan Frans -
-                        <x-link>
-                            <a href="https://github.com/arjanfrans/web-components-ui" target="_blank">Source Code</a>
-                        </x-link>
-                    </x-typography>
-                </x-block>
-            </x-stack>
-        </x-container>
-    </x-theme>
+        <x-stack justify-content="center" direction="horizontal" margin-block="medium">
+            <x-block>
+                <x-typography display="overline">
+                    &copy; 2024 Arjan Frans -
+                    <x-link>
+                        <a href="https://github.com/arjanfrans/web-components-ui" target="_blank">Source Code</a>
+                    </x-link>
+                </x-typography>
+            </x-block>
+        </x-stack>
+    </x-container>
+</x-theme>
 
-    <script>
-        (function () {
-            const theme = document.querySelector('x-theme');
-            const darkModeSwitch = document.querySelector('#dark-mode');
-            const colorPrimary = document.querySelector('#color-primary');
-            const colorBackgroundLight = document.querySelector('#color-background-light');
-            const colorBackgroundDark = document.querySelector('#color-background-dark');
-            const colorTextLight = document.querySelector('#color-text-light');
-            const colorTextDark = document.querySelector('#color-text-dark');
+<script>
+    (function () {
+        const theme = document.querySelector('x-theme');
+        const darkModeSwitch = document.querySelector('#dark-mode');
+        const colorPrimary = document.querySelector('#color-primary');
+        const colorBackgroundLight = document.querySelector('#color-background-light');
+        const colorBackgroundDark = document.querySelector('#color-background-dark');
+        const colorTextLight = document.querySelector('#color-text-light');
+        const colorTextDark = document.querySelector('#color-text-dark');
 
-            darkModeSwitch.addEventListener('change', () => {
-                if (darkModeSwitch.checked) {
-                    theme.setAttribute('theme', 'dark');
-                } else {
-                    theme.setAttribute('theme', 'light')
-                }
-            })
-
-
-            colorPrimary.addEventListener('color-change', (event) => {
-                const color = event.detail.color;
-
-                theme.setAttribute('color-primary', color);
-            });
-
-            colorPrimary.addEventListener('color-change', (event) => {
-                const color = event.detail.color;
-
-                theme.setAttribute('color-primary', color);
-            });
-
-            colorBackgroundLight.addEventListener('color-change', (event) => {
-                const color = event.detail.color;
-
-                theme.setAttribute('color-background-light', color);
-            });
-
-            colorBackgroundDark.addEventListener('color-change', (event) => {
-                const color = event.detail.color;
-                
-                theme.setAttribute('color-background-dark', color);
-            });
-
-            colorTextLight.addEventListener('color-change', (event) => {
-                const color = event.detail.color;
-
-                theme.setAttribute('color-text-light', color);
-            });
-
-            colorTextDark.addEventListener('color-change', (event) => {
-                const color = event.detail.color;
-
-                theme.setAttribute('color-text-dark', color);
-            });
+        darkModeSwitch.addEventListener('change', () => {
+            if (darkModeSwitch.checked) {
+                theme.setAttribute('theme', 'dark');
+            } else {
+                theme.setAttribute('theme', 'light')
+            }
+        })
 
 
-        })()
-    </script>
+        colorPrimary.addEventListener('color-change', (event) => {
+            const color = event.detail.color;
+
+            theme.setAttribute('color-primary', color);
+        });
+
+        colorPrimary.addEventListener('color-change', (event) => {
+            const color = event.detail.color;
+
+            theme.setAttribute('color-primary', color);
+        });
+
+        colorBackgroundLight.addEventListener('color-change', (event) => {
+            const color = event.detail.color;
+
+            theme.setAttribute('color-background-light', color);
+        });
+
+        colorBackgroundDark.addEventListener('color-change', (event) => {
+            const color = event.detail.color;
+
+            theme.setAttribute('color-background-dark', color);
+        });
+
+        colorTextLight.addEventListener('color-change', (event) => {
+            const color = event.detail.color;
+
+            theme.setAttribute('color-text-light', color);
+        });
+
+        colorTextDark.addEventListener('color-change', (event) => {
+            const color = event.detail.color;
+
+            theme.setAttribute('color-text-dark', color);
+        });
+
+
+    })()
+</script>
+
+<script>
+    (function () {
+        const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+        const isSlow = connection ? ['slow-2g', '2g', '3g'].includes(connection?.effectiveType) : true;
+        const loadingProgress = document.querySelector('x-loading');
+        const loadingProgressColor = document.querySelector('x-theme')?.getAttribute('color-primary') || '#5e5e5e'
+
+        const loadingProgressBar = document.createElement('div');
+
+        if (loadingProgress) {
+            loadingProgressBar.style.content = "";
+            loadingProgressBar.style.display = "block";
+            loadingProgressBar.style.height = "100%";
+            loadingProgressBar.style.width = "100%";
+            loadingProgressBar.style.position = "relative";
+            loadingProgressBar.style.animation = "loadingAnimation 2s linear infinite";
+
+            if (loadingProgressColor) {
+                loadingProgressBar.style.backgroundColor = loadingProgressColor ;
+            }
+
+            loadingProgress.append(loadingProgressBar);
+
+            if (isSlow) {
+                loadingProgress.style.display = 'block';
+
+                window.addEventListener('load', function () {
+                    document.body.removeChild(loadingProgress);
+                });
+            } else {
+                document.body.removeChild(loadingProgress);
+            }
+        }
+    })()
+</script>
 </body>
 
 </html>
