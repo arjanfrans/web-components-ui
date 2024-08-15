@@ -35,14 +35,14 @@ export class Chip extends HTMLElement {
             
             :host([size="small"]) {
                 font-size: ${variable("font-size-sm")};
-                padding-block: ${variable("gap-5xs")};
-                padding-inline: ${variable("gap-2xs")};
+                padding-block: ${variable("spacing-xs")};
+                padding-inline: ${variable("spacing-sm")};
             }
             
             :host([size="large"]) {
                 font-size: ${variable("font-size-md")};
-                padding-block: ${variable("gap-5xs")};
-                padding-inline: ${variable("gap-2xs")};
+                padding-block: ${variable("spacing-sm")};
+                padding-inline: ${variable("spacing-md")};
             }
         `;
 

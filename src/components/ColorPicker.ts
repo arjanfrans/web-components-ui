@@ -17,7 +17,7 @@ export class ColorPicker extends HTMLElement {
       :host {
         display: inline-flex;
         align-items: center;
-        gap: ${variable("gap-4xs")};
+        gap: ${variable("spacing-sm")};
         font-family: sans-serif;
         width: max-content;
       }

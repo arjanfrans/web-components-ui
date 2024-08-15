@@ -73,15 +73,15 @@ export class Stack extends HTMLElement {
       case "none":
         return "0px";
       case "small":
-        return variable("gap-2xs");
+        return variable("spacing-sm");
       case "medium":
-        return variable("gap-md");
+        return variable("spacing-md");
       case "large":
-        return variable("gap-lg");
+        return variable("spacing-lg");
       case "extra-large":
-        return variable("gap-xl");
+        return variable("spacing-xl");
       default:
-        return variable("gap-md");
+        return variable("spacing-md");
     }
   }
 

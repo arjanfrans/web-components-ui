@@ -1,4 +1,5 @@
 import { register, getPrefix } from "./framework/register";
+import { Breakpoint } from "./variables/Breakpoint";
 import {
   generateColorPalette,
   generateCSSVariables,
@@ -8,11 +9,11 @@ export class Theme extends HTMLElement {
   private shadow: ShadowRoot;
   private styleElement?: HTMLElement = undefined;
   private defaultStyles = {
-    fontSizeTitle: "32px",
-    fontSizeLarge: "24px",
-    fontSizeMedium: "18px",
-    fontSizeSmall: "14px",
-    fontSizeDefault: "16px",
+    fontSizeTitle: "2rem", // 32px / 16 = 2rem
+    fontSizeLarge: "1.5rem", // 24px / 16 = 1.5rem
+    fontSizeMedium: "1.125rem", // 18px / 16 = 1.125rem
+    fontSizeSmall: "0.875rem", // 14px / 16 = 0.875rem
+    fontSizeDefault: "1rem", // 16px / 16 = 1rem
     fontFamilyDefault: "sans-serif",
     fontFamilyHeading: "arial",
     colorPrimary: "#ed1c24",
@@ -20,9 +21,9 @@ export class Theme extends HTMLElement {
     colorTextDark: "#ffffff",
     colorBackgroundLight: "#ffffff",
     colorBackgroundDark: "#000000",
-    cardMediaSizeSmall: "96px",
-    cardMediaSizeMedium: "108px",
-    cardMediaSizeLarge: "156px",
+    cardMediaSizeSmall: "6rem", // 96px / 16 = 6rem
+    cardMediaSizeMedium: "6.75rem", // 108px / 16 = 6.75rem
+    cardMediaSizeLarge: "9.75rem", // 156px / 16 = 9.75rem
   };
 
   constructor() {
@@ -49,6 +50,9 @@ export class Theme extends HTMLElement {
       "color-background-dark",
       "color-text-light",
       "color-background-light",
+      "card-media-size-sm",
+      "card-media-size-md",
+      "card-media-size-lg",
     ];
   }
 
@@ -99,7 +103,7 @@ export class Theme extends HTMLElement {
       this.defaultStyles.cardMediaSizeMedium;
     const cardMediaSizeSmall =
       this.getAttribute("card-media-size-sm") ||
-      this.defaultStyles.fontSizeSmall;
+      this.defaultStyles.cardMediaSizeSmall;
 
     const palette = generateColorPalette(
       colorPrimary, // Primary color
@@ -117,40 +121,56 @@ export class Theme extends HTMLElement {
     this.styleElement = document.createElement("style");
 
     this.styleElement.textContent = `
-            :host {
-                display: flex;
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
-                height: 100%;
-                width: 100%;
-                
-                --${getPrefix()}-font-family-default: ${fontFamilyDefault};
-                --${getPrefix()}-font-family-heading: ${fontFamilyHeading};
-                --${getPrefix()}-font-size-default: ${fontSizeDefault};
-                --${getPrefix()}-font-size-title: ${fontSizeTitle};
-                --${getPrefix()}-font-size-lg: ${fontSizeLarge};
-                --${getPrefix()}-font-size-md: ${fontSizeMedium};
-                --${getPrefix()}-font-size-sm: ${fontSizeSmall};
-                --${getPrefix()}-gap-5xs: 4px;
-                --${getPrefix()}-gap-4xs: 8px;
-                --${getPrefix()}-gap-3xs: 12px;
-                --${getPrefix()}-gap-2xs: 16px;
-                --${getPrefix()}-gap-xs: 20px;
-                --${getPrefix()}-gap-sm: 24px;
-                --${getPrefix()}-gap-md: 32px;
-                --${getPrefix()}-gap-lg: 40px;
-                --${getPrefix()}-gap-xl: 56px;
-                --${getPrefix()}-gap-2xl: 64px;
-                --${getPrefix()}-gap-3xl: 72px;
-                --${getPrefix()}-gap-4xl: 96px;
-                --${getPrefix()}-card-media-size-sm: ${cardMediaSizeSmall};
-                --${getPrefix()}-card-media-size-md: ${cardMediaSizeMedium};
-                --${getPrefix()}-card-media-size-lg: ${cardMediaSizeLarge};
-            }
-            
-            ${cssVariables}
-        `;
+      :host {
+        display: flex;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        height: 100%;
+        width: 100%;
+
+        --${getPrefix()}-font-family-default: ${fontFamilyDefault};
+        --${getPrefix()}-font-family-heading: ${fontFamilyHeading};
+        --${getPrefix()}-font-size-default: ${fontSizeDefault};
+        --${getPrefix()}-font-size-title: ${fontSizeTitle};
+        --${getPrefix()}-font-size-lg: ${fontSizeLarge};
+        --${getPrefix()}-font-size-md: ${fontSizeMedium};
+        --${getPrefix()}-font-size-sm: ${fontSizeSmall};
+
+        /* Spacing Variables */
+        --${getPrefix()}-spacing-xs: 0.25rem;   /* 4px */
+        --${getPrefix()}-spacing-sm: 0.5rem;    /* 8px */
+        --${getPrefix()}-spacing-md: 0.75rem;   /* 12px */
+        --${getPrefix()}-spacing-lg: 1rem;      /* 16px */
+        --${getPrefix()}-spacing-xl: 1.25rem;   /* 20px */
+        --${getPrefix()}-spacing-2xl: 1.5rem;   /* 24px */
+        --${getPrefix()}-spacing-3xl: 1.75rem;  /* 28px */
+        --${getPrefix()}-spacing-4xl: 2rem;     /* 32px */
+        --${getPrefix()}-spacing-5xl: 2.5rem;   /* 40px */
+
+        /* Media Sizes */
+        --${getPrefix()}-card-media-size-sm: ${cardMediaSizeSmall};
+        --${getPrefix()}-card-media-size-md: ${cardMediaSizeMedium};
+        --${getPrefix()}-card-media-size-lg: ${cardMediaSizeLarge};
+      }
+
+      @media (min-width: ${Breakpoint.MD}px) {
+        :host {
+          /* Desktop Spacing Variables in rem */
+          --${getPrefix()}-spacing-xs: 0.5rem;    /* 8px */
+          --${getPrefix()}-spacing-sm: 1rem;      /* 16px */
+          --${getPrefix()}-spacing-md: 1.5rem;    /* 24px */
+          --${getPrefix()}-spacing-lg: 2rem;      /* 32px */
+          --${getPrefix()}-spacing-xl: 2.5rem;    /* 40px */
+          --${getPrefix()}-spacing-2xl: 3rem;     /* 48px */
+          --${getPrefix()}-spacing-3xl: 3.5rem;   /* 56px */
+          --${getPrefix()}-spacing-4xl: 4rem;     /* 64px */
+          --${getPrefix()}-spacing-5xl: 4.5rem;   /* 72px */
+        }
+      }
+
+      ${cssVariables}
+    `;
 
     this.shadow.appendChild(this.styleElement);
   }

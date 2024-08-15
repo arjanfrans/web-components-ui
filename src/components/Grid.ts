@@ -1,4 +1,5 @@
 import { register, variable } from "./framework/register";
+import { Breakpoint } from "./variables/Breakpoint";
 
 export class Grid extends HTMLElement {
   private styleElement: HTMLStyleElement;
@@ -42,29 +43,29 @@ export class Grid extends HTMLElement {
     this.styleElement.textContent = `
             :host {
                 display: grid;
-                gap: ${variable("gap-2xs")};
+                gap: ${variable("spacing-md")};
                 grid-template-columns: repeat(${xs}, 1fr);
             }
 
-            @media (min-width: 480px) {
+            @media (min-width: ${Breakpoint.XS}px) {
                 :host([xs]) {
                     grid-template-columns: repeat(${xs}, 1fr);
                 }
             }
 
-            @media (min-width: 600px) {
+            @media (min-width: ${Breakpoint.MD}px) {
                 :host([md]) {
                     grid-template-columns: repeat(${md}, 1fr);
                 }
             }
 
-            @media (min-width: 960px) {
+            @media (min-width: ${Breakpoint.LG}px) {
                 :host([lg]) {
                     grid-template-columns: repeat(${lg}, 1fr);
                 }
             }
 
-            @media (min-width: 1280px) {
+            @media (min-width: ${Breakpoint.XL}px) {
                 :host([xl]) {
                     grid-template-columns: repeat(${xl}, 1fr);
                 }

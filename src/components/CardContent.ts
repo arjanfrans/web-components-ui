@@ -12,7 +12,7 @@ export class CardContent extends HTMLElement {
             :host {
                 display: flex;
                 flex-direction: column;
-                padding: ${variable("gap-2xs")};
+                padding: ${variable("spacing-sm")};
                 flex: 1;
             }
         `;

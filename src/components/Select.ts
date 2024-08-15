@@ -45,7 +45,7 @@ export class Select extends HTMLElement {
             }
 
             :host select {
-                --select-offset: calc(${variable("gap-2xs")} + 26px);
+                --select-offset: calc(${variable("spacing-sm")} + 26px);
                 /* Reset Select */
                 appearance: none;
                 outline: 10px red;
@@ -56,7 +56,7 @@ export class Select extends HTMLElement {
 
                 /* Personalize */
                 flex: 1;
-                padding-inline: ${variable("gap-2xs")};
+                padding-inline: ${variable("spacing-md")};
                 padding-block: 0;
                 color: var(--text-default);
                 background: rgba(var(--semantic-background-inverted_rgb), 0.1);

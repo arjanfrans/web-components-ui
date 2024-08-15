@@ -28,7 +28,7 @@ export class Button extends HTMLElement {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        padding: ${variable("gap-md")};
+        padding: ${variable("spacing-md")};
         text-align: center;
         transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1), border-color 250ms cubic-bezier(0.4, 0, 0.2, 1), color 250ms cubic-bezier(0.4, 0, 0.2, 1);
         white-space: nowrap;
@@ -64,18 +64,18 @@ export class Button extends HTMLElement {
       }
 
       :host([size="small"]) .button {
-        padding-block: ${variable("gap-5xs")};
-        padding-inline: ${variable("gap-3xs")};
+        padding-block: ${variable("spacing-xs")};
+        padding-inline: ${variable("spacing-sm")};
       }
 
       :host([size="medium"]) .button {
-        padding-block: ${variable("gap-4xs")};
-        padding-inline: ${variable("gap-2xs")};
+        padding-block: ${variable("spacing-sm")};
+        padding-inline: ${variable("spacing-md")};
       }
 
       :host([size="large"]) .button {
-        padding-block: ${variable("gap-2xs")};
-        padding-inline: ${variable("gap-sm")};
+        padding-block: ${variable("spacing-md")};
+        padding-inline: ${variable("spacing-lg")};
       }
 
       .button:focus {

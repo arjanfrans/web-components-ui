@@ -22,7 +22,7 @@ export class Table extends HTMLElement {
             :host table th, :host table td  {
                 text-align: left;
                 border-collapse: collapse;
-                padding: ${variable("gap-5xs")};
+                padding: ${variable("spacing-xs")};
                 border-right: 1px solid var(--semantic-stroke-default);
                 color: var(--semantic-text-default);
             }
