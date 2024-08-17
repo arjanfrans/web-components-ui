@@ -23,7 +23,7 @@ export class Button extends HTMLElement {
     style.textContent = `
       .button {
         border: none;
-        border-radius: 4px;
+        border-radius: ${variable("border-xs")};
         cursor: pointer;
         display: inline-flex;
         align-items: center;

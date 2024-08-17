@@ -153,6 +153,7 @@ export class Theme extends HTMLElement {
         --${getPrefix()}-font-size-sm: ${fontSizeSm};
         --${getPrefix()}-font-size-xs: ${fontSizeXs};
 
+        --${getPrefix()}-border-xs: 4px;
         --${getPrefix()}-border-sm: 15px;
 
         /* Spacing Variables */

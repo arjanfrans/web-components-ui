@@ -30,5 +30,6 @@ export { Badge } from "./components/Badge";
 export { ColorPicker } from "./components/ColorPicker";
 export { Divider } from "./components/Divider";
 export { Box } from "./components/Box";
+export { Checkbox } from "./components/Checkbox";
 
 removeProgressBar();

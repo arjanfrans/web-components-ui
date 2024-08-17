@@ -219,6 +219,35 @@
                 <x-stack gap="medium">
                     <x-block>
                         <x-typography display="h1">
+                            <h2>Checkbox</h2>
+                        </x-typography>
+                        <x-divider fade></x-divider>
+                    </x-block>
+
+                    <x-block>
+                        <x-stack gap="small" direction="vertical">
+                            <x-checkbox checked>
+                                <x-typography display="body1">Checked</x-typography>
+                            </x-checkbox>
+                            <x-checkbox>
+                                <x-typography display="body1">Unchecked</x-typography>
+                            </x-checkbox>
+                            <x-checkbox disabled>
+                                <x-typography display="body1">Checked Disabled</x-typography>
+                            </x-checkbox>
+                            <x-checkbox disabled checked>
+                                <x-typography display="body1">Unchecked Disabled</x-typography>
+                            </x-checkbox>
+                        </x-stack>
+                    </x-block>
+                </x-stack>
+            </x-block>
+
+
+            <x-block>
+                <x-stack gap="medium">
+                    <x-block>
+                        <x-typography display="h1">
                             <h2>Chip</h2>
                         </x-typography>
                         <x-divider fade></x-divider>
@@ -232,7 +261,6 @@
                         </x-stack>
                     </x-block>
                 </x-stack>
-
             </x-block>
 
 
