@@ -16,7 +16,7 @@ export class Chip extends HTMLElement {
             :host {
                 align-items: center;
                 border: 1px solid var(--semantic-stroke-default);
-                border-radius: 30px;
+                border-radius: ${variable("border-sm")};
                 display: flex;
                 justify-content: center;
                 text-align: center;
@@ -25,6 +25,7 @@ export class Chip extends HTMLElement {
                 transition: background-color .1s, color .1s, border-color .1s;
                 white-space: nowrap;
                 width: max-content;
+                height: max-content;
             }
 
             :host(:hover),

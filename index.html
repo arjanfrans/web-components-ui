@@ -103,6 +103,34 @@
                 <x-stack gap="medium">
                     <x-block>
                         <x-typography display="h1">
+                            <h2>Box</h2>
+                        </x-typography>
+                    </x-block>
+
+                    <x-block>
+                            <x-box justify-content="center">
+                                <span>Centered Box</span>
+                            </x-box>
+
+                            <x-box margin-inline="small">
+                                <span>Inline</span>
+                                <span>Margin</span>
+                            </x-box>
+
+                            <x-box margin-block="large">
+                                <span>Block</span>
+                                <span>Margin</span>
+                            </x-box>
+
+                        </x-grid>
+                    </x-block>
+                </x-stack>
+            </x-block>
+
+            <x-block>
+                <x-stack gap="medium">
+                    <x-block>
+                        <x-typography display="h1">
                             <h2>Stack</h2>
                         </x-typography>
                     </x-block>
@@ -186,9 +214,9 @@
                     </x-block>
 
                     <x-block>
-                        <x-stack gap="small">
-                            <x-chip value="Regular Small"></x-chip>
-                            <x-chip value="Active Small" active></x-chip>
+                        <x-stack gap="small" direction="horizontal">
+                            <x-chip value="Regular Small" size="small"></x-chip>
+                            <x-chip value="Active Small" size="small" active></x-chip>
                             <x-chip value="Regular Large" size="large"></x-chip>
                         </x-stack>
                     </x-block>
@@ -424,6 +452,9 @@
                                     <x-typography display="h3">Video Card Title</x-typography>
                                     <x-typography display="body1">Video card content.</x-typography>
                                 </x-card-content>
+                                <x-card-footer>
+                                    <x-chip value="Card Footer"></x-chip>
+                                </x-card-footer>
                             </x-card>
 
                         </x-grid>

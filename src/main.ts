@@ -16,6 +16,7 @@ export { Select } from "./components/Select";
 export { Card } from "./components/Card";
 export { CardMedia } from "./components/CardMedia";
 export { CardContent } from "./components/CardContent";
+export { CardFooter } from "./components/CardFooter";
 export { Spinner } from "./components/Spinner";
 export { Link } from "./components/Link";
 export { Typography } from "./components/Typography";
@@ -28,5 +29,6 @@ export { Switch } from "./components/Switch";
 export { Badge } from "./components/Badge";
 export { ColorPicker } from "./components/ColorPicker";
 export { Divider } from "./components/Divider";
+export { Box } from "./components/Box";
 
 removeProgressBar();

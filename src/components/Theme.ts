@@ -129,6 +129,8 @@ export class Theme extends HTMLElement {
         height: 100%;
         width: 100%;
 
+        --${getPrefix()}-shadow-light: 0 2px 4px rgba(0,0,0,0.05);
+
         --${getPrefix()}-font-family-default: ${fontFamilyDefault};
         --${getPrefix()}-font-family-heading: ${fontFamilyHeading};
         --${getPrefix()}-font-size-default: ${fontSizeDefault};
@@ -136,6 +138,8 @@ export class Theme extends HTMLElement {
         --${getPrefix()}-font-size-lg: ${fontSizeLarge};
         --${getPrefix()}-font-size-md: ${fontSizeMedium};
         --${getPrefix()}-font-size-sm: ${fontSizeSmall};
+
+        --${getPrefix()}-border-sm: 15px;
 
         /* Spacing Variables */
         --${getPrefix()}-spacing-xs: 0.25rem;   /* 4px */

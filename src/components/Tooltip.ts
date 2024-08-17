@@ -1,4 +1,5 @@
 import { register, variable } from "./framework/register";
+import { ZIndex } from "./variables/ZIndex";
 
 export class Tooltip extends HTMLElement {
   private tooltip: HTMLDivElement;
@@ -24,9 +25,8 @@ export class Tooltip extends HTMLElement {
         background-color: rgba(var(--semantic-background-inverted_rgb), 0.9);
         color: var(--semantic-text-inverted);
         padding: 5px;
-        border-radius: 3px;
         font-size: ${variable("font-size-small")};
-        z-index: 1000; /* Ensure it appears on top */
+        z-index: ${ZIndex.TOP}; /* Ensure it appears on top */
         max-width: 200px;
         display: none; /* Hide by default */
         pointer-events: none; /* Ensure it doesn't interfere with mouse events */

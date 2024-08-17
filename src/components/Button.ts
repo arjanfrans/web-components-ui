@@ -44,10 +44,7 @@ export class Button extends HTMLElement {
       :host([variant="filled"]:active) .button {
         background-color: var(--semantic-background-hover);
         color: var(--semantic-text-inverted);
-        box-shadow: 
-            rgba(var(--semantic-background-inverted_rgb), 0.16) 0px 3px 1px -2px,
-            rgba(var(--semantic-background-inverted_rgb), 0.14) 0px 2px 2px 0px,
-            rgba(var(--semantic-background-inverted_rgb), 0.12) 0px 1px 5px 0px;
+        box-shadow: ${variable("shadow-light")};
       }
 
       :host([variant="outlined"]) .button {

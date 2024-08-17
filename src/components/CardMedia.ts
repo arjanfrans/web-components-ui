@@ -16,8 +16,6 @@ export class CardMedia extends HTMLElement {
                 display: block;
                 width: 100%;
                 position: relative;
-                border-top-left-radius: 15px;
-                border-top-right-radius: 15px;
                 overflow: hidden;
             }
             
