@@ -24,8 +24,8 @@ export class Checkbox extends HTMLElement {
 
       .checkbox {
         appearance: none;
-        width: 18px;
-        height: 18px;
+        width: 2em;
+        height: 2em;
         border: 2px solid rgba(var(--semantic-background-inverted_rgb), 0.5);
         border-radius: ${variable("border-xs")};
         background-color: transparent;
@@ -43,8 +43,8 @@ export class Checkbox extends HTMLElement {
 
       .checkbox:checked::before {
         content: "";
-        width: 12px;
-        height: 12px;
+        width: 1em;
+        height: 1em;
         background-color: var(--semantic-background-default);
         clip-path: polygon(14% 44%, 0% 65%, 50% 100%, 100% 18%, 80% 0%, 43% 62%);
       }

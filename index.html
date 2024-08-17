@@ -219,6 +219,31 @@
                 <x-stack gap="medium">
                     <x-block>
                         <x-typography display="h1">
+                            <h2>Icon</h2>
+                        </x-typography>
+                        <x-divider fade></x-divider>
+                    </x-block>
+
+                    <x-block>
+                        <x-stack gap="small" direction="horizontal">
+                            <x-icon size="small">
+                                <img src="/example_svg.svg" />
+                            </x-icon>
+                            <x-icon size="medium">
+                                <img src="/example_svg.svg" />
+                            </x-icon>
+                            <x-icon size="large">
+                                <img src="/example_svg.svg" />
+                            </x-icon>
+                        </x-stack>
+                    </x-block>
+                </x-stack>
+            </x-block>
+
+            <x-block>
+                <x-stack gap="medium">
+                    <x-block>
+                        <x-typography display="h1">
                             <h2>Checkbox</h2>
                         </x-typography>
                         <x-divider fade></x-divider>
@@ -232,10 +257,10 @@
                             <x-checkbox>
                                 <x-typography display="body1">Unchecked</x-typography>
                             </x-checkbox>
-                            <x-checkbox disabled>
+                            <x-checkbox disabled checked>
                                 <x-typography display="body1">Checked Disabled</x-typography>
                             </x-checkbox>
-                            <x-checkbox disabled checked>
+                            <x-checkbox disabled>
                                 <x-typography display="body1">Unchecked Disabled</x-typography>
                             </x-checkbox>
                         </x-stack>
