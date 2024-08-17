@@ -32,5 +32,8 @@ export { Divider } from "./components/Divider";
 export { Box } from "./components/Box";
 export { Checkbox } from "./components/Checkbox";
 export { Icon } from "./components/Icon";
+export { Tabs } from "./components/Tabs";
+export { TabPanel } from "./components/TabPanel";
+export { TabButton } from "./components/TabButton";
 
 removeProgressBar();
