@@ -9,11 +9,14 @@ export class Theme extends HTMLElement {
   private shadow: ShadowRoot;
   private styleElement?: HTMLElement = undefined;
   private defaultStyles = {
-    fontSizeTitle: "2rem", // 32px / 16 = 2rem
-    fontSizeLarge: "1.5rem", // 24px / 16 = 1.5rem
-    fontSizeMedium: "1.125rem", // 18px / 16 = 1.125rem
-    fontSizeSmall: "0.875rem", // 14px / 16 = 0.875rem
-    fontSizeDefault: "1rem", // 16px / 16 = 1rem
+    fontSizeTitle: "4.25rem",
+    fontSizeXxl: "2rem", // Heading 2 / Extra Extra Large
+    fontSizeXl: "1.75rem", // Heading 3 / Extra Large
+    fontSizeLg: "1.5rem", // Heading 4 / Large
+    fontSizeMd: "1.125rem",
+    fontSizeSm: "0.975rem",
+    fontSizeXs: "0.85rem",
+    fontSizeDefault: "1rem", // Default font size
     fontFamilyDefault: "sans-serif",
     fontFamilyHeading: "arial",
     colorPrimary: "#ed1c24",
@@ -21,9 +24,9 @@ export class Theme extends HTMLElement {
     colorTextDark: "#ffffff",
     colorBackgroundLight: "#ffffff",
     colorBackgroundDark: "#000000",
-    cardMediaSizeSmall: "6rem", // 96px / 16 = 6rem
-    cardMediaSizeMedium: "6.75rem", // 108px / 16 = 6.75rem
-    cardMediaSizeLarge: "9.75rem", // 156px / 16 = 9.75rem
+    cardMediaSizeSmall: "6rem", // Card media size small
+    cardMediaSizeMedium: "6.75rem", // Card media size medium
+    cardMediaSizeLarge: "9.75rem", // Card media size large
   };
 
   constructor() {
@@ -41,6 +44,8 @@ export class Theme extends HTMLElement {
       "font-family-heading",
       "font-family-default",
       "font-size-title",
+      "font-size-xxl",
+      "font-size-xl",
       "font-size-lg",
       "font-size-md",
       "font-size-sm",
@@ -63,12 +68,18 @@ export class Theme extends HTMLElement {
   updateStyles() {
     const fontSizeTitle =
       this.getAttribute("font-size-title") || this.defaultStyles.fontSizeTitle;
-    const fontSizeLarge =
-      this.getAttribute("font-size-lg") || this.defaultStyles.fontSizeLarge;
-    const fontSizeMedium =
-      this.getAttribute("font-size-md") || this.defaultStyles.fontSizeMedium;
-    const fontSizeSmall =
-      this.getAttribute("font-size-sm") || this.defaultStyles.fontSizeSmall;
+    const fontSizeXxl =
+      this.getAttribute("font-size-xxl") || this.defaultStyles.fontSizeXxl;
+    const fontSizeXl =
+      this.getAttribute("font-size-xl") || this.defaultStyles.fontSizeXl;
+    const fontSizeLg =
+      this.getAttribute("font-size-lg") || this.defaultStyles.fontSizeLg;
+    const fontSizeMd =
+      this.getAttribute("font-size-md") || this.defaultStyles.fontSizeMd;
+    const fontSizeSm =
+      this.getAttribute("font-size-sm") || this.defaultStyles.fontSizeSm;
+    const fontSizeXs =
+      this.getAttribute("font-size-xs") || this.defaultStyles.fontSizeXs;
     const fontSizeDefault =
       this.getAttribute("font-size-default") ||
       this.defaultStyles.fontSizeDefault;
@@ -135,9 +146,12 @@ export class Theme extends HTMLElement {
         --${getPrefix()}-font-family-heading: ${fontFamilyHeading};
         --${getPrefix()}-font-size-default: ${fontSizeDefault};
         --${getPrefix()}-font-size-title: ${fontSizeTitle};
-        --${getPrefix()}-font-size-lg: ${fontSizeLarge};
-        --${getPrefix()}-font-size-md: ${fontSizeMedium};
-        --${getPrefix()}-font-size-sm: ${fontSizeSmall};
+        --${getPrefix()}-font-size-xxl: ${fontSizeXxl};
+        --${getPrefix()}-font-size-xl: ${fontSizeXl};
+        --${getPrefix()}-font-size-lg: ${fontSizeLg};
+        --${getPrefix()}-font-size-md: ${fontSizeMd};
+        --${getPrefix()}-font-size-sm: ${fontSizeSm};
+        --${getPrefix()}-font-size-xs: ${fontSizeXs};
 
         --${getPrefix()}-border-sm: 15px;
 

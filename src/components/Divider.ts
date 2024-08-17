@@ -40,6 +40,13 @@ export class Divider extends HTMLElement {
       :host([light]) .divider {
         background-color: rgba(var(--semantic-stroke-default_rgb), 0.5);
       }
+
+      :host([fade]) .divider {
+        background-color: inherit;
+        border-bottom: 1px solid transparent;
+        border-image: linear-gradient(90deg,var(--semantic-stroke-highlight),transparent 50%);
+        border-image-slice: 1;
+      }
     `;
 
     shadow.appendChild(style);
