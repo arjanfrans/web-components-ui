@@ -204,28 +204,37 @@
                     <x-block>
                         <x-box margin-inline="small">
                             <x-tabs selected="tab1">
-                                <x-tab-button id="tab1">
-                                    <x-typography display="h1">Tab 1</x-typography>
+                                <x-tab-buttons>
+                                    <x-tab-button id="tab1">
+                                        <x-typography display="button">Tab 1</x-typography>
+                                    </x-tab-button>
+                                    <x-tab-button id="tab2">
+                                        <x-typography display="button">Tab 2</x-typography>
                                 </x-tab-button>
-                                <x-tab-button id="tab2">
-                                    <x-typography display="h1">Tab 2</x-typography>
-                               </x-tab-button>
-                                <x-tab-button id="tab3">
-                                    <x-typography display="h1">Tab 3</x-typography>
-                                </x-tab-button>
+                                    <x-tab-button id="tab3">
+                                        <x-typography display="button">Tab 3</x-typography>
+                                    </x-tab-button>
+                                </x-tab-buttons>
                               
-                                <x-tab-panel id="tab1">
-                                  <p>Content for Tab 1</p>
-                                </x-tab-panel>
+                                <x-tab-panels>
+                                    <x-tab-panel id="tab1">
+                                        <x-typography display="body1">
+                                            Content for Tab 1
+                                        </x-typography>
+                                    </x-tab-panel>
 
-                                <x-tab-panel id="tab2">
-                                  <p>Content for Tab 2</p>
-                                </x-tab-panel>
+                                    <x-tab-panel id="tab2">
+                                        <x-typography display="body1">
+                                            Content for Tab 2
+                                        </x-typography>
+                                    </x-tab-panel>
 
-                                <x-tab-panel id="tab3">
-                                  <p>Content for Tab 3</p>
-                                </x-tab-panel>
-
+                                    <x-tab-panel id="tab3">
+                                        <x-typography display="body1">
+                                            Content for Tab 3
+                                        </x-typography>
+                                    </x-tab-panel>
+                                </x-tab-panels>
                             </x-tabs>
                         </x-box>
                     </x-block>
