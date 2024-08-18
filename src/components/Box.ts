@@ -13,7 +13,6 @@ export class Box extends HTMLElement {
     style.textContent = `
             :host {
                 display: flex;
-                justify-content: attr(justify-content, "flex-start");
                 flex-wrap: wrap;
             }
 

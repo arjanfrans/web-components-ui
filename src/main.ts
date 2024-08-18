@@ -9,6 +9,7 @@ configurePrefix("x");
 waitForComponents();
 
 export { Theme } from "./components/Theme";
+export { AppBar } from "./components/AppBar";
 export { Chip } from "./components/Chip";
 export { Table } from "./components/Table";
 export { Tooltip } from "./components/Tooltip";

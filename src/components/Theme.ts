@@ -24,9 +24,10 @@ export class Theme extends HTMLElement {
     colorTextDark: "#ffffff",
     colorBackgroundLight: "#ffffff",
     colorBackgroundDark: "#000000",
-    cardMediaSizeSmall: "6rem", // Card media size small
-    cardMediaSizeMedium: "6.75rem", // Card media size medium
-    cardMediaSizeLarge: "9.75rem", // Card media size large
+    cardMediaSizeSmall: "24px", // Card media size small
+    cardMediaSizeMedium: "64px", // Card media size medium
+    cardMediaSizeLarge: "128px", // Card media size large
+    appBarHeight: "64px",
   };
 
   constructor() {
@@ -58,6 +59,7 @@ export class Theme extends HTMLElement {
       "card-media-size-sm",
       "card-media-size-md",
       "card-media-size-lg",
+      "app-bar-height",
     ];
   }
 
@@ -116,6 +118,9 @@ export class Theme extends HTMLElement {
       this.getAttribute("card-media-size-sm") ||
       this.defaultStyles.cardMediaSizeSmall;
 
+    const appBarHeight =
+      this.getAttribute("app-bar-height") || this.defaultStyles.appBarHeight;
+
     const palette = generateColorPalette(
       colorPrimary, // Primary color
       colorTextLight, // Light mode text color
@@ -141,6 +146,7 @@ export class Theme extends HTMLElement {
         width: 100%;
 
         --${getPrefix()}-shadow-light: 0 2px 4px rgba(0,0,0,0.05);
+        --${getPrefix()}-shadow-dark: 0 2px 4px rgba(0,0,0,0.3);
 
         --${getPrefix()}-font-family-default: ${fontFamilyDefault};
         --${getPrefix()}-font-family-heading: ${fontFamilyHeading};
@@ -157,34 +163,36 @@ export class Theme extends HTMLElement {
         --${getPrefix()}-border-sm: 15px;
 
         /* Spacing Variables */
-        --${getPrefix()}-spacing-xs: 0.25rem;   /* 4px */
-        --${getPrefix()}-spacing-sm: 0.5rem;    /* 8px */
-        --${getPrefix()}-spacing-md: 0.75rem;   /* 12px */
-        --${getPrefix()}-spacing-lg: 1rem;      /* 16px */
-        --${getPrefix()}-spacing-xl: 1.25rem;   /* 20px */
-        --${getPrefix()}-spacing-2xl: 1.5rem;   /* 24px */
-        --${getPrefix()}-spacing-3xl: 1.75rem;  /* 28px */
-        --${getPrefix()}-spacing-4xl: 2rem;     /* 32px */
-        --${getPrefix()}-spacing-5xl: 2.5rem;   /* 40px */
+        --${getPrefix()}-spacing-xs: 4px; 
+        --${getPrefix()}-spacing-sm: 8px;    
+        --${getPrefix()}-spacing-md: 12px;  
+        --${getPrefix()}-spacing-lg: 16px;     
+        --${getPrefix()}-spacing-xl: 20px;   
+        --${getPrefix()}-spacing-2xl: 24px;   
+        --${getPrefix()}-spacing-3xl: 28px;  
+        --${getPrefix()}-spacing-4xl: 32px;    
+        --${getPrefix()}-spacing-5xl: 40px;  
 
         /* Media Sizes */
         --${getPrefix()}-card-media-size-sm: ${cardMediaSizeSmall};
         --${getPrefix()}-card-media-size-md: ${cardMediaSizeMedium};
         --${getPrefix()}-card-media-size-lg: ${cardMediaSizeLarge};
+
+        --${getPrefix()}-app-bar-height: ${appBarHeight};
       }
 
       @media (min-width: ${Breakpoint.MD}px) {
         :host {
           /* Desktop Spacing Variables in rem */
-          --${getPrefix()}-spacing-xs: 0.5rem;    /* 8px */
-          --${getPrefix()}-spacing-sm: 1rem;      /* 16px */
-          --${getPrefix()}-spacing-md: 1.5rem;    /* 24px */
-          --${getPrefix()}-spacing-lg: 2rem;      /* 32px */
-          --${getPrefix()}-spacing-xl: 2.5rem;    /* 40px */
-          --${getPrefix()}-spacing-2xl: 3rem;     /* 48px */
-          --${getPrefix()}-spacing-3xl: 3.5rem;   /* 56px */
-          --${getPrefix()}-spacing-4xl: 4rem;     /* 64px */
-          --${getPrefix()}-spacing-5xl: 4.5rem;   /* 72px */
+          --${getPrefix()}-spacing-xs: 8px;    
+          --${getPrefix()}-spacing-sm: 16px;    
+          --${getPrefix()}-spacing-md: 24px;   
+          --${getPrefix()}-spacing-lg: 32px;   
+          --${getPrefix()}-spacing-xl: 40px;   
+          --${getPrefix()}-spacing-2xl: 48px;   
+          --${getPrefix()}-spacing-3xl: 56px;  
+          --${getPrefix()}-spacing-4xl: 64px;   
+          --${getPrefix()}-spacing-5xl: 72px;   
         }
       }
 

@@ -37,7 +37,15 @@
 <x-theme style="display: none" theme="light" font-family-heading="Neue Aachen Regular, sans-serif" font-family-default="sans-serif"
          color-primary="#ed1c24" color-text-light="#000000" color-text-dark="#ffffff" color-background-light="#ffffff"
          color-background-dark="#1f1f1f">
+
+
     <x-container>
+        <x-app-bar fixed>
+            <x-box justify-content="center">
+                <x-typography display="h1">Web Components %VITE_LIBRARY_VERSION%</x-typography>
+            </x-box>
+        </x-app-bar>
+    
         <x-stack direction="horizontal" gap="medium" margin-inline="medium" margin-block="large">
             <x-switch id="dark-mode" label="Dark Mode"></x-switch>
             <x-color-picker id="color-primary" value="#ed1c24" label="Primary"></x-color-picker>
@@ -121,12 +129,12 @@
 
                             <x-box margin-inline="small">
                                 <span>Inline</span>
-                                <span>Margin</span>
+                                <span>-Margin</span>
                             </x-box>
 
                             <x-box margin-block="large">
                                 <span>Block</span>
-                                <span>Margin</span>
+                                <span>-Margin</span>
                             </x-box>
 
                         </x-grid>
@@ -271,6 +279,25 @@
                                 </x-tab-panels>
                             </x-tabs>
                         </x-box>
+                    </x-block>
+                </x-stack>
+            </x-block>
+
+            <x-block>
+                <x-stack gap="medium">
+                    <x-block>
+                        <x-typography display="h1">
+                            <h2>AppBar</h2>
+                        </x-typography>
+                        <x-divider fade></x-divider>
+                    </x-block>
+
+                    <x-block>
+                        <x-app-bar>
+                            <x-box justify-content="center">
+                                <x-typography display="h1">App Bar</x-typography>
+                            </x-box>
+                        </x-app-bar>
                     </x-block>
                 </x-stack>
             </x-block>
