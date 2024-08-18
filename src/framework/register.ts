@@ -51,13 +51,3 @@ export function waitForComponents() {
     }
   });
 }
-
-export function removeProgressBar() {
-  const loadingProgress = document.querySelector("x-loading");
-
-  if (!loadingProgress) {
-    throw new Error(`No ${getPrefix()}-loading element found`);
-  }
-
-  document.body.removeChild(loadingProgress);
-}

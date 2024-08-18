@@ -1,9 +1,5 @@
 import "./framework/reset.css";
-import {
-  configurePrefix,
-  removeProgressBar,
-  waitForComponents,
-} from "./framework/register";
+import { configurePrefix, waitForComponents } from "./framework/register";
 
 configurePrefix("x");
 waitForComponents();
@@ -39,5 +35,4 @@ export { TabPanel } from "./components/Tabs/TabPanel";
 export { TabPanels } from "./components/Tabs/TabPanels";
 export { TabButton } from "./components/Tabs/TabButton";
 export { TabButtons } from "./components/Tabs/TabButtons";
-
-removeProgressBar();
+export { Loading } from "./components/Loading";
