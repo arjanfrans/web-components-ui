@@ -1,9 +1,9 @@
-import { register, getPrefix } from "./framework/register";
+import { register, getPrefix } from "../framework/register";
 import { Breakpoint } from "./variables/Breakpoint";
 import {
   generateColorPalette,
   generateCSSVariables,
-} from "./framework/color-palette";
+} from "../framework/color-palette";
 
 export class Theme extends HTMLElement {
   private shadow: ShadowRoot;

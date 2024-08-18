@@ -1,4 +1,4 @@
-import { register, variable } from "./framework/register";
+import { register, variable } from "../framework/register.ts";
 import { Typography } from "./Typography.ts";
 import { Size } from "./variables/Size.ts";
 

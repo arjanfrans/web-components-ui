@@ -1,9 +1,9 @@
-import "./components/framework/reset.css";
+import "./framework/reset.css";
 import {
   configurePrefix,
   removeProgressBar,
   waitForComponents,
-} from "./components/framework/register";
+} from "./framework/register";
 
 configurePrefix("x");
 waitForComponents();
@@ -13,10 +13,10 @@ export { Chip } from "./components/Chip";
 export { Table } from "./components/Table";
 export { Tooltip } from "./components/Tooltip";
 export { Select } from "./components/Select";
-export { Card } from "./components/Card";
-export { CardMedia } from "./components/CardMedia";
-export { CardContent } from "./components/CardContent";
-export { CardFooter } from "./components/CardFooter";
+export { Card } from "./components/Card/Card";
+export { CardMedia } from "./components/Card/CardMedia";
+export { CardContent } from "./components/Card/CardContent";
+export { CardFooter } from "./components/Card/CardFooter";
 export { Spinner } from "./components/Spinner";
 export { Link } from "./components/Link";
 export { Typography } from "./components/Typography";
@@ -32,6 +32,7 @@ export { Divider } from "./components/Divider";
 export { Box } from "./components/Box";
 export { Checkbox } from "./components/Checkbox";
 export { Icon } from "./components/Icon";
+export { List } from "./components/List";
 export { Tabs } from "./components/Tabs/Tabs";
 export { TabPanel } from "./components/Tabs/TabPanel";
 export { TabPanels } from "./components/Tabs/TabPanels";

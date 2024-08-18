@@ -1,4 +1,4 @@
-import { register } from "../framework/register";
+import { register } from "../../framework/register";
 
 export class TabButtons extends HTMLElement {
   constructor() {
@@ -59,7 +59,7 @@ export class TabButtons extends HTMLElement {
     this.addEventListener("slotchange", () => this.updateActiveIndicator());
   }
 
-  updateActiveIndicator() {
+  public updateActiveIndicator() {
     const slot = this.shadowRoot?.querySelector("slot");
     const tabButtons = slot?.assignedElements() || [];
 

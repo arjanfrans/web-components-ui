@@ -1,4 +1,4 @@
-import { register } from "../framework/register";
+import { register } from "../../framework/register";
 
 export class TabPanels extends HTMLElement {
   constructor() {

@@ -1,4 +1,4 @@
-import { register, variable } from "./framework/register";
+import { register, variable } from "../framework/register";
 import { Breakpoint } from "./variables/Breakpoint";
 
 export class Grid extends HTMLElement {

@@ -1,4 +1,4 @@
-import { getPrefix, register, variable } from "./framework/register";
+import { getPrefix, register, variable } from "../../framework/register";
 import { CardContent } from "./CardContent";
 
 export class Card extends HTMLElement {

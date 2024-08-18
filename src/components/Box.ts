@@ -1,5 +1,5 @@
-import { register, variable } from "./framework/register";
-import { mapEnum } from "./framework/enum";
+import { register, variable } from "../framework/register";
+import { mapEnum } from "../framework/enum";
 import { Justify } from "./variables/Justify";
 
 export class Box extends HTMLElement {

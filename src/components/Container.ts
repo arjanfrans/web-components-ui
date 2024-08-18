@@ -1,4 +1,4 @@
-import { register, variable } from "./framework/register";
+import { register, variable } from "../framework/register";
 
 export class Container extends HTMLElement {
   constructor() {

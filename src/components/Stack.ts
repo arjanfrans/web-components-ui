@@ -1,4 +1,4 @@
-import { register, variable } from "./framework/register";
+import { register, variable } from "../framework/register";
 import type { Gap } from "./variables/Gap";
 
 export class Stack extends HTMLElement {

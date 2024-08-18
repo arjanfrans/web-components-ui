@@ -1,4 +1,4 @@
-import { register } from "./framework/register";
+import { register } from "../framework/register";
 import { Typography } from "./Typography";
 
 export class Switch extends HTMLElement {

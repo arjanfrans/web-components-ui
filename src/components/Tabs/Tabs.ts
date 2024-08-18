@@ -1,4 +1,4 @@
-import { register, getPrefix } from "../framework/register";
+import { register, getPrefix } from "../../framework/register";
 import { TabButtons } from "./TabButtons";
 
 export class Tabs extends HTMLElement {
@@ -78,8 +78,12 @@ export class Tabs extends HTMLElement {
     // Update the active indicator in the TabButtons component
     const tabButtonsContainer = this.querySelector(
       `${getPrefix()}-tab-buttons`,
-    );
-    if (tabButtonsContainer) {
+    ) as TabButtons;
+
+    if (
+      tabButtonsContainer &&
+      typeof tabButtonsContainer.updateActiveIndicator === "function"
+    ) {
       (tabButtonsContainer as TabButtons).updateActiveIndicator();
     }
   }

@@ -1,4 +1,4 @@
-import { Theme } from "../Theme.ts";
+import { Theme } from "../components/Theme.ts";
 
 let componentPrefix = "x";
 

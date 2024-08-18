@@ -1,4 +1,4 @@
-import { register, variable } from "./framework/register";
+import { register, variable } from "../framework/register";
 import { Typography } from "./Typography";
 import { ZIndex } from "./variables/ZIndex";
 

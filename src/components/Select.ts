@@ -1,5 +1,5 @@
-import { InvalidChildrenError } from "./framework/InvalidChildrenError";
-import { register, variable } from "./framework/register";
+import { InvalidChildrenError } from "../framework/InvalidChildrenError";
+import { register, variable } from "../framework/register";
 
 export class Select extends HTMLElement {
   constructor() {

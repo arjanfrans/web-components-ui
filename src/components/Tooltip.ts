@@ -1,4 +1,4 @@
-import { register, variable } from "./framework/register";
+import { register, variable } from "../framework/register";
 import { ZIndex } from "./variables/ZIndex";
 
 export class Tooltip extends HTMLElement {
