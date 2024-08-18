@@ -36,3 +36,5 @@ export { TabPanels } from "./components/Tabs/TabPanels";
 export { TabButton } from "./components/Tabs/TabButton";
 export { TabButtons } from "./components/Tabs/TabButtons";
 export { Loading } from "./components/Loading";
+export { BottomNavigation } from "./components/BottomNavigation/BottomNavigation";
+export { BottomNavigationAction } from "./components/BottomNavigation/BottomNavigationAction";

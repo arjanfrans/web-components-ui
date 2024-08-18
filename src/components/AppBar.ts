@@ -29,6 +29,8 @@ export class AppBar extends HTMLElement {
         box-shadow: ${variable("shadow-dark")};
         transition: top 0.3s ease-in-out;
         height: ${variable("app-bar-height")};
+        display: flex;
+        align-items: center;
       }
 
       .spacer {

@@ -95,7 +95,7 @@ export class Typography extends HTMLElement {
             /* Heading 6 */
             :host([display="h6"]) ::slotted(*), :host([display="h6"]) {
                 font-family: ${variable("font-family-heading")};
-                font-size: ${variable("font-size-sm")}; /* Small font size */
+                font-size: ${variable("font-size-xs")}; /* Small font size */
                 font-weight: 500;
                 line-height: 1.6;
                 letter-spacing: 0.0075em;

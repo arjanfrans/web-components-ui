@@ -28,6 +28,7 @@ export class Theme extends HTMLElement {
     cardMediaSizeMedium: "64px", // Card media size medium
     cardMediaSizeLarge: "128px", // Card media size large
     appBarHeight: "64px",
+    bottomNavigationHeight: "64px",
   };
 
   constructor() {
@@ -60,6 +61,7 @@ export class Theme extends HTMLElement {
       "card-media-size-md",
       "card-media-size-lg",
       "app-bar-height",
+      "bottom-navigation-height",
     ];
   }
 
@@ -120,6 +122,9 @@ export class Theme extends HTMLElement {
 
     const appBarHeight =
       this.getAttribute("app-bar-height") || this.defaultStyles.appBarHeight;
+    const bottomNavigationHeight =
+      this.getAttribute("bottom-navigation-height") ||
+      this.defaultStyles.bottomNavigationHeight;
 
     const palette = generateColorPalette(
       colorPrimary, // Primary color
@@ -179,6 +184,7 @@ export class Theme extends HTMLElement {
         --${getPrefix()}-card-media-size-lg: ${cardMediaSizeLarge};
 
         --${getPrefix()}-app-bar-height: ${appBarHeight};
+        --${getPrefix()}-bottom-navigation-height: ${bottomNavigationHeight};
       }
 
       @media (min-width: ${Breakpoint.MD}px) {
