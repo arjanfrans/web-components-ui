@@ -28,7 +28,7 @@ export class Theme extends HTMLElement {
     cardMediaSizeMedium: "64px", // Card media size medium
     cardMediaSizeLarge: "128px", // Card media size large
     appBarHeight: "64px",
-    bottomNavigationHeight: "64px",
+    bottomNavigationHeight: "72px",
   };
 
   constructor() {

@@ -1,9 +1,14 @@
 import { register } from "../framework/register";
+import { Color } from "./variables/Color";
 
 export class Icon extends HTMLElement {
+  private shadow: ShadowRoot;
+
+  private static svgCache: Map<string, string> = new Map();
+
   constructor() {
     super();
-    const shadow = this.attachShadow({ mode: "open" });
+    this.shadow = this.attachShadow({ mode: "open" });
 
     const style = document.createElement("style");
     style.textContent = `
@@ -11,47 +16,67 @@ export class Icon extends HTMLElement {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        max-width: var(--icon-size, 1em);
-        max-height: var(--icon-size, 1em);
         overflow: hidden;
         box-sizing: border-box;
-        height: max-content;
-        width: max-content;
+        --icon-color: var(--semantic-text-default);
       }
 
-      :host([size="small"]) {
-        --icon-size: 1em;
+      :host([color="${Color.DEFAULT}"]) {
+        --icon-color: var(--semantic-text-default);
       }
 
-      :host([size="medium"]) {
-        --icon-size: 2em;
+      :host([color="${Color.INVERTED}"]) {
+        --icon-color: var(--semantic-text-inverted);
       }
 
-      :host([size="large"]) {
-        --icon-size: 3em;
+      :host([color="${Color.HIGHLIGHT}"]) {
+        --icon-color: var(--semantic-text-highlight);
       }
 
-      :host(:not([size])) {
-        --icon-size: 100%;
-      }
-
-      ::slotted(img),
-      ::slotted(svg) {
-        width: 100%;
-        height: 100%;
+      svg {
         display: block;
+        fill: var(--icon-color);
+        object-fit: contain; /* Ensure SVG scales proportionally */
       }
     `;
 
-    shadow.appendChild(style);
+    this.shadow.appendChild(style);
 
-    // Create a slot for the icon
+    // Create a slot for the SVG
     const slot = document.createElement("slot");
-    shadow.appendChild(slot);
+    this.shadow.appendChild(slot);
   }
 
   static get observedAttributes() {
-    return ["size"];
+    return ["size", "svg"];
+  }
+
+  attributeChangedCallback(
+    name: string,
+    oldValue: string | null,
+    newValue: string | null,
+  ) {
+    if (name === "svg" && oldValue !== newValue && newValue) {
+      this.loadSvg(newValue);
+    }
+  }
+
+  private async loadSvg(src: string) {
+    try {
+      if (Icon.svgCache.has(src)) {
+        this.innerHTML = Icon.svgCache.get(src)!;
+      } else {
+        const response = await fetch(src);
+        if (!response.ok) {
+          throw new Error(`Failed to load SVG: ${response.statusText}`);
+        }
+        const svgText = await response.text();
+        Icon.svgCache.set(src, svgText);
+        this.innerHTML = svgText;
+      }
+    } catch (error) {
+      console.error("Error loading SVG:", error);
+    }
   }
 }
 

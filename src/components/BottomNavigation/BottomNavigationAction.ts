@@ -1,8 +1,10 @@
 import { register, variable } from "../../framework/register";
 import { Typography } from "../Typography";
+import { Icon } from "../Icon"; // Adjust path as necessary
+
 export class BottomNavigationAction extends HTMLElement {
   private shadow: ShadowRoot;
-  private icon?: HTMLDivElement;
+  private icon?: Icon;
 
   constructor() {
     super();
@@ -22,24 +24,35 @@ export class BottomNavigationAction extends HTMLElement {
         text-align: center;
         cursor: pointer;
         transition: color 0.3s ease-in-out;
-        width: ${variable("bottom-navigation-height")}; /* Ensure a fixed width */
-        height: ${variable("bottom-navigation-height")}; /* Ensure a fixed height */
+        height: ${variable("bottom-navigation-height")}; /* Fixed height */
+        width: auto; /* Allow width to adjust based on content */
       }
 
       :host(:hover) {
         color: var(--semantic-text-highlight, #007bff); /* Highlight color on hover */
       }
 
+      .icon-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: calc(100% - ${variable("spacing-xs")}); /* Take up the full width of the host */
+        height: 100%; /* Fixed height as a percentage of the container height */
+        overflow: hidden;
+      }
+
       .icon {
-        width: 48px; /* Set explicit width */
-        height: 48px; /* Set explicit height */
-        background-size: contain; /* Maintain aspect ratio */
-        background-repeat: no-repeat;
-        background-position: center;
+        max-width: 100%; /* Make sure the icon does not overflow */
+        max-height: 100%; /* Make sure the icon does not overflow */
+        width: 100%; /* Allow width to scale with height */
+        height: auto; /* Allow height to scale with width */
+        object-fit: contain; /* Ensure proper scaling */
       }
 
       .label {
         margin-top: ${variable("spacing-xs")};
+        width: 100%;
+        text-align: center;
       }
 
       /* Hide label if not provided */
@@ -48,17 +61,18 @@ export class BottomNavigationAction extends HTMLElement {
       }
     `;
 
-    const iconSrc = this.getAttribute("icon");
+    // Create and set up the Icon element
+    const svgSrc = this.getAttribute("svg");
 
-    if (iconSrc !== "" && iconSrc !== null) {
-      // Create the icon container div
-      this.icon = document.createElement("div");
-      this.icon.className = "icon";
+    // Create container for the icon
+    const iconContainer = document.createElement("div");
+    iconContainer.className = "icon-container";
 
-      // Set the background image if the icon attribute is provided
-
-      this.icon.style.backgroundImage = `url(${iconSrc})`;
-      this.shadow.appendChild(this.icon);
+    if (svgSrc) {
+      this.icon = new Icon();
+      this.icon.setAttribute("svg", svgSrc);
+      this.icon.className = "icon"; // Ensure CSS rules apply
+      iconContainer.appendChild(this.icon);
     }
 
     // Create the label element
@@ -73,12 +87,12 @@ export class BottomNavigationAction extends HTMLElement {
     }
 
     this.shadow.appendChild(style);
-
+    this.shadow.appendChild(iconContainer);
     this.shadow.appendChild(label);
   }
 
   static get observedAttributes() {
-    return ["icon"];
+    return ["svg"];
   }
 
   attributeChangedCallback(
@@ -86,20 +100,23 @@ export class BottomNavigationAction extends HTMLElement {
     oldValue: string | null,
     newValue: string | null,
   ) {
-    if (name === "icon" && oldValue !== newValue) {
+    if (name === "svg" && oldValue !== newValue) {
+      const iconContainer = this.shadow.querySelector(".icon-container");
       if (this.icon) {
-        if (newValue !== "" && newValue !== null) {
-          this.icon.style.backgroundImage = `url(${newValue})`;
+        if (newValue) {
+          this.icon.setAttribute("svg", newValue);
         } else {
-          this.shadow.removeChild(this.icon);
+          if (iconContainer) {
+            iconContainer.removeChild(this.icon);
+          }
+          this.icon = undefined;
         }
-      } else {
-        if (newValue !== "" && newValue !== null) {
-          this.icon = document.createElement("div");
-          this.icon.className = "icon";
-          this.icon.style.backgroundImage = `url(${newValue})`;
-
-          this.shadow.append(this.icon);
+      } else if (newValue) {
+        this.icon = new Icon();
+        this.icon.setAttribute("svg", newValue);
+        this.icon.className = "icon"; // Ensure CSS rules apply
+        if (iconContainer) {
+          iconContainer.appendChild(this.icon);
         }
       }
     }
