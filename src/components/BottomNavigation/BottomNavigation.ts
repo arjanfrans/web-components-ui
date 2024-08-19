@@ -20,7 +20,7 @@ export class BottomNavigation extends HTMLElement {
       /* Fixed/Sticky navigation styles */
       .bottom-nav {
         width: 100%;
-        background-color: rgba(var(--semantic-stroke-default_rgb), 0.5);
+        background-color: var(--semantic-background-alternate);
         border-top: 1px solid var(--semantic-stroke-default);
         color: var(--semantic-text-default);
         padding: ${variable("spacing-sm")};

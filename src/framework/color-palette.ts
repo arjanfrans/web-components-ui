@@ -24,6 +24,19 @@ interface ColorPalette {
       800: string;
       900: string;
     };
+    background: {
+      50: string;
+      100: string;
+      200: string;
+      300: string;
+      400: string;
+      500: string;
+      600: string;
+      700: string;
+      800: string;
+      900: string;
+      1000: string;
+    };
     neutral: {
       background: string;
       text: string;
@@ -61,6 +74,19 @@ interface ColorPalette {
       700: string;
       800: string;
       900: string;
+    };
+    background: {
+      50: string;
+      100: string;
+      200: string;
+      300: string;
+      400: string;
+      500: string;
+      600: string;
+      700: string;
+      800: string;
+      900: string;
+      1000: string;
     };
     neutral: {
       background: string;
@@ -157,6 +183,19 @@ export function generateColorPalette(
         800: adjustColor(primaryColor, -40),
         900: adjustColor(primaryColor, -50),
       },
+      background: {
+        50: adjustColor(backgroundColor, 100),
+        100: adjustColor(backgroundColor, 70),
+        200: adjustColor(backgroundColor, 50),
+        300: adjustColor(backgroundColor, 30),
+        400: adjustColor(backgroundColor, 20),
+        500: backgroundColor,
+        600: adjustColor(backgroundColor, -10),
+        700: adjustColor(backgroundColor, -20),
+        800: adjustColor(backgroundColor, -30),
+        900: adjustColor(backgroundColor, -50),
+        1000: adjustColor(backgroundColor, -80),
+      },
       neutral: {
         background: backgroundColor,
         text: textColor,
@@ -185,7 +224,7 @@ export function generateColorPalette(
 
 export function generateCSSVariables(palette: ColorPalette): string {
   function createVariables(mode: "light" | "dark"): string {
-    const { primary, secondary, neutral, rgb } = palette[mode];
+    const { primary, secondary, neutral, rgb, background } = palette[mode];
 
     return `
       --${mode}-primary-50: ${primary[50]};
@@ -214,6 +253,18 @@ export function generateCSSVariables(palette: ColorPalette): string {
       --${mode}-secondary-800: ${secondary[800]};
       --${mode}-secondary-900: ${secondary[900]};
 
+      --${mode}-background-50: ${background[50]};
+      --${mode}-background-100: ${background[100]};
+      --${mode}-background-200: ${background[200]};
+      --${mode}-background-300: ${background[300]};
+      --${mode}-background-400: ${background[400]};
+      --${mode}-background-500: ${background[500]};
+      --${mode}-background-600: ${background[600]};
+      --${mode}-background-700: ${background[700]};
+      --${mode}-background-800: ${background[800]};
+      --${mode}-background-900: ${background[900]};
+      --${mode}-background-1000: ${background[1000]};
+
       --${mode}-background: ${neutral.background};
       --${mode}-text: ${neutral.text};
       --${mode}-border: ${neutral.border};
@@ -233,8 +284,8 @@ export function generateCSSVariables(palette: ColorPalette): string {
       --semantic-stroke-default: var(--${mode}-border);
       --semantic-text-default: var(--${mode}-text);
       --semantic-text-inverted: var(--${invertedMode}-text);
-      --semantic-background-default: var(--${mode}-background);
-      --semantic-background-inverted: var(--${invertedMode}-background);
+      --semantic-background-default: var(--${mode}-background-500);
+      --semantic-background-inverted: var(--${invertedMode}-background-500);
       --semantic-stroke-highlight: var(--${mode}-primary-500);
       --semantic-text-highlight: var(--${mode}-primary-500);
       --semantic-background-highlight: var(--${mode}-primary-500);
@@ -247,6 +298,12 @@ export function generateCSSVariables(palette: ColorPalette): string {
       --semantic-stroke-highlight_rgb: var(--${mode}-primary_rgb);
       --semantic-text-highlight_rgb: var(--${mode}-primary_rgb);
       --semantic-background-highlight_rgb: var(--${mode}-primary_rgb);
+
+      --semantic-background-alternate: ${
+        mode === "dark"
+          ? `var(--${mode}-background-300)`
+          : `var(--${mode}-background-700)`
+      };
           
       --semantic-text-hover: ${
         mode === "dark"
@@ -259,6 +316,14 @@ export function generateCSSVariables(palette: ColorPalette): string {
           ? `var(--${mode}-primary-100)`
           : `var(--${mode}-primary-900)`
       };
+
+            
+      --semantic-stroke-light: ${
+        mode === "dark"
+          ? `var(--${mode}-background-200)`
+          : `var(--${mode}-background-800)`
+      };
+
       --semantic-background-hover: ${
         mode === "dark"
           ? `var(--${mode}-primary-100)`

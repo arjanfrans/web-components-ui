@@ -38,7 +38,7 @@ export class Divider extends HTMLElement {
       }
 
       :host([light]) .divider {
-        background-color: rgba(var(--semantic-stroke-default_rgb), 0.5);
+        background-color: var(--semantic-stroke-light);
       }
 
       :host([fade]) .divider {

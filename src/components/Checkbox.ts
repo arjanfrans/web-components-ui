@@ -26,7 +26,7 @@ export class Checkbox extends HTMLElement {
         appearance: none;
         width: 2em;
         height: 2em;
-        border: 2px solid rgba(var(--semantic-background-inverted_rgb), 0.5);
+        border: 2px solid var(--semantic-stroke-default);
         border-radius: ${variable("border-xs")};
         background-color: transparent;
         display: flex;
@@ -50,8 +50,8 @@ export class Checkbox extends HTMLElement {
       }
 
       .checkbox:disabled {
-        background-color: rgba(var(--semantic-background-inverted_rgb), 0.5);
-        border-color: rgba(var(--semantic-background-inverted_rgb), 0.5);
+        background-color: rgba(var(--semantic-background-inverted_rgb), 0.2);
+        border-color: var(--semantic-stroke-default);
         cursor: not-allowed;
       }
     `;

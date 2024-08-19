@@ -10,7 +10,7 @@ export class TabButtons extends HTMLElement {
       :host {
         position: relative;
         display: flex;
-        border-bottom: var(--tab-button-border, 1px solid rgba(var(--semantic-background-inverted_rgb), 0.1));
+        border-bottom: 1px solid var(--semantic-stroke-default);
         margin: 0;
         padding: 0;
         list-style: none;
