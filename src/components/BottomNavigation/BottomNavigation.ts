@@ -29,7 +29,6 @@ export class BottomNavigation extends HTMLElement {
         position: var(--bottom-nav-position, sticky);
         bottom: 0;
         left: 0;
-        box-shadow: ${variable("shadow-dark")};
         transition: bottom 0.3s ease-in-out;
         height: ${variable("bottom-navigation-height")};
         display: flex;

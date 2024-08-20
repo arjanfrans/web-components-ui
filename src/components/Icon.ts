@@ -13,10 +13,11 @@ export class Icon extends HTMLElement {
     const style = document.createElement("style");
     style.textContent = `
       :host {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
+        display: inline-block;
+        width: 100%;
+        height: 100%;
         overflow: hidden;
+        position: relative;
         box-sizing: border-box;
         --icon-color: var(--semantic-text-default);
       }
@@ -34,9 +35,31 @@ export class Icon extends HTMLElement {
       }
 
       svg {
-        display: block;
         fill: var(--icon-color);
-        object-fit: contain; /* Ensure SVG scales proportionally */
+        display: block;
+        object-fit: contain;
+        width: 100%;
+        height: 100%;
+      }
+
+      :host([size="small"]) svg {
+        width: 16px;
+        height: 16px;
+      }
+
+      :host([size="medium"]) svg {
+        width: 32px;
+        height: 32px;
+      }
+
+      :host([size="large"]) svg {
+        width: 64px;
+        height: 64px;
+      }
+
+      :host([size="none"]) svg {
+        width: 100%;
+        height: 100%;
       }
     `;
 
@@ -64,7 +87,7 @@ export class Icon extends HTMLElement {
   private async loadSvg(src: string) {
     try {
       if (Icon.svgCache.has(src)) {
-        this.innerHTML = Icon.svgCache.get(src)!;
+        this.setSvgContent(Icon.svgCache.get(src)!);
       } else {
         const response = await fetch(src);
         if (!response.ok) {
@@ -72,10 +95,41 @@ export class Icon extends HTMLElement {
         }
         const svgText = await response.text();
         Icon.svgCache.set(src, svgText);
-        this.innerHTML = svgText;
+        this.setSvgContent(svgText);
       }
     } catch (error) {
       console.error("Error loading SVG:", error);
+    }
+  }
+
+  private setSvgContent(svgText: string) {
+    // Create a temporary DOM element to manipulate the SVG
+    const tempDiv = document.createElement("div");
+    tempDiv.innerHTML = svgText;
+    const svgElement = tempDiv.querySelector("svg");
+
+    if (svgElement) {
+      // Remove any width/height attributes to ensure it scales correctly
+      svgElement.removeAttribute("width");
+      svgElement.removeAttribute("height");
+
+      // Ensure a viewBox is set
+      if (!svgElement.hasAttribute("viewBox")) {
+        const width = svgElement.getAttribute("width") || "100";
+        const height = svgElement.getAttribute("height") || "100";
+        svgElement.setAttribute("viewBox", `0 0 ${width} ${height}`);
+      }
+
+      // Clear the current slot content
+      const slot = this.shadow.querySelector("slot");
+      if (slot) {
+        slot.remove();
+      }
+
+      // Append the processed SVG to the shadow DOM
+      this.shadow.appendChild(svgElement);
+    } else {
+      console.error("No valid SVG element found in the provided content.");
     }
   }
 }

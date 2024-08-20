@@ -18,13 +18,14 @@ export class BottomNavigationAction extends HTMLElement {
         display: flex;
         flex-direction: column;
         align-items: center;
+        gap: ${variable("spacing-xs")};
         justify-content: center;
         padding: ${variable("spacing-xs")};
         box-sizing: border-box;
         text-align: center;
         cursor: pointer;
-        transition: color 0.3s ease-in-out;
-        height: ${variable("bottom-navigation-height")}; /* Fixed height */
+        transition: color 0.18s ease-in-out;
+        height: calc(${variable("bottom-navigation-height")} - 4px); /* Fixed height */
         width: auto; /* Allow width to adjust based on content */
       }
 
@@ -36,21 +37,16 @@ export class BottomNavigationAction extends HTMLElement {
         display: flex;
         align-items: center;
         justify-content: center;
-        width: calc(100% - ${variable("spacing-xs")}); /* Take up the full width of the host */
+        width: 100%;
         height: 100%; /* Fixed height as a percentage of the container height */
         overflow: hidden;
       }
 
       .icon {
-        max-width: 100%; /* Make sure the icon does not overflow */
-        max-height: 100%; /* Make sure the icon does not overflow */
-        width: 100%; /* Allow width to scale with height */
-        height: auto; /* Allow height to scale with width */
         object-fit: contain; /* Ensure proper scaling */
       }
 
       .label {
-        margin-top: ${variable("spacing-xs")};
         width: 100%;
         text-align: center;
       }
@@ -64,15 +60,19 @@ export class BottomNavigationAction extends HTMLElement {
     // Create and set up the Icon element
     const svgSrc = this.getAttribute("svg");
 
-    // Create container for the icon
-    const iconContainer = document.createElement("div");
-    iconContainer.className = "icon-container";
-
     if (svgSrc) {
+      // Create container for the icon
+      const iconContainer = document.createElement("div");
+      iconContainer.className = "icon-container";
+
       this.icon = new Icon();
       this.icon.setAttribute("svg", svgSrc);
+      this.icon.setAttribute("size", "none");
       this.icon.className = "icon"; // Ensure CSS rules apply
+
       iconContainer.appendChild(this.icon);
+
+      this.shadow.appendChild(iconContainer);
     }
 
     // Create the label element
@@ -87,7 +87,7 @@ export class BottomNavigationAction extends HTMLElement {
     }
 
     this.shadow.appendChild(style);
-    this.shadow.appendChild(iconContainer);
+
     this.shadow.appendChild(label);
   }
 
