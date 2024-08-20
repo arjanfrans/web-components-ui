@@ -5,6 +5,7 @@ configurePrefix("x");
 waitForComponents();
 
 export { Theme } from "./components/Theme";
+export { Install } from "./components/Install";
 export { AppBar } from "./components/AppBar";
 export { Chip } from "./components/Chip";
 export { Table } from "./components/Table";
@@ -38,3 +39,15 @@ export { TabButtons } from "./components/Tabs/TabButtons";
 export { Loading } from "./components/Loading";
 export { BottomNavigation } from "./components/BottomNavigation/BottomNavigation";
 export { BottomNavigationAction } from "./components/BottomNavigation/BottomNavigationAction";
+
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/service-worker.js')
+        .then((registration) => {
+          console.log('ServiceWorker registration successful with scope: ', registration.scope);
+        })
+        .catch((error) => {
+          console.log('ServiceWorker registration failed: ', error);
+        });
+    });
+  }

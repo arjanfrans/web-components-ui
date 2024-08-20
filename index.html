@@ -2,8 +2,9 @@
 <html lang="en">
 
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="manifest" href="/manifest.json">
     <base href="">
     <title>Web Components UI Library</title>
 
@@ -39,7 +40,15 @@
         font-family-default="sans-serif" color-primary="#ed1c24" color-text-light="#000000" color-text-dark="#ffffff"
         color-background-light="#ffffff" color-background-dark="#1f1f1f">
 
-        <x-container>
+        <x-install>
+            <x-stack direction="vertical" gap="medium" margin-inline="large" margin-block="large">
+                <x-box justify-content="center">
+                    <x-button id="install" size="large" variant="outlined">Install</x-button>
+                </x-box>
+            </x-stack>
+        </x-install>
+
+        <x-container>         
             <x-app-bar fixed>
                 <x-box justify-content="center">
                     <x-typography display="h1">Web Components %VITE_LIBRARY_VERSION%</x-typography>
