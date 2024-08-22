@@ -13,8 +13,7 @@ export class BottomNavigation extends HTMLElement {
       :host {
         display: block;
         width: 100%;
-        position: relative; /* Ensure positioning context for inner divs */
-        z-index: ${ZIndex.TOP};
+        position: relative; /* Ensure positioning context for inner divs */  
       }
 
       /* Fixed/Sticky navigation styles */
@@ -37,6 +36,11 @@ export class BottomNavigation extends HTMLElement {
 
       .spacer {
         height: ${variable("bottom-navigation-height")};
+      }
+
+
+      :host([fixed]) {
+        z-index: ${ZIndex.TOP};
       }
 
       :host([fixed]) .bottom-nav {

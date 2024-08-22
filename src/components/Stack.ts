@@ -27,6 +27,7 @@ export class Stack extends HTMLElement {
       "margin-inline",
       "margin-block",
       "justify-content",
+      "stretch",
     ];
   }
 
@@ -60,10 +61,19 @@ export class Stack extends HTMLElement {
                   direction === "horizontal" ? "row" : "column"
                 };
                 gap: ${gap};
-                margin-inline: ${marginInline};
-                margin-block: ${marginBlock};
+                padding-inline: ${marginInline};
+                padding-block: ${marginBlock};
                 justify-content: ${justifyContent};
                 flex-wrap: wrap;
+                box-sizing: border-box;
+            }
+
+            :host([stretch][direction="horizontal"]) {
+                width: 100%;
+            }
+
+            :host([stretch][direction="vertical"]) {
+                height: 100%;
             }
         `;
   }

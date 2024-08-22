@@ -11,9 +11,6 @@ export class Button extends HTMLElement {
     super();
     const shadow = this.attachShadow({ mode: "open" });
 
-    this.style.width = "max-content";
-    this.style.height = "max-content";
-
     // Create the button element
     this.button = document.createElement("button");
     this.button.classList.add("button");
@@ -21,6 +18,11 @@ export class Button extends HTMLElement {
     // Create and append the styles
     const style = document.createElement("style");
     style.textContent = `
+      :host {
+        width: max-content;
+        height: max-content;
+      }
+
       .button {
         border: none;
         border-radius: ${variable("border-xs")};
@@ -33,6 +35,14 @@ export class Button extends HTMLElement {
         transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1), border-color 250ms cubic-bezier(0.4, 0, 0.2, 1), color 250ms cubic-bezier(0.4, 0, 0.2, 1);
         white-space: nowrap;
         touch-action: manipulation; /* Helps with touch interactions */
+      }
+
+      :host([stretch]) {
+        width: 100%;
+      }
+
+      :host([stretch]) .button {
+        width: 100%;
       }
       
       :host([variant="filled"]) .button {
@@ -118,7 +128,7 @@ export class Button extends HTMLElement {
 
   // Observe changes to 'variant' and 'size' attributes
   static get observedAttributes() {
-    return ["variant", "size"];
+    return ["variant", "size", "stretch"];
   }
 
   // Handle changes to attributes

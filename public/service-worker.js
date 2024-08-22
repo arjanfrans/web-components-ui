@@ -1,7 +1,7 @@
 const CACHE_NAME = 'my-cache-v1';
 const urlsToCache = [
-  '/',
-  '/favicon.ico'
+  // '/',
+  // '/favicon.ico'
 ];
 
 // Install event - caching assets
