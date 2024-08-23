@@ -1,5 +1,6 @@
 import { isPWAInstalled } from "../pwa/install";
 import { getPrefix, register, variable } from "../framework/register";
+import { BeforeInstallPromptEvent } from "../types";
 
 export class Install extends HTMLElement {
   private installPromptEvent: BeforeInstallPromptEvent | null = null;
