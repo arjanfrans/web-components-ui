@@ -2,6 +2,8 @@ import { Theme } from "../components/Theme.ts";
 
 let componentPrefix = "x";
 
+let componentList: Array<() => void> = [];
+
 export function configurePrefix(prefix: string): void {
   componentPrefix = prefix;
 }
@@ -11,11 +13,21 @@ export function register(
   constructor: CustomElementConstructor,
   options?: ElementDefinitionOptions,
 ): void {
-  window.customElements.define(
-    `${componentPrefix}-${name}`,
-    constructor,
-    options,
-  );
+  componentList.push(() => {
+    window.customElements.define(
+      `${componentPrefix}-${name}`,
+      constructor,
+      options,
+    );
+  });
+}
+
+export function loadComponents() {
+  for (const component of componentList) {
+    component();
+  }
+
+  componentList = [];
 }
 
 export function getPrefix() {

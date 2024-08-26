@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "private": false,
   "description": "Web Components only UI library",
-  "main": "dist/main.mjs",
-  "types": "dist/main.d.ts",
+  "main": "dist/lib/main.mjs",
+  "types": "dist/lib/main.d.ts",
   "scripts": {
     "start": "vite --host --port 3000",
     "build:static": "tsc && TARGET=static vite build",

@@ -1,4 +1,8 @@
-export { configurePrefix, waitForComponents } from "./framework/register";
+export {
+  configurePrefix,
+  waitForComponents,
+  loadComponents,
+} from "./framework/register";
 
 export { Theme } from "./components/Theme";
 export { Install } from "./components/Install";

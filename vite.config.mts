@@ -1,43 +1,51 @@
-import { defineConfig } from "vite";
+import {defineConfig} from "vite";
 import checker from "vite-plugin-checker";
 import dts from "vite-plugin-dts";
-import { resolve } from "path";
+import {resolve} from "path";
 
 const libConfig = defineConfig({
-  plugins: [
-    dts({
-      // Only include files relevant to the library
-      include: [resolve(__dirname, "src/lib.ts")],
-    }),
-    checker({
-      typescript: true,
-    }),
-  ],
-  build: {
-    lib: {
-      entry: resolve(__dirname, "src/lib.ts"),
-      fileName: "main",
-      formats: ["es"],
+    plugins: [
+        dts({
+            include: [resolve(__dirname, "src/lib/main.ts")],
+        }),
+        checker({
+            typescript: true,
+        }),
+    ],
+    build: {
+        lib: {
+            entry: resolve(__dirname, "src/lib/main.ts"),
+            fileName: "lib/main",
+            formats: ["es"],
+        },
+        outDir: "dist",
+        sourcemap: true, // Optionally enable source maps
     },
-    sourcemap: true, // Optionally enable source maps
-  },
 });
 
 const staticConfig = defineConfig({
-  base: process.env.BASE_PATH ?? "/",
-  plugins: [
-    checker({
-      typescript: true,
-    }),
-  ],
-  build: {
-    lib: {
-      entry: resolve(__dirname, "src/static.ts"),
-      fileName: "main",
-      formats: ["es"],
+    base: process.env.BASE_PATH ?? "/",
+    plugins: [
+        dts({
+            include: [resolve(__dirname, "src/static/main.ts")],
+        }),
+        checker({
+            typescript: true,
+        }),
+    ],
+    build: {
+        rollupOptions: {
+            input: {
+                main: resolve(__dirname, 'index.html'),
+            },
+        },
+        lib: {
+            entry: resolve(__dirname, "src/static/main.ts"),
+            fileName: "static/main",
+            formats: ["es"],
+        },
+        outDir: "dist",
     },
-    outDir: "static-dist", // Output directory for static build
-  },
 });
 
 export default process.env.TARGET === "static" ? staticConfig : libConfig;
