@@ -1,6 +1,6 @@
 {
   "name": "@arjanfrans/web-components-ui",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": false,
   "description": "Web Components only UI library",
   "main": "dist/lib/main.mjs",

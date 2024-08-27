@@ -26,40 +26,40 @@ export class Box extends HTMLElement {
             }).join("")}
 
             :host([margin-inline="small"]) {
-                margin-inline: ${variable("spacing-sm")};
+                padding-inline: ${variable("spacing-sm")};
             }
 
             :host([margin-block="small"]) {
-                margin-block: ${variable("spacing-sm")};
+                padding-block: ${variable("spacing-sm")};
             }
 
             :host([margin-inline="medium"]) {
-                margin-inline: ${variable("spacing-md")};
+                padding-inline: ${variable("spacing-md")};
             }
 
             :host([margin-block="medium"]) {
-                margin-block: ${variable("spacing-md")};
+                padding-block: ${variable("spacing-md")};
             }
 
             :host([margin-inline="large"]) {
-                margin-inline: ${variable("spacing-lg")};
+                padding-inline: ${variable("spacing-lg")};
             }
 
             :host([margin-block="large"]) {
-                margin-block: ${variable("spacing-lg")};
+                padding-block: ${variable("spacing-lg")};
             }
 
             :host([margin-inline="extra-large"]) {
-                margin-inline: ${variable("spacing-xl")};
+                padding-inline: ${variable("spacing-xl")};
             }
 
             :host([margin-block="extra-large"]) {
-                margin-block: ${variable("spacing-xl")};
+                padding-block: ${variable("spacing-xl")};
             }
 
 
             :host([margin-block="extra-large"]) {
-                margin-block: ${variable("spacing-xl")};
+                padding-block: ${variable("spacing-xl")};
             }
         `;
 

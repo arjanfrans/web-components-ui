@@ -11,6 +11,13 @@ export class Grid extends HTMLElement {
 
     // Create a style element
     this.styleElement = document.createElement("style");
+
+    this.styleElement.textContent = `
+      :host {
+        width: 100%;
+      }
+    `;
+
     shadow.appendChild(this.styleElement);
 
     const slot = document.createElement("slot");
