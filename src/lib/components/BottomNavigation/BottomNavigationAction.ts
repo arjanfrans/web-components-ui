@@ -29,8 +29,8 @@ export class BottomNavigationAction extends HTMLElement {
         width: auto; /* Allow width to adjust based on content */
       }
 
-      :host(:hover) {
-        color: var(--semantic-text-highlight, #007bff); /* Highlight color on hover */
+      :host(:hover), :host([active]) {
+        color: var(--semantic-text-highlight);
       }
 
       .icon-container {

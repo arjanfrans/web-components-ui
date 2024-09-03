@@ -73,8 +73,6 @@ export class Figure extends HTMLElement {
     const width = this.getAttribute("width") || undefined;
     const height = this.getAttribute("height") || undefined;
 
-    console.log(img, width, height);
-
     if (width) {
       img.style.width = width;
     }
