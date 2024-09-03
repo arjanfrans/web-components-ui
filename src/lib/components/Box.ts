@@ -1,6 +1,5 @@
 import { register, variable } from "../framework/register";
-import { mapEnum } from "../framework/enum";
-import { Justify } from "./variables/Justify";
+import { justifyStyle } from "./styles/component-traits";
 
 export class Box extends HTMLElement {
   constructor() {
@@ -17,13 +16,11 @@ export class Box extends HTMLElement {
                 width: 100%;
             }
 
-            ${mapEnum(Justify, (justify) => {
-              return `
-                        :host([justify-content="${justify}"]) {
-                            justify-content: ${justify};
-                        }
-                    `;
-            }).join("")}
+            ${justifyStyle()}
+
+            :host([stretch-vertical]) {
+                height: 100%;
+            }
 
             :host([margin-inline="small"]) {
                 padding-inline: ${variable("spacing-sm")};
@@ -71,7 +68,7 @@ export class Box extends HTMLElement {
   }
 
   static get observedAttributes() {
-    return ["margin-inline", "margin-block", "justify-content"];
+    return ["margin-inline", "margin-block", "justify-content", "align-items"];
   }
 }
 

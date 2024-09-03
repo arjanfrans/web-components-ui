@@ -1,5 +1,6 @@
 import { register, variable } from "../framework/register";
 import type { Gap } from "./variables/Gap";
+import { justifyStyle } from "./styles/component-traits";
 
 export class Stack extends HTMLElement {
   private styleElement: HTMLStyleElement;
@@ -21,14 +22,7 @@ export class Stack extends HTMLElement {
   }
 
   static get observedAttributes() {
-    return [
-      "direction",
-      "gap",
-      "margin-inline",
-      "margin-block",
-      "justify-content",
-      "stretch",
-    ];
+    return ["direction", "gap", "margin-inline", "margin-block", "stretch"];
   }
 
   attributeChangedCallback(
@@ -52,7 +46,6 @@ export class Stack extends HTMLElement {
     const marginBlock = this.getMarginVariable(
       (this.getAttribute("margin-block") as Gap) || "none",
     );
-    const justifyContent = this.getAttribute("justify-content") || "flex-start";
 
     this.styleElement.textContent = `
             :host {
@@ -63,10 +56,11 @@ export class Stack extends HTMLElement {
                 gap: ${gap};
                 padding-inline: ${marginInline};
                 padding-block: ${marginBlock};
-                justify-content: ${justifyContent};
                 flex-wrap: wrap;
                 box-sizing: border-box;
             }
+                
+            ${justifyStyle()}
 
             :host([stretch][direction="horizontal"]) {
                 width: 100%;
@@ -145,18 +139,6 @@ export class Stack extends HTMLElement {
       this.setAttribute("margin-block", value);
     } else {
       this.removeAttribute("margin-block");
-    }
-  }
-
-  get justifyContent(): string {
-    return this.getAttribute("justify-content") || "flex-start";
-  }
-
-  set justifyContent(value: string) {
-    if (value) {
-      this.setAttribute("justify-content", value);
-    } else {
-      this.removeAttribute("justify-content");
     }
   }
 }

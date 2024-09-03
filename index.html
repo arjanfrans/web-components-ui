@@ -54,11 +54,13 @@
 </head>
 
 <body>
+    
     <x-loading></x-loading>
 
     <x-theme style="display: none" theme="light" font-family-heading="Neue Aachen Regular, sans-serif"
         font-family-default="sans-serif" color-primary="#217ba3" color-text-light="#000000" color-text-dark="#ffffff"
         color-background-light="#ffffff" color-background-dark="#1f1f1f">
+
 
         <!-- <x-install>
             <x-stack stretch direction="vertical" gap="medium" margin-inline="large" margin-block="large" justify-content="center">
@@ -72,6 +74,20 @@
         </x-install> -->
 
         <x-container>
+            <x-splash timeout="2000">
+                <x-box justify-content="center" align-items="center" stretch-vertical>
+                    <x-stack gap="large" direction="vertical" justify-content="center" align-items="center">
+                        <x-figure width="60vh">
+                            <img src="/icon-512x512.png" alt="Logo">
+                        </x-figure>
+
+                        <x-typography display="h1">
+                            WEB COMPONENTS
+                        </x-typography>
+                    </x-stack>
+                </x-box>
+            </x-splash>
+
             <x-app-bar fixed>
                 <x-box justify-content="center">
                     <x-typography display="h1">Web Components %VITE_LIBRARY_VERSION%</x-typography>

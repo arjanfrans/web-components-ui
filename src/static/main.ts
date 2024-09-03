@@ -41,6 +41,7 @@ export { TabPanels } from "../lib/main";
 export { TabButton } from "../lib/main";
 export { TabButtons } from "../lib/main";
 export { Loading } from "../lib/main";
+export { Splash } from "../lib/main";
 export { BottomNavigation } from "../lib/main";
 export { BottomNavigationAction } from "../lib/main";
 
