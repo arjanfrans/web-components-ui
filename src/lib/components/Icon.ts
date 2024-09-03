@@ -64,10 +64,6 @@ export class Icon extends HTMLElement {
     `;
 
     this.shadow.appendChild(style);
-
-    // Create a slot for the SVG
-    const slot = document.createElement("slot");
-    this.shadow.appendChild(slot);
   }
 
   static get observedAttributes() {
@@ -79,8 +75,10 @@ export class Icon extends HTMLElement {
     oldValue: string | null,
     newValue: string | null,
   ) {
-    if (name === "svg" && oldValue !== newValue && newValue) {
-      this.loadSvg(newValue);
+    if (oldValue !== newValue && newValue) {
+      if (name === "svg") {
+        this.loadSvg(newValue);
+      }
     }
   }
 
@@ -118,12 +116,6 @@ export class Icon extends HTMLElement {
         const width = svgElement.getAttribute("width") || "100";
         const height = svgElement.getAttribute("height") || "100";
         svgElement.setAttribute("viewBox", `0 0 ${width} ${height}`);
-      }
-
-      // Clear the current slot content
-      const slot = this.shadow.querySelector("slot");
-      if (slot) {
-        slot.remove();
       }
 
       // Append the processed SVG to the shadow DOM

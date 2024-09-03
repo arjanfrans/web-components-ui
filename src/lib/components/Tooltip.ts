@@ -10,7 +10,7 @@ export class Tooltip extends HTMLElement {
     super();
     const shadow = this.attachShadow({ mode: "open" });
 
-    this.style.display = "inline";
+    this.style.display = "inline-block";
     this.style.width = "max-content";
 
     // Create the tooltip container element
