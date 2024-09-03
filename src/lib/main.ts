@@ -21,6 +21,7 @@ export { Typography } from "./components/Typography";
 export { Container } from "./components/Container";
 export { Grid } from "./components/Grid";
 export { Stack } from "./components/Stack";
+export { Figure } from "./components/Figure";
 export { Block } from "./components/Block";
 export { Button } from "./components/Button";
 export { Switch } from "./components/Switch";

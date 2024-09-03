@@ -23,6 +23,7 @@ export { Link } from "../lib/main";
 export { Typography } from "../lib/main";
 export { Container } from "../lib/main";
 export { Grid } from "../lib/main";
+export { Figure } from "../lib/main";
 export { Stack } from "../lib/main";
 export { Block } from "../lib/main";
 export { Button } from "../lib/main";
