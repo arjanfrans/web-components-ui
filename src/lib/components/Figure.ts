@@ -11,8 +11,6 @@ export class Figure extends HTMLElement {
     style.textContent = `
       :host {
         display: inline-block;
-        width: 100%;
-        height: 100%;
         overflow: hidden;
         position: relative;
         box-sizing: border-box;
@@ -22,7 +20,6 @@ export class Figure extends HTMLElement {
         display: block;
         object-fit: contain; /* Maintain aspect ratio while fitting within bounds */
         object-position: center; /* Center the image if there are empty spaces */
-        max-width: 100%;
       }
 
       :host([size="small"]) ::slotted(img) {

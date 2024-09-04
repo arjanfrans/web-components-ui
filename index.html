@@ -54,7 +54,7 @@
 </head>
 
 <body>
-    
+
     <x-loading></x-loading>
 
     <x-theme style="display: none" theme="light" font-family-heading="Neue Aachen Regular, sans-serif"
@@ -63,18 +63,18 @@
 
 
         <!-- <x-install>
-            <x-stack stretch direction="vertical" gap="medium" margin-inline="large" margin-block="large" justify-content="center">
+            <x-stack direction="vertical" gap="medium" margin-inline="large" margin-block="large" justify-content="center">
                 <x-box justify-content="center">
-                    <x-button id="install" size="large" variant="filled" stretch>Install</x-button>
+                    <x-button id="install" size="large" variant="filled">Install</x-button>
                 </x-box>
                 <x-box justify-content="center">
-                    <x-button id="no-install" size="large" variant="outlined" stretch>Do not install</x-button>
+                    <x-button id="no-install" size="large" variant="outlined">Do not install</x-button>
                 </x-box>
             </x-stack>
         </x-install> -->
 
         <x-container>
-            <x-splash timeout="2000">
+            <x-splash timeout="1000">
                 <x-box justify-content="center" align-items="center" stretch-vertical>
                     <x-stack gap="large" direction="vertical" justify-content="center" align-items="center">
                         <x-figure width="60vh">
@@ -768,14 +768,14 @@
             </x-stack>
 
             <x-stack justify-content="center" direction="horizontal" margin-block="medium">
-                <x-block>
+                <x-box justify-content="center">
                     <x-typography display="overline">
                         &copy; 2024 Arjan Frans -
                         <x-link>
                             <a href="https://github.com/arjanfrans/web-components-ui" target="_blank">Source Code</a>
                         </x-link>
                     </x-typography>
-                </x-block>
+                </x-box>
             </x-stack>
 
             <x-bottom-navigation fixed>

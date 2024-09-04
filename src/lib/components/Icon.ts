@@ -14,8 +14,6 @@ export class Icon extends HTMLElement {
     style.textContent = `
       :host {
         display: inline-block;
-        width: 100%;
-        height: 100%;
         overflow: hidden;
         position: relative;
         box-sizing: border-box;
@@ -42,22 +40,22 @@ export class Icon extends HTMLElement {
         height: 100%;
       }
 
-      :host([size="small"]) svg {
+      :host([size="small"]) {
         width: 16px;
         height: 16px;
       }
 
-      :host([size="medium"]) svg {
+      :host([size="medium"]) {
         width: 32px;
         height: 32px;
       }
 
-      :host([size="large"]) svg {
+      :host([size="large"]) {
         width: 64px;
         height: 64px;
       }
 
-      :host([size="none"]) svg {
+      :host([size="none"]) {
         width: 100%;
         height: 100%;
       }

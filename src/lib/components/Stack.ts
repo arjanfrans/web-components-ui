@@ -1,9 +1,10 @@
 import { register, variable } from "../framework/register";
 import type { Gap } from "./variables/Gap";
-import { justifyStyle } from "./styles/component-traits";
+import { justifyStyle } from "./styles/justify.ts";
+import { stretchStyle } from "./styles/stretch.ts";
 
 export class Stack extends HTMLElement {
-  private styleElement: HTMLStyleElement;
+  private readonly styleElement: HTMLStyleElement;
 
   constructor() {
     super();
@@ -16,6 +17,8 @@ export class Stack extends HTMLElement {
 
     const slot = document.createElement("slot");
     shadow.append(slot);
+
+    this.setAttribute("stretch-horizontal", "");
 
     // Initial update of styles
     this.updateStyles();
@@ -61,6 +64,7 @@ export class Stack extends HTMLElement {
             }
                 
             ${justifyStyle()}
+            ${stretchStyle()}
 
             :host([stretch][direction="horizontal"]) {
                 width: 100%;

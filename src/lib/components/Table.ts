@@ -8,6 +8,10 @@ export class Table extends HTMLElement {
     const shadow = this.attachShadow({ mode: "open" });
     const style = document.createElement("style");
     style.textContent = `
+            :host {
+              width: 100%;
+            }
+            
             :host table {
                 width: 100%;
                 border: 0;
@@ -44,6 +48,8 @@ export class Table extends HTMLElement {
                 border-right: 0;
             }
         `;
+
+    this.setAttribute("stretch-horizontal", "");
 
     shadow.appendChild(style);
 

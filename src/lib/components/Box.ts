@@ -1,5 +1,6 @@
 import { register, variable } from "../framework/register";
-import { justifyStyle } from "./styles/component-traits";
+import { justifyStyle } from "./styles/justify.ts";
+import { stretchStyle } from "./styles/stretch.ts";
 
 export class Box extends HTMLElement {
   constructor() {
@@ -17,10 +18,7 @@ export class Box extends HTMLElement {
             }
 
             ${justifyStyle()}
-
-            :host([stretch-vertical]) {
-                height: 100%;
-            }
+            ${stretchStyle()}
 
             :host([margin-inline="small"]) {
                 padding-inline: ${variable("spacing-sm")};

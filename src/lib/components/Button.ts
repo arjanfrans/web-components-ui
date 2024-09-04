@@ -1,6 +1,7 @@
 import { register, variable } from "../framework/register.ts";
 import { Typography } from "./Typography.ts";
 import { Size } from "./variables/Size.ts";
+import { stretchStyle } from "./styles/stretch.ts";
 
 type ButtonVariant = "filled" | "outlined";
 
@@ -36,12 +37,10 @@ export class Button extends HTMLElement {
         white-space: nowrap;
         touch-action: manipulation; /* Helps with touch interactions */
       }
+      
+      ${stretchStyle()}
 
-      :host([stretch]) {
-        width: 100%;
-      }
-
-      :host([stretch]) .button {
+      :host .button {
         width: 100%;
       }
       

@@ -12,12 +12,6 @@ export class Grid extends HTMLElement {
     // Create a style element
     this.styleElement = document.createElement("style");
 
-    this.styleElement.textContent = `
-      :host {
-        width: 100%;
-      }
-    `;
-
     shadow.appendChild(this.styleElement);
 
     const slot = document.createElement("slot");
@@ -49,6 +43,7 @@ export class Grid extends HTMLElement {
 
     this.styleElement.textContent = `
             :host {
+                width: 100%;
                 display: grid;
                 gap: ${variable("spacing-md")};
                 grid-template-columns: repeat(${xs}, 1fr);
