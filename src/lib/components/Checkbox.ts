@@ -79,6 +79,7 @@ export class Checkbox extends HTMLElement {
     // Prevent checkbox input from receiving its own click events
     this.checkboxElement.addEventListener("click", (event) => {
       event.stopPropagation();
+      this.dispatchEvent(new Event("change"));
     });
 
     // Initialize checkbox state
