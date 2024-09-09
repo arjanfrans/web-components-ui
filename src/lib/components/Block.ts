@@ -1,4 +1,5 @@
 import { register } from "../framework/register";
+import { stretchStyle } from "./styles/stretch.ts";
 
 export class Block extends HTMLElement {
   constructor() {
@@ -10,8 +11,9 @@ export class Block extends HTMLElement {
             :host {
                 display: flex;
                 flex-wrap: wrap;
-                width: 100%;
             }
+            
+            ${stretchStyle()}
       `;
 
     const shadow = this.attachShadow({ mode: "open" });

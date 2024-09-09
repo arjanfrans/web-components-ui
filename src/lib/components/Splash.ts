@@ -15,7 +15,7 @@ export class Splash extends HTMLElement {
     style.textContent = `
       :host {
         display: block;
-        width: 100%;
+        width: 100vw;
         height: 100vh;
         background-color: var(--semantic-background-default);
         color: var(--semantic-text-highlight);
@@ -71,11 +71,13 @@ export class Splash extends HTMLElement {
 
   disableScroll() {
     document.body.style.height = "100vh";
+    document.body.style.width = "100vw";
     document.body.style.overflow = "hidden";
   }
 
   enableScroll() {
     document.body.style.height = "";
+    document.body.style.width = "";
     document.body.style.overflow = "";
   }
 }
