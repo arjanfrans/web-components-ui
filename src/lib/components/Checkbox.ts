@@ -77,9 +77,9 @@ export class Checkbox extends HTMLElement {
     this.addEventListener("pointerdown", (event) => event.preventDefault());
 
     // Prevent checkbox input from receiving its own click events
-    this.checkboxElement.addEventListener("click", (event) =>
-      event.stopPropagation(),
-    );
+    this.checkboxElement.addEventListener("click", (event) => {
+      event.stopPropagation();
+    });
 
     // Initialize checkbox state
     this.updateCheckbox();
@@ -113,6 +113,8 @@ export class Checkbox extends HTMLElement {
   private toggleCheckbox = () => {
     if (!this.checkboxElement.disabled) {
       this.checked = !this.checkboxElement.checked;
+
+      this.dispatchEvent(new Event("change"));
     }
   };
 
