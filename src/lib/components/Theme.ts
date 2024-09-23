@@ -170,13 +170,13 @@ export class Theme extends HTMLElement {
         /* Spacing Variables */
         --${getPrefix()}-spacing-xs: 4px; 
         --${getPrefix()}-spacing-sm: 8px;    
-        --${getPrefix()}-spacing-md: 12px;  
-        --${getPrefix()}-spacing-lg: 16px;     
-        --${getPrefix()}-spacing-xl: 20px;   
-        --${getPrefix()}-spacing-2xl: 24px;   
-        --${getPrefix()}-spacing-3xl: 28px;  
-        --${getPrefix()}-spacing-4xl: 32px;    
-        --${getPrefix()}-spacing-5xl: 40px;  
+        --${getPrefix()}-spacing-md: 16px;  
+        --${getPrefix()}-spacing-lg: 20px;     
+        --${getPrefix()}-spacing-xl: 24px;   
+        --${getPrefix()}-spacing-2xl: 28px;   
+        --${getPrefix()}-spacing-3xl: 32px;  
+        --${getPrefix()}-spacing-4xl: 48px;    
+        --${getPrefix()}-spacing-5xl: 56px;  
 
         /* Media Sizes */
         --${getPrefix()}-card-media-size-sm: ${cardMediaSizeSmall};

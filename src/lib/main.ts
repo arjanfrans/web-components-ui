@@ -21,6 +21,7 @@ export { Typography } from "./components/Typography";
 export { Container } from "./components/Container";
 export { Grid } from "./components/Grid";
 export { Stack } from "./components/Stack";
+export { ScrollBox } from "./components/ScrollBox";
 export { Figure } from "./components/Figure";
 export { Block } from "./components/Block";
 export { Button } from "./components/Button";
@@ -39,5 +40,6 @@ export { TabButton } from "./components/Tabs/TabButton";
 export { TabButtons } from "./components/Tabs/TabButtons";
 export { Loading } from "./components/Loading";
 export { Splash } from "./components/Splash";
+
 export { BottomNavigation } from "./components/BottomNavigation/BottomNavigation";
 export { BottomNavigationAction } from "./components/BottomNavigation/BottomNavigationAction";

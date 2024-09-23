@@ -20,6 +20,7 @@ export class Figure extends HTMLElement {
         display: block;
         object-fit: contain; /* Maintain aspect ratio while fitting within bounds */
         object-position: center; /* Center the image if there are empty spaces */
+        max-width: 100%;
       }
 
       :host([size="small"]) ::slotted(img) {

@@ -160,6 +160,7 @@
                         </x-stack>
                     </x-stack>
                 </x-block>
+                
 
                 <x-block>
                     <x-stack gap="medium">
@@ -187,6 +188,39 @@
                         </x-block>
                     </x-stack>
                 </x-block>
+
+
+                <x-block>
+                    <x-stack gap="medium">
+                        <x-block>
+                            <x-typography display="h1">
+                                <h2>ScrollBox</h2>
+                            </x-typography>
+                            <x-divider fade></x-divider>
+                        </x-block>
+
+                        <x-block>
+                            <x-stack direction="vertical" gap="large">
+                                <x-scroll-box height="60px" width="60px">
+                                    <x-stack direction="vertical" justify-content="center">
+                                        <x-typography display="h2">
+                                            <p>Fixed dimension ScrollBox content</p>
+                                        </x-typography>
+                                    </x-stack>
+                                </x-scroll-box>
+
+                                <x-scroll-box stretch-horizontal>
+                                    <x-stack direction="vertical" justify-content="center">
+                                        <x-typography display="h2">
+                                            <p>Stretched ScrollBox content</p>
+                                        </x-typography>
+                                    </x-stack>
+                                </x-scroll-box>
+                            </x-stack>
+                        </x-block>
+                    </x-stack>
+                </x-block>
+
 
                 <x-block>
                     <x-stack gap="medium">
