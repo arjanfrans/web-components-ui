@@ -1,3 +1,5 @@
+import { Mode } from "../components/variables/Mode.ts";
+
 interface ColorPalette {
   light: {
     primary: {
@@ -357,12 +359,22 @@ export function generateCSSVariables(palette: ColorPalette): string {
       ${createVariables("light")}
       ${createVariables("dark")}
     }
+    
+    :host([theme='${Mode.AUTO}']) {
+      @media (prefers-color-scheme: dark) {
+        ${createSemanticVariables("dark")}
+      }
+      
+      @media (prefers-color-scheme: light) {
+        ${createSemanticVariables("light")}
+      }
+    }
 
-    :host([theme='light']) {
+    :host([theme='${Mode.LIGHT}']) {
       ${createSemanticVariables("light")}
     }
 
-    :host([theme='dark']) {
+    :host([theme='${Mode.DARK}']) {
       ${createSemanticVariables("dark")}
     }
   `;
