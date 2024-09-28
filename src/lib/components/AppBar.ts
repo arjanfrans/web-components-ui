@@ -34,7 +34,12 @@ export class AppBar extends HTMLElement {
       }
 
       .spacer {
+        display: none;
         height: ${variable("app-bar-height")};
+      }
+      
+      :host([fixed]) .spacer {
+        display: block;
       }
 
       :host([fixed]) .app-bar {

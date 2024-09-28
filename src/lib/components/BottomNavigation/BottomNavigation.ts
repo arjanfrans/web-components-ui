@@ -35,9 +35,13 @@ export class BottomNavigation extends HTMLElement {
       }
 
       .spacer {
+        display: none;
         height: ${variable("bottom-navigation-height")};
       }
-
+      
+      :host([fixed]) .spacer {
+        display: block;
+      }
 
       :host([fixed]) {
         z-index: ${ZIndex.TOP};
