@@ -360,12 +360,14 @@ export function generateCSSVariables(palette: ColorPalette): string {
       ${createVariables("dark")}
     }
     
-    :host([theme='${Mode.AUTO}']) {
-      @media (prefers-color-scheme: dark) {
+    @media (prefers-color-scheme: dark) {
+      :host([theme='${Mode.AUTO}']) {
         ${createSemanticVariables("dark")}
       }
-      
-      @media (prefers-color-scheme: light) {
+    }
+    
+    @media (prefers-color-scheme: light) {
+      :host([theme='${Mode.AUTO}']) {
         ${createSemanticVariables("light")}
       }
     }
