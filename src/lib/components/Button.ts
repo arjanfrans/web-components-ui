@@ -112,9 +112,17 @@ export class Button extends HTMLElement {
     this.button.addEventListener(
       "touchstart",
       this.handleTouchStart.bind(this),
+      { passive: true },
     );
-    this.button.addEventListener("touchend", this.handleTouchEnd.bind(this));
-    this.button.addEventListener("touchcancel", this.handleTouchEnd.bind(this));
+    this.button.addEventListener("touchend", this.handleTouchEnd.bind(this), {
+      passive: true,
+    });
+    this.button.addEventListener(
+      "touchcancel",
+      this.handleTouchEnd.bind(this),
+
+      { passive: true },
+    );
   }
 
   private handleTouchStart() {

@@ -574,7 +574,15 @@
                         </x-block>
 
                         <x-block>
-                            <x-link><a href="https://www.hardbulls.com">Example Link</a></x-link>
+                            <x-stack gap="small">
+                                <x-typography dispay="body1">
+                                    <x-text-link><a href="https://www.example.com">Example Link</a></x-text-link>
+                                </x-typography>
+
+                                <x-typography dispay="body1">
+                                    <x-bare-link><a href="https://www.example.com">Bare Link</a></x-bare-link>
+                                </x-typography>
+                            </x-stack>
                         </x-block>
                     </x-stack>
                 </x-block>
@@ -805,9 +813,9 @@
                 <x-box justify-content="center">
                     <x-typography display="overline">
                         &copy; 2024 Arjan Frans -
-                        <x-link>
+                        <x-text-link>
                             <a href="https://github.com/arjanfrans/web-components-ui" target="_blank">Source Code</a>
-                        </x-link>
+                        </x-text-link>
                     </x-typography>
                 </x-box>
             </x-stack>

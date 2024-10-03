@@ -1,6 +1,6 @@
-import { register } from "../framework/register";
+import { register } from "../../framework/register";
 
-export class Link extends HTMLElement {
+export class TextLink extends HTMLElement {
   constructor() {
     super();
     // Attach the shadow root
@@ -37,4 +37,4 @@ export class Link extends HTMLElement {
   }
 }
 
-register("link", Link);
+register("text-link", TextLink);
