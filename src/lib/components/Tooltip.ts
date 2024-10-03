@@ -40,18 +40,10 @@ export class Tooltip extends HTMLElement {
     shadow.appendChild(slot);
 
     // Event listeners for mouse and touch
-    this.addEventListener("mouseenter", this.showTooltip.bind(this), {
-      passive: true,
-    });
-    this.addEventListener("mouseleave", this.hideTooltip.bind(this), {
-      passive: true,
-    });
-    this.addEventListener("touchstart", this.handleTouchStart.bind(this), {
-      passive: true,
-    });
-    this.addEventListener("touchend", this.handleTouchEnd.bind(this), {
-      passive: true,
-    });
+    this.addEventListener("mouseenter", this.showTooltip.bind(this));
+    this.addEventListener("mouseleave", this.hideTooltip.bind(this));
+    this.addEventListener("touchstart", this.handleTouchStart.bind(this));
+    this.addEventListener("touchend", this.handleTouchEnd.bind(this));
   }
 
   connectedCallback() {
@@ -60,22 +52,18 @@ export class Tooltip extends HTMLElement {
     this.anchorElement.addEventListener(
       "mouseenter",
       this.showTooltip.bind(this),
-      { passive: true },
     );
     this.anchorElement.addEventListener(
       "mouseleave",
       this.hideTooltip.bind(this),
-      { passive: true },
     );
     this.anchorElement.addEventListener(
       "touchstart",
       this.handleTouchStart.bind(this),
-      { passive: true },
     );
     this.anchorElement.addEventListener(
       "touchend",
       this.handleTouchEnd.bind(this),
-      { passive: true },
     );
   }
 
@@ -135,7 +123,8 @@ export class Tooltip extends HTMLElement {
     this.tooltip.style.display = "none";
   }
 
-  handleTouchStart() {
+  handleTouchStart(event: Event) {
+    event.preventDefault();
     this.showTooltip();
     this.touchStartTimeout = window.setTimeout(() => this.hideTooltip(), 3000); // Hide after 3 seconds
   }
