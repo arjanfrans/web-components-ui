@@ -39,6 +39,8 @@ export { TabPanel } from "./components/Tabs/TabPanel";
 export { TabPanels } from "./components/Tabs/TabPanels";
 export { TabButton } from "./components/Tabs/TabButton";
 export { TabButtons } from "./components/Tabs/TabButtons";
+export { RadioGroup } from "./components/Radio/RadioGroup";
+export { RadioButton } from "./components/Radio/RadioButton";
 export { Loading } from "./components/Loading";
 export { Splash } from "./components/Splash";
 
