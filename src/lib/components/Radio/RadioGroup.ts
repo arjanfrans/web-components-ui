@@ -14,16 +14,43 @@ export class RadioGroup extends HTMLElement {
     this.addEventListener("click", this.handleRadioClick); // Listen for regular clicks
   }
 
+  attributeChangedCallback() {
+    this.updateSelected();
+  }
+
+  private updateSelected() {
+    this.radios = this.querySelectorAll(
+      `${getPrefix()}-radio-button`,
+    ) as NodeListOf<RadioButton>;
+
+    this.radios.forEach((radio) => {
+      if (radio.value === this.getAttribute("selected")) {
+        this.clearChecked();
+        radio.checked = true;
+      }
+    });
+  }
+
   private handleRadioClick = (event: Event) => {
     const target = event.target as HTMLElement;
 
     // Check if the clicked element is a RadioButton and it's not disabled
     if (target instanceof RadioButton && !target.disabled) {
-      this.clearChecked(); // Uncheck all other radios
-      target.checked = true; // Check the selected one
-      this.dispatchEvent(new Event("change")); // Notify that a change occurred
+      this.setAttribute("selected", target.value);
+      this.dispatchEvent(
+        new CustomEvent("radio-selected", {
+          detail: {
+            radio: target,
+            value: target.value,
+          },
+        }),
+      ); // Notify that a change occurred
     }
   };
+
+  static get observedAttributes() {
+    return ["selected"];
+  }
 
   private updateRadios() {
     // Get all RadioButtons inside the group
