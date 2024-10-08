@@ -9,7 +9,6 @@ export class TabPanel extends HTMLElement {
     style.textContent = `
       :host {
         display: none;
-        padding: 10px;
         background: var(--semantic-background-default);
       }
 

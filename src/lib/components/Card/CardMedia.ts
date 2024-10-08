@@ -64,7 +64,7 @@ export class CardMedia extends HTMLElement {
 
   updateMedia() {
     const src = this.getAttribute("src");
-    const size = this.getAttribute("size") || "medium";
+    const size = this.getAttribute("size") || undefined;
     const type = this.detectMediaType(src);
 
     if (src && type) {
@@ -76,7 +76,10 @@ export class CardMedia extends HTMLElement {
           : document.createElement("video");
 
       mediaElement.src = src;
-      mediaElement.className = size;
+
+      if (size) {
+        mediaElement.className = size;
+      }
 
       if (type === "video") {
         const videoElement = mediaElement as HTMLVideoElement;
