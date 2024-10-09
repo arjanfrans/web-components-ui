@@ -74,7 +74,6 @@ export class Select extends HTMLElement {
         `;
 
     const label = document.createElement("div");
-
     label.classList.add("label");
 
     const select = this.querySelector("select");
@@ -89,6 +88,20 @@ export class Select extends HTMLElement {
     selectContainer.append(select);
 
     shadow.append(style, label, selectContainer);
+
+    // Add event listener for change event on the select element
+    select.addEventListener("change", () => {
+      // Dispatch a custom change event when the select value changes
+      const event = new CustomEvent("select-change", {
+        detail: { value: select.value },
+        bubbles: true, // Allow the event to bubble up
+        composed: true, // Allow the event to cross shadow DOM boundaries
+      });
+      this.dispatchEvent(event);
+    });
+
+    // Set label text based on selected option
+    label.textContent = select.options[select.selectedIndex].text;
   }
 }
 
