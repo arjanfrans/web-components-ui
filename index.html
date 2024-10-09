@@ -692,13 +692,23 @@
                     </x-block>
 
                     <x-block>
-                        <x-select>
-                            <select>
-                                <option value="a">Option A</option>
-                                <option value="b">Option B</option>
-                                <option value="c">Option C</option>
-                            </select>
-                        </x-select>
+                        <x-stack direction="vertical" gap="small">
+                            <x-select>
+                                <select>
+                                    <option value="a">Option A</option>
+                                    <option value="b">Option B</option>
+                                    <option value="c">Option C</option>
+                                </select>
+                            </x-select>
+
+                            <x-select stretch-horizontal>
+                                <select>
+                                    <option value="a">Stretched A</option>
+                                    <option value="b">Stretched B</option>
+                                    <option value="c">Stretched C</option>
+                                </select>
+                            </x-select>
+                        </x-stack>
                     </x-block>
                 </x-stack>
             </x-block>

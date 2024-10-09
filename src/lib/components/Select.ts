@@ -1,5 +1,6 @@
 import { InvalidChildrenError } from "../framework/InvalidChildrenError";
 import { register, variable } from "../framework/register";
+import { stretchStyle } from "./styles/stretch.ts";
 
 export class Select extends HTMLElement {
   constructor() {
@@ -15,6 +16,8 @@ export class Select extends HTMLElement {
                 flex-direction: column;
                 width: max-content;
             }
+            
+            ${stretchStyle()}
 
             :host .label {
                 font-weight: bold;
@@ -24,7 +27,6 @@ export class Select extends HTMLElement {
                 position: relative;
                 display: flex;
                 height: 2em;
-                border-radius: .25em;
                 overflow: hidden;
             }
 
@@ -42,6 +44,10 @@ export class Select extends HTMLElement {
 
             :host .container:hover::after {
                 color: var(--semantic-text-highlight);
+            }
+            
+            :host select>option {
+                background: var(--semantic-background-default);
             }
 
             :host select {

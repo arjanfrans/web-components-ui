@@ -11,6 +11,7 @@ export class Card extends HTMLElement {
     const style = document.createElement("style");
     style.textContent = `
             :host {
+                box-sizing: border-box;
                 border: 1px solid var(--semantic-stroke-default);
                 display: flex;
                 flex-direction: column;
