@@ -3,6 +3,8 @@ import { register, variable } from "../framework/register";
 import { stretchStyle } from "./styles/stretch.ts";
 
 export class Select extends HTMLElement {
+  private readonly select: HTMLSelectElement;
+
   constructor() {
     super();
     // Attach the shadow root
@@ -18,10 +20,6 @@ export class Select extends HTMLElement {
             }
             
             ${stretchStyle()}
-
-            :host .label {
-                font-weight: bold;
-            }
 
             :host .container {
                 position: relative;
@@ -73,35 +71,50 @@ export class Select extends HTMLElement {
             }
         `;
 
-    const label = document.createElement("div");
-    label.classList.add("label");
-
-    const select = this.querySelector("select");
+    this.select = this.querySelector("select") as HTMLSelectElement; // Store reference to select element
     const selectContainer = document.createElement("div");
 
     selectContainer.classList.add("container");
 
-    if (!select) {
+    if (!this.select) {
       throw new InvalidChildrenError(this, ["select"]);
     }
 
-    selectContainer.append(select);
-
-    shadow.append(style, label, selectContainer);
+    selectContainer.append(this.select);
+    shadow.append(style, selectContainer);
 
     // Add event listener for change event on the select element
-    select.addEventListener("change", () => {
-      // Dispatch a custom change event when the select value changes
-      const event = new CustomEvent("select-change", {
-        detail: { value: select.value },
-        bubbles: true, // Allow the event to bubble up
-        composed: true, // Allow the event to cross shadow DOM boundaries
-      });
-      this.dispatchEvent(event);
+    this.select.addEventListener("change", () => {
+      this.dispatchSelectChange();
     });
+  }
 
-    // Set label text based on selected option
-    label.textContent = select.options[select.selectedIndex].text;
+  // Method to dispatch the select-change event
+  private dispatchSelectChange() {
+    const event = new CustomEvent("select-change", {
+      detail: { value: this.select.value }, // Directly use select value
+      bubbles: true, // Allow the event to bubble up
+      composed: true, // Allow the event to cross shadow DOM boundaries
+    });
+    this.dispatchEvent(event);
+  }
+
+  // Reflect the 'value' attribute to the property
+  static get observedAttributes() {
+    return ["selected"];
+  }
+
+  attributeChangedCallback(
+    name: string,
+    oldValue: string | null,
+    newValue: string | null,
+  ) {
+    if (Select.observedAttributes.includes(name) && oldValue !== newValue) {
+      if (name === "selected") {
+        this.select.value = newValue || "";
+        this.dispatchSelectChange();
+      }
+    }
   }
 }
 
