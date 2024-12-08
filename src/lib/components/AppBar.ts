@@ -14,6 +14,7 @@ export class AppBar extends HTMLElement {
         display: block;
         width: 100%;
         position: relative; /* Ensure positioning context for inner divs */
+        z-index: ${ZIndex.TOP};
       }
 
       /* Fixed/Sticky bar styles */

@@ -43,6 +43,7 @@ export { RadioGroup } from "./components/Radio/RadioGroup";
 export { RadioButton } from "./components/Radio/RadioButton";
 export { Loading } from "./components/Loading";
 export { Splash } from "./components/Splash";
+export { Snackbar } from "./components/Snackbar/Snackbar.ts"
 
 export { BottomNavigation } from "./components/BottomNavigation/BottomNavigation";
 export { BottomNavigationAction } from "./components/BottomNavigation/BottomNavigationAction";
