@@ -46,6 +46,7 @@ export { RadioButton, RadioGroup } from "../lib/main";
 export { Loading } from "../lib/main";
 export { Splash } from "../lib/main";
 export { BottomNavigation } from "../lib/main";
+export { Snackbar } from "../lib/main";
 export { BottomNavigationAction } from "../lib/main";
 
 if (!import.meta.env.DEV) {

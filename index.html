@@ -11,22 +11,23 @@
     <style>
         html,
         :host {
-            line-height: 1.5; /* 1 */
-            -webkit-text-size-adjust: 100%; /* 2 */
-            -moz-tab-size: 4; /* 3 */
-            tab-size: 4; /* 3 */
-            -webkit-tap-highlight-color: transparent; /* 7 */
+            line-height: 1.5;
+            -webkit-text-size-adjust: 100%;
+            -moz-tab-size: 4;
+            tab-size: 4;
+            -webkit-tap-highlight-color: transparent;
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             width: 100%;
-            height: 100%;
+            height: 100vh;
         }
 
         body {
-            margin: 0; /* 1 */
+            margin: 0;
             padding: 0;
-            line-height: inherit; /* 2 */
+            line-height: inherit;
+            overflow: hidden;
         }
 
         x-loading {
@@ -55,14 +56,14 @@
 
 <body>
 
-<x-loading></x-loading>
+    <x-loading></x-loading>
 
-<x-theme style="display: none" theme="auto" font-family-heading="Neue Aachen Regular, sans-serif"
-         font-family-default="sans-serif" color-primary="#217ba3" color-text-light="#000000" color-text-dark="#ffffff"
-         color-background-light="#ffffff" color-background-dark="#1f1f1f">
+    <x-theme style="display: none" theme="auto" font-family-heading="Neue Aachen Regular, sans-serif"
+        font-family-default="sans-serif" color-primary="#217ba3" color-text-light="#000000" color-text-dark="#ffffff"
+        color-background-light="#ffffff" color-background-dark="#1f1f1f">
 
 
-    <!-- <x-install>
+        <!-- <x-install>
         <x-stack direction="vertical" gap="medium" margin-inline="large" margin-block="large" justify-content="center">
             <x-box justify-content="center">
                 <x-button id="install" size="large" variant="filled">Install</x-button>
@@ -73,892 +74,926 @@
         </x-stack>
     </x-install> -->
 
-    <x-container>
-<!--        <x-splash timeout="1000">-->
-<!--            <x-box justify-content="center" align-items="center" stretch-vertical>-->
-<!--                <x-stack gap="large" direction="vertical" justify-content="center" align-items="center">-->
-<!--                    <x-figure width="60vh">-->
-<!--                        <img src="/icon-512x512.png" alt="Logo">-->
-<!--                    </x-figure>-->
+        <x-container>
+            <!--        <x-splash timeout="1000">-->
+            <!--            <x-box justify-content="center" align-items="center" stretch-vertical>-->
+            <!--                <x-stack gap="large" direction="vertical" justify-content="center" align-items="center">-->
+            <!--                    <x-figure width="60vh">-->
+            <!--                        <img src="/icon-512x512.png" alt="Logo">-->
+            <!--                    </x-figure>-->
 
-<!--                    <x-typography display="h1">-->
-<!--                        WEB COMPONENTS-->
-<!--                    </x-typography>-->
-<!--                </x-stack>-->
-<!--            </x-box>-->
-<!--        </x-splash>-->
+            <!--                    <x-typography display="h1">-->
+            <!--                        WEB COMPONENTS-->
+            <!--                    </x-typography>-->
+            <!--                </x-stack>-->
+            <!--            </x-box>-->
+            <!--        </x-splash>-->
+            <div style="height: 100vh; display: flex; flex-direction: column; position: relative;">
+                <x-app-bar>
+                    <x-box justify-content="center">
+                        <x-typography display="h1">Web Components %VITE_LIBRARY_VERSION%</x-typography>
+                    </x-box>
+                </x-app-bar>
+                <x-scroll-box stretch-horizontal style="flex-grow: 1; position: relative;">
 
-        <x-app-bar fixed>
-            <x-box justify-content="center">
-                <x-typography display="h1">Web Components %VITE_LIBRARY_VERSION%</x-typography>
-            </x-box>
-        </x-app-bar>
-
-        <x-stack direction="horizontal" gap="medium" margin-inline="medium" margin-block="large">
-            <x-switch id="dark-mode" label="Dark Mode"></x-switch>
-            <x-color-picker id="color-primary" value="#217ba3" label="Primary"></x-color-picker>
-            <x-color-picker id="color-background-light" value="#ffffff" label="Background Light"></x-color-picker>
-            <x-color-picker id="color-background-dark" value="#1f1f1f" label="Background Dark"></x-color-picker>
-            <x-color-picker id="color-text-light" value="#000000" label="Text Light"></x-color-picker>
-            <x-color-picker id="color-text-dark" value="#ffffff" label="Text Dark"></x-color-picker>
-        </x-stack>
-        <x-stack gap="extra-large" margin-inline="large" margin-block="large">
-            <x-block>
-
-                <x-stack gap="medium">
-                    <x-block>
-                        <x-typography display="h1">
-                            <h2>Typography</h2>
-                        </x-typography>
-                        <x-divider fade></x-divider>
-                    </x-block>
-                    <x-stack gap="small">
-                        <x-typography display="title">
-                            Title
-                        </x-typography>
-                        <x-typography display="h1">
-                            Heading 1
-                        </x-typography>
-                        <x-typography display="h2">
-                            Heading 2
-                        </x-typography>
-                        <x-typography display="h3">
-                            Heading 3
-                        </x-typography>
-                        <x-typography display="h4">
-                            Heading 4
-                        </x-typography>
-                        <x-typography display="h5">
-                            Heading 5
-                        </x-typography>
-                        <x-typography display="h6">
-                            Heading 6
-                        </x-typography>
-                        <x-typography display="subtitle1">
-                            Subtitle 1
-                        </x-typography>
-                        <x-typography display="subtitle2">
-                            Subtitle 2
-                        </x-typography>
-                        <x-typography display="body1">
-                            Body 1
-                        </x-typography>
-                        <x-typography display="body2">
-                            Body 2
-                        </x-typography>
-                        <x-typography display="button">
-                            Button
-                        </x-typography>
-
-                        <x-typography display="caption">
-                            Caption
-                        </x-typography>
-
-                        <x-typography display="overline">
-                            Overline
-                        </x-typography>
+                    <x-stack direction="horizontal" gap="medium" margin-inline="medium" margin-block="large">
+                        <x-switch id="dark-mode" label="Dark Mode"></x-switch>
+                        <x-color-picker id="color-primary" value="#217ba3" label="Primary"></x-color-picker>
+                        <x-color-picker id="color-background-light" value="#ffffff"
+                            label="Background Light"></x-color-picker>
+                        <x-color-picker id="color-background-dark" value="#1f1f1f"
+                            label="Background Dark"></x-color-picker>
+                        <x-color-picker id="color-text-light" value="#000000" label="Text Light"></x-color-picker>
+                        <x-color-picker id="color-text-dark" value="#ffffff" label="Text Dark"></x-color-picker>
                     </x-stack>
-                </x-stack>
-            </x-block>
+                    <x-stack gap="extra-large" margin-inline="large" margin-block="large">
+                        <x-block>
 
-
-            <x-block>
-                <x-stack gap="medium">
-                    <x-block>
-                        <x-typography display="h1">
-                            <h2>Box</h2>
-                        </x-typography>
-                        <x-divider fade></x-divider>
-                    </x-block>
-
-                    <x-block>
-                        <x-box justify-content="center">
-                            <span>Centered Box</span>
-                        </x-box>
-
-                        <x-box margin-inline="small">
-                            <span>Inline</span>
-                            <span>-Margin</span>
-                        </x-box>
-
-                        <x-box margin-block="large">
-                            <span>Block</span>
-                            <span>-Margin</span>
-                        </x-box>
-                    </x-block>
-                </x-stack>
-            </x-block>
-
-
-            <x-block>
-                <x-stack gap="medium">
-                    <x-block>
-                        <x-typography display="h1">
-                            <h2>ScrollBox</h2>
-                        </x-typography>
-                        <x-divider fade></x-divider>
-                    </x-block>
-
-                    <x-block>
-                        <x-stack direction="vertical" gap="large">
-                            <x-scroll-box height="60px" width="60px">
-                                <x-stack direction="vertical" justify-content="center">
-                                    <x-typography display="h2">
-                                        <p>Fixed dimension ScrollBox content</p>
+                            <x-stack gap="medium">
+                                <x-block>
+                                    <x-typography display="h1">
+                                        <h2>Typography</h2>
                                     </x-typography>
-                                </x-stack>
-                            </x-scroll-box>
-
-                            <x-scroll-box stretch-horizontal>
-                                <x-stack direction="vertical" justify-content="center">
-                                    <x-typography display="h2">
-                                        <p>Stretched ScrollBox content</p>
+                                    <x-divider fade></x-divider>
+                                </x-block>
+                                <x-stack gap="small">
+                                    <x-typography display="title">
+                                        Title
                                     </x-typography>
-                                </x-stack>
-                            </x-scroll-box>
-                        </x-stack>
-                    </x-block>
-                </x-stack>
-            </x-block>
-
-
-            <x-block>
-                <x-stack gap="medium">
-                    <x-block>
-                        <x-typography display="h1">
-                            <h2>Stack</h2>
-                        </x-typography>
-                        <x-divider fade></x-divider>
-                    </x-block>
-
-                    <x-block>
-                        <x-grid xs="1" md="2" lg="2">
-                            <x-card>
-                                <x-stack direction="horizontal" justify-content="center">
-                                    <x-typography display="h2">
-                                        <p>Centered Stack</p>
+                                    <x-typography display="h1">
+                                        Heading 1
                                     </x-typography>
-                                </x-stack>
-                                <x-stack direction="horizontal" justify-content="center" gap="small">
-                                    <span>Center Left</span>
-                                    <span>Center Right</span>
-                                </x-stack>
-                            </x-card>
-                            <x-card>
-                                <x-stack direction="vertical" justify-content="space-between" gap="small">
-                                    <span>Horizontal</span>
-                                    <span>Stack</span>
-                                    <span>with space-between</span>
-                                </x-stack>
-                            </x-card>
-
-                        </x-grid>
-                    </x-block>
-                </x-stack>
-            </x-block>
-
-            <x-block>
-                <x-stack gap="medium">
-                    <x-block>
-                        <x-typography display="h1">
-                            <h2>List</h2>
-                        </x-typography>
-                        <x-divider fade></x-divider>
-                    </x-block>
-
-                    <x-block>
-                        <x-grid xs="1" md="3" lg="4">
-                            <x-list>
-                                <ul>
-                                    <li>Item 1</li>
-                                    <li>Item 2</li>
-                                    <li>Item 3</li>
-                                </ul>
-                            </x-list>
-                        </x-grid>
-                    </x-block>
-                </x-stack>
-            </x-block>
-
-
-            <x-block>
-                <x-stack gap="medium">
-                    <x-block>
-                        <x-typography display="h1">
-                            <h2>Grid</h2>
-                        </x-typography>
-                        <x-divider fade></x-divider>
-                    </x-block>
-
-                    <x-block>
-                        <x-grid xs="1" md="3" lg="4">
-                            <x-card>Item 1</x-card>
-                            <x-card>Item 2</x-card>
-                            <x-card>Item 3</x-card>
-                            <x-card>Item 4</x-card>
-                            <x-card>Item 5</x-card>
-                            <x-card>Item 6</x-card>
-                        </x-grid>
-                    </x-block>
-                </x-stack>
-            </x-block>
-
-            <x-block>
-                <x-stack gap="medium">
-                    <x-block>
-                        <x-typography display="h1">
-                            <h2>Tabs</h2>
-                        </x-typography>
-                        <x-divider fade></x-divider>
-                    </x-block>
-
-                    <x-block>
-                        <x-box margin-inline="small" stretch-horizontal>
-                            <x-tabs selected="tab1">
-                                <x-tab-buttons>
-                                    <x-tab-button id="tab1">
-                                        <x-typography display="button">Tab 1</x-typography>
-                                    </x-tab-button>
-                                    <x-tab-button id="tab2">
-                                        <x-typography display="button">Tab 2</x-typography>
-                                    </x-tab-button>
-                                    <x-tab-button id="tab3">
-                                        <x-typography display="button">Tab 3</x-typography>
-                                    </x-tab-button>
-                                </x-tab-buttons>
-
-                                <x-tab-panels>
-                                    <x-box margin-inline="small" margin-block="small">
-                                        <x-tab-panel id="tab1">
-                                            <x-typography display="body1">
-                                                Content for Tab 1
-                                            </x-typography>
-                                        </x-tab-panel>
-
-                                        <x-tab-panel id="tab2">
-                                            <x-typography display="body1">
-                                                Content for Tab 2
-                                            </x-typography>
-                                        </x-tab-panel>
-
-                                        <x-tab-panel id="tab3">
-                                            <x-typography display="body1">
-                                                Content for Tab 3
-                                            </x-typography>
-                                        </x-tab-panel>
-                                    </x-box>
-                                </x-tab-panels>
-                            </x-tabs>
-                        </x-box>
-                    </x-block>
-                </x-stack>
-            </x-block>
-
-            <x-block>
-                <x-stack gap="medium">
-                    <x-block>
-                        <x-typography display="h1">
-                            <h2>App Bar</h2>
-                        </x-typography>
-                        <x-divider fade></x-divider>
-                    </x-block>
-
-                    <x-block>
-                        <x-app-bar>
-                            <x-box justify-content="center">
-                                <x-typography display="h1">App Bar</x-typography>
-                            </x-box>
-                        </x-app-bar>
-                    </x-block>
-                </x-stack>
-            </x-block>
-
-
-            <x-block>
-                <x-stack gap="medium">
-                    <x-block>
-                        <x-typography display="h1">
-                            <h2>Bottom Navigation</h2>
-                        </x-typography>
-                        <x-divider fade></x-divider>
-                    </x-block>
-
-                    <x-block>
-                        <x-bottom-navigation>
-                            <x-bottom-navigation-action svg="/icons/house.svg" label="Home">
-                            </x-bottom-navigation-action>
-
-                            <x-bottom-navigation-action label="Search">
-                            </x-bottom-navigation-action>
-
-                            <x-bottom-navigation-action svg="/icons/house.svg">
-                            </x-bottom-navigation-action>
-                        </x-bottom-navigation>
-                    </x-block>
-                </x-stack>
-            </x-block>
-
-
-            <x-block>
-                <x-stack gap="medium">
-                    <x-block>
-                        <x-typography display="h1">
-                            <h2>Button</h2>
-                        </x-typography>
-                        <x-divider fade></x-divider>
-                    </x-block>
-
-                    <x-block>
-                        <x-stack direction="horizontal" gap="small">
-                            <x-button size="small" variant="filled">Small Filled</x-button>
-                            <x-button size="small" variant="outlined">Small Outlined</x-button>
-                            <x-button size="medium" variant="filled">Medium Filled</x-button>
-                            <x-button size="medium" variant="outlined">Medium Outlined</x-button>
-                            <x-button size="large" variant="filled">Large Filled</x-button>
-                            <x-button size="large" variant="outlined">Large Outlined</x-button>
-                        </x-stack>
-                    </x-block>
-                </x-stack>
-            </x-block>
-
-
-            <x-block>
-                <x-stack gap="medium">
-                    <x-block>
-                        <x-typography display="h1">
-                            <h2>Figure</h2>
-                        </x-typography>
-                        <x-divider fade></x-divider>
-                    </x-block>
-
-                    <x-block>
-                        <x-stack direction="horizontal" gap="small">
-                            <x-figure width="70px">
-                                <img src="/example_image.jpg"/>
-                            </x-figure>
-
-                            <x-figure size="large">
-                                <img src="/example_image.jpg"/>
-                            </x-figure>
-
-                            <x-figure size="medium">
-                                <img src="/example_image.jpg"/>
-                            </x-figure>
-
-                            <x-figure size="small">
-                                <img src="/example_image.jpg"/>
-                            </x-figure>
-                        </x-stack>
-                    </x-block>
-                </x-stack>
-            </x-block>
-
-            <x-block>
-                <x-stack gap="medium">
-                    <x-block>
-                        <x-typography display="h1">
-                            <h2>Icon</h2>
-                        </x-typography>
-                        <x-divider fade></x-divider>
-                    </x-block>
-
-                    <x-block>
-                        <x-stack gap="small" direction="horizontal">
-                            <x-icon size="small" svg="/icons/house.svg"></x-icon>
-                            <x-icon size="medium" svg="/icons/house.svg"></x-icon>
-                            <x-icon size="large" svg="/icons/house.svg"></x-icon>
-                        </x-stack>
-                    </x-block>
-                </x-stack>
-            </x-block>
-
-            <x-block>
-                <x-stack gap="medium">
-                    <x-block>
-                        <x-typography display="h1">
-                            <h2>Checkbox</h2>
-                        </x-typography>
-                        <x-divider fade></x-divider>
-                    </x-block>
-
-                    <x-block>
-                        <x-stack gap="small" direction="vertical">
-                            <x-checkbox checked>
-                                <x-typography display="body1">Checked</x-typography>
-                            </x-checkbox>
-                            <x-checkbox>
-                                <x-typography display="body1">Unchecked</x-typography>
-                            </x-checkbox>
-                            <x-checkbox disabled checked>
-                                <x-typography display="body1">Checked Disabled</x-typography>
-                            </x-checkbox>
-                            <x-checkbox disabled>
-                                <x-typography display="body1">Unchecked Disabled</x-typography>
-                            </x-checkbox>
-                        </x-stack>
-                    </x-block>
-                </x-stack>
-            </x-block>
-
-            <x-block>
-                <x-stack gap="medium">
-                    <x-block>
-                        <x-typography display="h1">
-                            <h2>Radio</h2>
-                        </x-typography>
-                        <x-divider fade></x-divider>
-                    </x-block>
-
-                    <x-block>
-                        <x-radio-group selected="opt2">
-                            <x-stack gap="small" direction="horizontal">
-                                <x-radio-button value="opt1">
-                                    <x-typography display="body1">Option 1</x-typography>
-                                </x-radio-button>
-                                <x-radio-button value="opt2">
-                                    <x-typography display="body1">Option 2</x-typography>
-                                </x-radio-button>
-                                <x-radio-button value="opt3">
-                                    <x-typography display="body1">Option 3</x-typography>
-                                </x-radio-button>
-                            </x-stack>
-                        </x-radio-group>
-                    </x-block>
-                </x-stack>
-            </x-block>
-
-            <x-block>
-                <x-stack gap="medium">
-                    <x-block>
-                        <x-typography display="h1">
-                            <h2>Chip</h2>
-                        </x-typography>
-                        <x-divider fade></x-divider>
-                    </x-block>
-
-                    <x-block>
-                        <x-stack gap="small" direction="horizontal">
-                            <x-chip value="Regular Small" size="small"></x-chip>
-                            <x-chip value="Active Small" size="small" active></x-chip>
-                            <x-chip value="Regular Large" size="large"></x-chip>
-                        </x-stack>
-                    </x-block>
-                </x-stack>
-            </x-block>
-
-
-            <x-block>
-                <x-stack gap="medium">
-                    <x-block>
-                        <x-typography display="h1">
-                            <h2>Switch</h2>
-                        </x-typography>
-                        <x-divider fade></x-divider>
-                    </x-block>
-
-                    <x-block>
-                        <x-stack gap="small">
-                            <x-switch label="Label"></x-switch>
-                            <x-switch label="Required" required></x-switch>
-                            <x-switch label="Disabled" disabled></x-switch>
-                        </x-stack>
-                    </x-block>
-                </x-stack>
-
-            </x-block>
-
-            <x-block>
-                <x-stack gap="medium">
-                    <x-block>
-                        <x-typography display="h1">
-                            <h2>Badge</h2>
-                        </x-typography>
-                        <x-divider fade></x-divider>
-                    </x-block>
-
-                    <x-block>
-                        <x-stack gap="small">
-                            <x-badge content="5">
-                                <x-typography dispay="body1">Badge</x-typography>
-                            </x-badge>
-
-                            <x-badge content="120">
-                                <x-typography dispay="overline">Badge</x-typography>
-                            </x-badge>
-                        </x-stack>
-                    </x-block>
-                </x-stack>
-            </x-block>
-
-
-            <x-block>
-                <x-stack gap="medium">
-                    <x-block>
-                        <x-typography display="h1">
-                            <h2>Link</h2>
-                        </x-typography>
-                        <x-divider fade></x-divider>
-                    </x-block>
-
-                    <x-block>
-                        <x-stack gap="small">
-                            <x-typography dispay="body1">
-                                <x-text-link><a href="https://www.example.com">Example Link</a></x-text-link>
-                            </x-typography>
-
-                            <x-typography dispay="body1">
-                                <x-bare-link><a href="https://www.example.com">Bare Link</a></x-bare-link>
-                            </x-typography>
-                        </x-stack>
-                    </x-block>
-                </x-stack>
-            </x-block>
-
-            <x-block>
-                <x-stack gap="medium">
-                    <x-block>
-                        <x-typography display="h1">
-                            <h2>Table</h2>
-                        </x-typography>
-                        <x-divider fade></x-divider>
-                    </x-block>
-
-                    <x-block>
-                        <x-table>
-                            <table>
-                                <thead>
-                                <tr>
-                                    <th>
-                                        <x-tooltip text="Column Description">
-                                            Column 1
-                                        </x-tooltip>
-                                    </th>
-                                    <th>Column 2</th>
-                                    <th>Column 3</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td>Row 1, Cell 1</td>
-                                    <td>Row 1, Cell 2</td>
-                                    <td>Row 1, Cell 3</td>
-                                </tr>
-                                <tr>
-                                    <td>Row 2, Cell 1</td>
-                                    <td>Row 2, Cell 2</td>
-                                    <td>Row 2, Cell 3</td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </x-table>
-                    </x-block>
-
-                </x-stack>
-            </x-block>
-
-            <x-block>
-                <x-stack gap="medium">
-                    <x-block>
-                        <x-typography display="h1">
-                            <h2>Tooltip</h2>
-                        </x-typography>
-                        <x-divider fade></x-divider>
-                    </x-block>
-
-                    <x-block>
-                        <x-stack gap="small">
-                            <x-tooltip text="Tooltip text">
-                                <x-typography display="body1">
-                                    Text with tooltip
-                                </x-typography>
-                            </x-tooltip>
-
-                            <x-tooltip text="Button tooltip text">
-                                <x-button variant="filled" size="small">Button with tooltip</x-button>
-                            </x-tooltip>
-                        </x-stack>
-                    </x-block>
-
-                </x-stack>
-            </x-block>
-
-            <x-block>
-                <x-stack gap="medium">
-                    <x-block>
-                        <x-typography display="h1">
-                            <h2>Select</h2>
-                        </x-typography>
-                        <x-divider fade></x-divider>
-                    </x-block>
-
-                    <x-block>
-                        <x-stack direction="vertical" gap="small">
-                            <x-select selected="c">
-                                <select>
-                                    <option value="a">Option A</option>
-                                    <option value="b">Option B</option>
-                                    <option value="c">Option C</option>
-                                </select>
-                            </x-select>
-
-                            <x-select stretch-horizontal>
-                                <select>
-                                    <option value="a">Stretched A</option>
-                                    <option value="b">Stretched B</option>
-                                    <option value="c">Stretched C</option>
-                                </select>
-                            </x-select>
-                        </x-stack>
-                    </x-block>
-                </x-stack>
-            </x-block>
-
-            <x-block>
-                <x-stack gap="medium">
-                    <x-block>
-                        <x-typography display="h1">
-                            <h2>Divider</h2>
-                        </x-typography>
-                        <x-divider fade></x-divider>
-                    </x-block>
-
-                    <x-block>
-                        <x-grid xs="1" md="3" lg="3">
-                            <x-card>
-                                <x-stack direction="vertical" gap="small">
-                                    <x-typography display="body1">Default</x-typography>
-                                    <x-divider></x-divider>
-                                    <x-typography display="body1">Divider</x-typography>
-                                </x-stack>
-                            </x-card>
-
-                            <x-card>
-                                <x-stack direction="vertical" gap="small">
-                                    <x-typography display="body1">Light</x-typography>
-                                    <x-divider light></x-divider>
-                                    <x-typography display="body1">Divider</x-typography>
-                                </x-stack>
-                            </x-card>
-
-                            <x-card>
-                                <x-stack direction="horizontal" gap="small">
-                                    <x-typography display="body1">Vertical</x-typography>
-                                    <x-divider vertical></x-divider>
-                                    <x-typography display="body1">Divider</x-typography>
-                                </x-stack>
-                            </x-card>
-
-                            <x-card>
-                                <x-stack direction="horizontal" gap="small">
-                                    <x-typography display="body1">Vertical</x-typography>
-                                    <x-divider vertical light></x-divider>
-                                    <x-typography display="body1">Light</x-typography>
-                                    <x-divider vertical light></x-divider>
-                                    <x-typography display="body1">Divider</x-typography>
-                                </x-stack>
-                            </x-card>
-                        </x-grid>
-                    </x-block>
-
-                </x-stack>
-            </x-block>
-
-            <x-block>
-                <x-stack gap="medium">
-                    <x-block>
-                        <x-typography display="h1">
-                            <h2>Card</h2>
-                        </x-typography>
-                        <x-divider fade></x-divider>
-                    </x-block>
-
-                    <x-block>
-                        <x-grid xs="1" md="2" lg="3">
-                            <x-card>
-                                <x-typography display="h3">Card Title</x-typography>
-
-                                <x-typography display="body1">
-                                    <p>Card content</p>
-                                </x-typography>
-
-                                <x-chip value="Card Chip"></x-chip>
-                            </x-card>
-
-                            <x-card>
-                                <x-card-media src="/example_image.jpg" size="medium">
-                                </x-card-media>
-                                <x-card-content>
-                                    <x-typography display="h3">Image Card Title</x-typography>
+                                    <x-typography display="h2">
+                                        Heading 2
+                                    </x-typography>
+                                    <x-typography display="h3">
+                                        Heading 3
+                                    </x-typography>
+                                    <x-typography display="h4">
+                                        Heading 4
+                                    </x-typography>
+                                    <x-typography display="h5">
+                                        Heading 5
+                                    </x-typography>
+                                    <x-typography display="h6">
+                                        Heading 6
+                                    </x-typography>
+                                    <x-typography display="subtitle1">
+                                        Subtitle 1
+                                    </x-typography>
+                                    <x-typography display="subtitle2">
+                                        Subtitle 2
+                                    </x-typography>
                                     <x-typography display="body1">
-                                        <p>Image card content.</p>
+                                        Body 1
                                     </x-typography>
-                                </x-card-content>
-                            </x-card>
+                                    <x-typography display="body2">
+                                        Body 2
+                                    </x-typography>
+                                    <x-typography display="button">
+                                        Button
+                                    </x-typography>
+
+                                    <x-typography display="caption">
+                                        Caption
+                                    </x-typography>
+
+                                    <x-typography display="overline">
+                                        Overline
+                                    </x-typography>
+                                </x-stack>
+                            </x-stack>
+                        </x-block>
 
 
-                            <x-card>
-                                <x-card-media src="/example_video.mp4" size="large"></x-card-media>
-                                <x-card-content>
-                                    <x-typography display="h3">Video Card Title</x-typography>
-                                    <x-typography display="body1">Video card content.</x-typography>
-                                </x-card-content>
-                                <x-card-footer>
-                                    <x-chip value="Card Footer"></x-chip>
-                                </x-card-footer>
-                            </x-card>
+                        <x-block>
+                            <x-stack gap="medium">
+                                <x-block>
+                                    <x-typography display="h1">
+                                        <h2>Box</h2>
+                                    </x-typography>
+                                    <x-divider fade></x-divider>
+                                </x-block>
 
-                        </x-grid>
-                    </x-block>
-                </x-stack>
-            </x-block>
+                                <x-block>
+                                    <x-box justify-content="center">
+                                        <span>Centered Box</span>
+                                    </x-box>
 
-            <x-block>
-                <x-stack gap="medium">
-                    <x-block>
-                        <x-typography display="h1">
-                            <h2>Spinner</h2>
-                        </x-typography>
-                        <x-divider fade></x-divider>
-                    </x-block>
+                                    <x-box margin-inline="small">
+                                        <span>Inline</span>
+                                        <span>-Margin</span>
+                                    </x-box>
 
-                    <x-block>
-                        <x-spinner size="large" color="#ff0000"></x-spinner>
-                    </x-block>
-                </x-stack>
-            </x-block>
-
-            <x-block>
-                <x-stack gap="medium">
-                    <x-block>
-                        <x-typography display="h1">
-                            <h2>Color Picker</h2>
-                        </x-typography>
-                        <x-divider fade></x-divider>
-                    </x-block>
-
-                    <x-block>
-                        <x-stack gap="small" direction="horizontal">
-                            <x-color-picker value="#ff0000"></x-color-picker>
-                            <x-color-picker value="#00ff00" label="Label"></x-color-picker>
-                        </x-stack>
-                    </x-block>
-                </x-stack>
-            </x-block>
-        </x-stack>
-
-        <x-stack justify-content="center" direction="horizontal" margin-block="medium">
-            <x-box justify-content="center">
-                <x-typography display="overline">
-                    &copy; 2024 Arjan Frans -
-                    <x-text-link>
-                        <a href="https://github.com/arjanfrans/web-components-ui" target="_blank">Source Code</a>
-                    </x-text-link>
-                </x-typography>
-            </x-box>
-        </x-stack>
-
-        <x-bottom-navigation fixed>
-            <x-bottom-navigation-action svg="/icons/house.svg" label="Home">
-            </x-bottom-navigation-action>
-
-            <x-bottom-navigation-action label="Search" active>
-            </x-bottom-navigation-action>
-
-            <x-bottom-navigation-action svg="/icons/github.svg">
-            </x-bottom-navigation-action>
-        </x-bottom-navigation>
-
-    </x-container>
-</x-theme>
-
-<script>
-    (function () {
-        const theme = document.querySelector('x-theme');
-        const darkModeSwitch = document.querySelector('#dark-mode');
-        const colorPrimary = document.querySelector('#color-primary');
-        const colorBackgroundLight = document.querySelector('#color-background-light');
-        const colorBackgroundDark = document.querySelector('#color-background-dark');
-        const colorTextLight = document.querySelector('#color-text-light');
-        const colorTextDark = document.querySelector('#color-text-dark');
-
-        darkModeSwitch.addEventListener('change', () => {
-            if (darkModeSwitch.checked) {
-                theme.setAttribute('theme', 'dark');
-            } else {
-                theme.setAttribute('theme', 'light')
-            }
-        })
+                                    <x-box margin-block="large">
+                                        <span>Block</span>
+                                        <span>-Margin</span>
+                                    </x-box>
+                                </x-block>
+                            </x-stack>
+                        </x-block>
 
 
-        colorPrimary.addEventListener('color-change', (event) => {
-            const color = event.detail.color;
+                        <x-block>
+                            <x-stack gap="medium">
+                                <x-block>
+                                    <x-typography display="h1">
+                                        <h2>ScrollBox</h2>
+                                    </x-typography>
+                                    <x-divider fade></x-divider>
+                                </x-block>
 
-            theme.setAttribute('color-primary', color);
-        });
+                                <x-block>
+                                    <x-stack direction="vertical" gap="large">
+                                        <x-scroll-box height="60px" width="60px">
+                                            <x-stack direction="vertical" justify-content="center">
+                                                <x-typography display="h2">
+                                                    <p>Fixed dimension ScrollBox content</p>
+                                                </x-typography>
+                                            </x-stack>
+                                        </x-scroll-box>
 
-        colorPrimary.addEventListener('color-change', (event) => {
-            const color = event.detail.color;
-
-            theme.setAttribute('color-primary', color);
-        });
-
-        colorBackgroundLight.addEventListener('color-change', (event) => {
-            const color = event.detail.color;
-
-            theme.setAttribute('color-background-light', color);
-        });
-
-        colorBackgroundDark.addEventListener('color-change', (event) => {
-            const color = event.detail.color;
-
-            theme.setAttribute('color-background-dark', color);
-        });
-
-        colorTextLight.addEventListener('color-change', (event) => {
-            const color = event.detail.color;
-
-            theme.setAttribute('color-text-light', color);
-        });
-
-        colorTextDark.addEventListener('color-change', (event) => {
-            const color = event.detail.color;
-
-            theme.setAttribute('color-text-dark', color);
-        });
+                                        <x-scroll-box stretch-horizontal>
+                                            <x-stack direction="vertical" justify-content="center">
+                                                <x-typography display="h2">
+                                                    <p>Stretched ScrollBox content</p>
+                                                </x-typography>
+                                            </x-stack>
+                                        </x-scroll-box>
+                                    </x-stack>
+                                </x-block>
+                            </x-stack>
+                        </x-block>
 
 
-    })()
-</script>
+                        <x-block>
+                            <x-stack gap="medium">
+                                <x-block>
+                                    <x-typography display="h1">
+                                        <h2>Stack</h2>
+                                    </x-typography>
+                                    <x-divider fade></x-divider>
+                                </x-block>
 
-<script>
-    (function () {
-        const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-        const isSlow = connection ? ['slow-2g', '2g', '3g'].includes(connection?.effectiveType) : true;
-        const loadingProgress = document.querySelector('x-loading');
-        const loadingProgressColor = document.querySelector('x-theme')?.getAttribute('color-primary') || '#5e5e5e'
+                                <x-block>
+                                    <x-grid xs="1" md="2" lg="2">
+                                        <x-card>
+                                            <x-stack direction="horizontal" justify-content="center">
+                                                <x-typography display="h2">
+                                                    <p>Centered Stack</p>
+                                                </x-typography>
+                                            </x-stack>
+                                            <x-stack direction="horizontal" justify-content="center" gap="small">
+                                                <span>Center Left</span>
+                                                <span>Center Right</span>
+                                            </x-stack>
+                                        </x-card>
+                                        <x-card>
+                                            <x-stack direction="vertical" justify-content="space-between" gap="small">
+                                                <span>Horizontal</span>
+                                                <span>Stack</span>
+                                                <span>with space-between</span>
+                                            </x-stack>
+                                        </x-card>
 
-        const loadingProgressBar = document.createElement('div');
+                                    </x-grid>
+                                </x-block>
+                            </x-stack>
+                        </x-block>
 
-        if (loadingProgress) {
-            loadingProgressBar.style.content = "";
-            loadingProgressBar.style.display = "block";
-            loadingProgressBar.style.height = "100%";
-            loadingProgressBar.style.width = "100%";
-            loadingProgressBar.style.position = "relative";
-            loadingProgressBar.style.animation = "x-loading-animation 2s linear infinite";
+                        <x-block>
+                            <x-stack gap="medium">
+                                <x-block>
+                                    <x-typography display="h1">
+                                        <h2>List</h2>
+                                    </x-typography>
+                                    <x-divider fade></x-divider>
+                                </x-block>
 
-            if (loadingProgressColor) {
-                loadingProgressBar.style.backgroundColor = loadingProgressColor;
-            }
+                                <x-block>
+                                    <x-grid xs="1" md="3" lg="4">
+                                        <x-list>
+                                            <ul>
+                                                <li>Item 1</li>
+                                                <li>Item 2</li>
+                                                <li>Item 3</li>
+                                            </ul>
+                                        </x-list>
+                                    </x-grid>
+                                </x-block>
+                            </x-stack>
+                        </x-block>
 
-            loadingProgress.append(loadingProgressBar);
 
-            if (isSlow) {
-                loadingProgress.style.display = 'block';
-            }
-        }
-    })()
-</script>
+                        <x-block>
+                            <x-stack gap="medium">
+                                <x-block>
+                                    <x-typography display="h1">
+                                        <h2>Grid</h2>
+                                    </x-typography>
+                                    <x-divider fade></x-divider>
+                                </x-block>
+
+                                <x-block>
+                                    <x-grid xs="1" md="3" lg="4">
+                                        <x-card>Item 1</x-card>
+                                        <x-card>Item 2</x-card>
+                                        <x-card>Item 3</x-card>
+                                        <x-card>Item 4</x-card>
+                                        <x-card>Item 5</x-card>
+                                        <x-card>Item 6</x-card>
+                                    </x-grid>
+                                </x-block>
+                            </x-stack>
+                        </x-block>
+
+                        <x-block>
+                            <x-stack gap="medium">
+                                <x-block>
+                                    <x-typography display="h1">
+                                        <h2>Tabs</h2>
+                                    </x-typography>
+                                    <x-divider fade></x-divider>
+                                </x-block>
+
+                                <x-block>
+                                    <x-box margin-inline="small" stretch-horizontal>
+                                        <x-tabs selected="tab1">
+                                            <x-tab-buttons>
+                                                <x-tab-button id="tab1">
+                                                    <x-typography display="button">Tab 1</x-typography>
+                                                </x-tab-button>
+                                                <x-tab-button id="tab2">
+                                                    <x-typography display="button">Tab 2</x-typography>
+                                                </x-tab-button>
+                                                <x-tab-button id="tab3">
+                                                    <x-typography display="button">Tab 3</x-typography>
+                                                </x-tab-button>
+                                            </x-tab-buttons>
+
+                                            <x-tab-panels>
+                                                <x-box margin-inline="small" margin-block="small">
+                                                    <x-tab-panel id="tab1">
+                                                        <x-typography display="body1">
+                                                            Content for Tab 1
+                                                        </x-typography>
+                                                    </x-tab-panel>
+
+                                                    <x-tab-panel id="tab2">
+                                                        <x-typography display="body1">
+                                                            Content for Tab 2
+                                                        </x-typography>
+                                                    </x-tab-panel>
+
+                                                    <x-tab-panel id="tab3">
+                                                        <x-typography display="body1">
+                                                            Content for Tab 3
+                                                        </x-typography>
+                                                    </x-tab-panel>
+                                                </x-box>
+                                            </x-tab-panels>
+                                        </x-tabs>
+                                    </x-box>
+                                </x-block>
+                            </x-stack>
+                        </x-block>
+
+                        <x-block>
+                            <x-stack gap="medium">
+                                <x-block>
+                                    <x-typography display="h1">
+                                        <h2>App Bar</h2>
+                                    </x-typography>
+                                    <x-divider fade></x-divider>
+                                </x-block>
+
+                                <x-block>
+                                    <x-app-bar>
+                                        <x-box justify-content="center">
+                                            <x-typography display="h1">App Bar</x-typography>
+                                        </x-box>
+                                    </x-app-bar>
+                                </x-block>
+                            </x-stack>
+                        </x-block>
+
+
+                        <x-block>
+                            <x-stack gap="medium">
+                                <x-block>
+                                    <x-typography display="h1">
+                                        <h2>Bottom Navigation</h2>
+                                    </x-typography>
+                                    <x-divider fade></x-divider>
+                                </x-block>
+
+                                <x-block>
+                                    <x-bottom-navigation>
+                                        <x-bottom-navigation-action svg="/icons/house.svg" label="Home">
+                                        </x-bottom-navigation-action>
+
+                                        <x-bottom-navigation-action label="Search">
+                                        </x-bottom-navigation-action>
+
+                                        <x-bottom-navigation-action svg="/icons/house.svg">
+                                        </x-bottom-navigation-action>
+                                    </x-bottom-navigation>
+                                </x-block>
+                            </x-stack>
+                        </x-block>
+
+
+                        <x-block>
+                            <x-stack gap="medium">
+                                <x-block>
+                                    <x-typography display="h1">
+                                        <h2>Button</h2>
+                                    </x-typography>
+                                    <x-divider fade></x-divider>
+                                </x-block>
+
+                                <x-block>
+                                    <x-stack direction="horizontal" gap="small">
+                                        <x-button size="small" variant="filled">Small Filled</x-button>
+                                        <x-button size="small" variant="outlined">Small Outlined</x-button>
+                                        <x-button size="medium" variant="filled">Medium Filled</x-button>
+                                        <x-button size="medium" variant="outlined">Medium Outlined</x-button>
+                                        <x-button size="large" variant="filled">Large Filled</x-button>
+                                        <x-button size="large" variant="outlined">Large Outlined</x-button>
+                                    </x-stack>
+                                </x-block>
+                            </x-stack>
+                        </x-block>
+
+
+                        <x-block>
+                            <x-stack gap="medium">
+                                <x-block>
+                                    <x-typography display="h1">
+                                        <h2>Figure</h2>
+                                    </x-typography>
+                                    <x-divider fade></x-divider>
+                                </x-block>
+
+                                <x-block>
+                                    <x-stack direction="horizontal" gap="small">
+                                        <x-figure width="70px">
+                                            <img src="/example_image.jpg" />
+                                        </x-figure>
+
+                                        <x-figure size="large">
+                                            <img src="/example_image.jpg" />
+                                        </x-figure>
+
+                                        <x-figure size="medium">
+                                            <img src="/example_image.jpg" />
+                                        </x-figure>
+
+                                        <x-figure size="small">
+                                            <img src="/example_image.jpg" />
+                                        </x-figure>
+                                    </x-stack>
+                                </x-block>
+                            </x-stack>
+                        </x-block>
+
+                        <x-block>
+                            <x-stack gap="medium">
+                                <x-block>
+                                    <x-typography display="h1">
+                                        <h2>Icon</h2>
+                                    </x-typography>
+                                    <x-divider fade></x-divider>
+                                </x-block>
+
+                                <x-block>
+                                    <x-stack gap="small" direction="horizontal">
+                                        <x-icon size="small" svg="/icons/house.svg"></x-icon>
+                                        <x-icon size="medium" svg="/icons/house.svg"></x-icon>
+                                        <x-icon size="large" svg="/icons/house.svg"></x-icon>
+                                    </x-stack>
+                                </x-block>
+                            </x-stack>
+                        </x-block>
+
+                        <x-block>
+                            <x-stack gap="medium">
+                                <x-block>
+                                    <x-typography display="h1">
+                                        <h2>Checkbox</h2>
+                                    </x-typography>
+                                    <x-divider fade></x-divider>
+                                </x-block>
+
+                                <x-block>
+                                    <x-stack gap="small" direction="vertical">
+                                        <x-checkbox checked>
+                                            <x-typography display="body1">Checked</x-typography>
+                                        </x-checkbox>
+                                        <x-checkbox>
+                                            <x-typography display="body1">Unchecked</x-typography>
+                                        </x-checkbox>
+                                        <x-checkbox disabled checked>
+                                            <x-typography display="body1">Checked Disabled</x-typography>
+                                        </x-checkbox>
+                                        <x-checkbox disabled>
+                                            <x-typography display="body1">Unchecked Disabled</x-typography>
+                                        </x-checkbox>
+                                    </x-stack>
+                                </x-block>
+                            </x-stack>
+                        </x-block>
+
+                        <x-block>
+                            <x-stack gap="medium">
+                                <x-block>
+                                    <x-typography display="h1">
+                                        <h2>Radio</h2>
+                                    </x-typography>
+                                    <x-divider fade></x-divider>
+                                </x-block>
+
+                                <x-block>
+                                    <x-radio-group selected="opt2">
+                                        <x-stack gap="small" direction="horizontal">
+                                            <x-radio-button value="opt1">
+                                                <x-typography display="body1">Option 1</x-typography>
+                                            </x-radio-button>
+                                            <x-radio-button value="opt2">
+                                                <x-typography display="body1">Option 2</x-typography>
+                                            </x-radio-button>
+                                            <x-radio-button value="opt3">
+                                                <x-typography display="body1">Option 3</x-typography>
+                                            </x-radio-button>
+                                        </x-stack>
+                                    </x-radio-group>
+                                </x-block>
+                            </x-stack>
+                        </x-block>
+
+                        <x-block>
+                            <x-stack gap="medium">
+                                <x-block>
+                                    <x-typography display="h1">
+                                        <h2>Chip</h2>
+                                    </x-typography>
+                                    <x-divider fade></x-divider>
+                                </x-block>
+
+                                <x-block>
+                                    <x-stack gap="small" direction="horizontal">
+                                        <x-chip value="Regular Small" size="small"></x-chip>
+                                        <x-chip value="Active Small" size="small" active></x-chip>
+                                        <x-chip value="Regular Large" size="large"></x-chip>
+                                    </x-stack>
+                                </x-block>
+                            </x-stack>
+                        </x-block>
+
+
+                        <x-block>
+                            <x-stack gap="medium">
+                                <x-block>
+                                    <x-typography display="h1">
+                                        <h2>Switch</h2>
+                                    </x-typography>
+                                    <x-divider fade></x-divider>
+                                </x-block>
+
+                                <x-block>
+                                    <x-stack gap="small">
+                                        <x-switch label="Label"></x-switch>
+                                        <x-switch label="Required" required></x-switch>
+                                        <x-switch label="Disabled" disabled></x-switch>
+                                    </x-stack>
+                                </x-block>
+                            </x-stack>
+
+                        </x-block>
+
+                        <x-block>
+                            <x-stack gap="medium">
+                                <x-block>
+                                    <x-typography display="h1">
+                                        <h2>Badge</h2>
+                                    </x-typography>
+                                    <x-divider fade></x-divider>
+                                </x-block>
+
+                                <x-block>
+                                    <x-stack gap="small">
+                                        <x-badge content="5">
+                                            <x-typography dispay="body1">Badge</x-typography>
+                                        </x-badge>
+
+                                        <x-badge content="120">
+                                            <x-typography dispay="overline">Badge</x-typography>
+                                        </x-badge>
+                                    </x-stack>
+                                </x-block>
+                            </x-stack>
+                        </x-block>
+
+
+                        <x-block>
+                            <x-stack gap="medium">
+                                <x-block>
+                                    <x-typography display="h1">
+                                        <h2>Link</h2>
+                                    </x-typography>
+                                    <x-divider fade></x-divider>
+                                </x-block>
+
+                                <x-block>
+                                    <x-stack gap="small">
+                                        <x-typography dispay="body1">
+                                            <x-text-link><a href="https://www.example.com">Example
+                                                    Link</a></x-text-link>
+                                        </x-typography>
+
+                                        <x-typography dispay="body1">
+                                            <x-bare-link><a href="https://www.example.com">Bare
+                                                    Link</a></x-bare-link>
+                                        </x-typography>
+                                    </x-stack>
+                                </x-block>
+                            </x-stack>
+                        </x-block>
+
+                        <x-block>
+                            <x-stack gap="medium">
+                                <x-block>
+                                    <x-typography display="h1">
+                                        <h2>Table</h2>
+                                    </x-typography>
+                                    <x-divider fade></x-divider>
+                                </x-block>
+
+                                <x-block>
+                                    <x-table>
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>
+                                                        <x-tooltip text="Column Description">
+                                                            Column 1
+                                                        </x-tooltip>
+                                                    </th>
+                                                    <th>Column 2</th>
+                                                    <th>Column 3</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Row 1, Cell 1</td>
+                                                    <td>Row 1, Cell 2</td>
+                                                    <td>Row 1, Cell 3</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Row 2, Cell 1</td>
+                                                    <td>Row 2, Cell 2</td>
+                                                    <td>Row 2, Cell 3</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </x-table>
+                                </x-block>
+
+                            </x-stack>
+                        </x-block>
+
+                        <x-block>
+                            <x-stack gap="medium">
+                                <x-block>
+                                    <x-typography display="h1">
+                                        <h2>Tooltip</h2>
+                                    </x-typography>
+                                    <x-divider fade></x-divider>
+                                </x-block>
+
+                                <x-block>
+                                    <x-stack gap="small">
+                                        <x-tooltip text="Tooltip text">
+                                            <x-typography display="body1">
+                                                Text with tooltip
+                                            </x-typography>
+                                        </x-tooltip>
+
+                                        <x-tooltip text="Button tooltip text">
+                                            <x-button variant="filled" size="small">Button with tooltip</x-button>
+                                        </x-tooltip>
+                                    </x-stack>
+                                </x-block>
+
+                            </x-stack>
+                        </x-block>
+
+                        <x-block>
+                            <x-stack gap="medium">
+                                <x-block>
+                                    <x-typography display="h1">
+                                        <h2>Select</h2>
+                                    </x-typography>
+                                    <x-divider fade></x-divider>
+                                </x-block>
+
+                                <x-block>
+                                    <x-stack direction="vertical" gap="small">
+                                        <x-select selected="c">
+                                            <select>
+                                                <option value="a">Option A</option>
+                                                <option value="b">Option B</option>
+                                                <option value="c">Option C</option>
+                                            </select>
+                                        </x-select>
+
+                                        <x-select stretch-horizontal>
+                                            <select>
+                                                <option value="a">Stretched A</option>
+                                                <option value="b">Stretched B</option>
+                                                <option value="c">Stretched C</option>
+                                            </select>
+                                        </x-select>
+                                    </x-stack>
+                                </x-block>
+                            </x-stack>
+                        </x-block>
+
+                        <x-block>
+                            <x-stack gap="medium">
+                                <x-block>
+                                    <x-typography display="h1">
+                                        <h2>Divider</h2>
+                                    </x-typography>
+                                    <x-divider fade></x-divider>
+                                </x-block>
+
+                                <x-block>
+                                    <x-grid xs="1" md="3" lg="3">
+                                        <x-card>
+                                            <x-stack direction="vertical" gap="small">
+                                                <x-typography display="body1">Default</x-typography>
+                                                <x-divider></x-divider>
+                                                <x-typography display="body1">Divider</x-typography>
+                                            </x-stack>
+                                        </x-card>
+
+                                        <x-card>
+                                            <x-stack direction="vertical" gap="small">
+                                                <x-typography display="body1">Light</x-typography>
+                                                <x-divider light></x-divider>
+                                                <x-typography display="body1">Divider</x-typography>
+                                            </x-stack>
+                                        </x-card>
+
+                                        <x-card>
+                                            <x-stack direction="horizontal" gap="small">
+                                                <x-typography display="body1">Vertical</x-typography>
+                                                <x-divider vertical></x-divider>
+                                                <x-typography display="body1">Divider</x-typography>
+                                            </x-stack>
+                                        </x-card>
+
+                                        <x-card>
+                                            <x-stack direction="horizontal" gap="small">
+                                                <x-typography display="body1">Vertical</x-typography>
+                                                <x-divider vertical light></x-divider>
+                                                <x-typography display="body1">Light</x-typography>
+                                                <x-divider vertical light></x-divider>
+                                                <x-typography display="body1">Divider</x-typography>
+                                            </x-stack>
+                                        </x-card>
+                                    </x-grid>
+                                </x-block>
+
+                            </x-stack>
+                        </x-block>
+
+                        <x-block>
+                            <x-stack gap="medium">
+                                <x-block>
+                                    <x-typography display="h1">
+                                        <h2>Card</h2>
+                                    </x-typography>
+                                    <x-divider fade></x-divider>
+                                </x-block>
+
+                                <x-block>
+                                    <x-grid xs="1" md="2" lg="3">
+                                        <x-card>
+                                            <x-typography display="h3">Card Title</x-typography>
+
+                                            <x-typography display="body1">
+                                                <p>Card content</p>
+                                            </x-typography>
+
+                                            <x-chip value="Card Chip"></x-chip>
+                                        </x-card>
+
+                                        <x-card>
+                                            <x-card-media src="/example_image.jpg" size="medium">
+                                            </x-card-media>
+                                            <x-card-content>
+                                                <x-typography display="h3">Image Card Title</x-typography>
+                                                <x-typography display="body1">
+                                                    <p>Image card content.</p>
+                                                </x-typography>
+                                            </x-card-content>
+                                        </x-card>
+
+
+                                        <x-card>
+                                            <x-card-media src="/example_video.mp4" size="large"></x-card-media>
+                                            <x-card-content>
+                                                <x-typography display="h3">Video Card Title</x-typography>
+                                                <x-typography display="body1">Video card content.</x-typography>
+                                            </x-card-content>
+                                            <x-card-footer>
+                                                <x-chip value="Card Footer"></x-chip>
+                                            </x-card-footer>
+                                        </x-card>
+
+                                    </x-grid>
+                                </x-block>
+                            </x-stack>
+                        </x-block>
+
+                        <x-block>
+                            <x-stack gap="medium">
+                                <x-block>
+                                    <x-typography display="h1">
+                                        <h2>Snackbar</h2>
+                                    </x-typography>
+                                    <x-divider fade></x-divider>
+                                </x-block>
+
+                                <x-block>
+                                    <x-stack direction="vertical" gap="small">
+                                        <x-snackbar position="bottom" visible>
+                                            <x-typography display="body1">Bottom Snackbar</x-typography>
+                                        </x-snackbar>
+                                        <x-snackbar position="bottom" visible stretch-horizontal>
+                                            <x-typography display="body1">Stretched Snackbar</x-typography>
+                                        </x-snackbar>
+                                    </x-stack>
+                                </x-block>
+                            </x-stack>
+                        </x-block>
+
+                        <x-block>
+                            <x-stack gap="medium">
+                                <x-block>
+                                    <x-typography display="h1">
+                                        <h2>Spinner</h2>
+                                    </x-typography>
+                                    <x-divider fade></x-divider>
+                                </x-block>
+
+                                <x-block>
+                                    <x-spinner size="large" color="#ff0000"></x-spinner>
+                                </x-block>
+                            </x-stack>
+                        </x-block>
+
+                        <x-block>
+                            <x-stack gap="medium">
+                                <x-block>
+                                    <x-typography display="h1">
+                                        <h2>Color Picker</h2>
+                                    </x-typography>
+                                    <x-divider fade></x-divider>
+                                </x-block>
+
+                                <x-block>
+                                    <x-stack gap="small" direction="horizontal">
+                                        <x-color-picker value="#ff0000"></x-color-picker>
+                                        <x-color-picker value="#00ff00" label="Label"></x-color-picker>
+                                    </x-stack>
+                                </x-block>
+                            </x-stack>
+                        </x-block>
+                    </x-stack>
+
+                    <x-stack justify-content="center" direction="horizontal" margin-block="medium">
+                        <x-box justify-content="center">
+                            <x-typography display="overline">
+                                &copy; 2024 Arjan Frans -
+                                <x-text-link>
+                                    <a href="https://github.com/arjanfrans/web-components-ui" target="_blank">Source
+                                        Code</a>
+                                </x-text-link>
+                            </x-typography>
+                        </x-box>
+                    </x-stack>
+
+
+                    <x-snackbar position="top" visible>
+                        <x-typography display="body1">Test Snackbar</x-typography>
+                    </x-snackbar>
+                </x-scroll-box>
+
+                <x-bottom-navigation>
+                    <x-bottom-navigation-action svg="/icons/house.svg" label="Home">
+                    </x-bottom-navigation-action>
+
+                    <x-bottom-navigation-action label="Search" active>
+                    </x-bottom-navigation-action>
+
+                    <x-bottom-navigation-action svg="/icons/github.svg">
+                    </x-bottom-navigation-action>
+                </x-bottom-navigation>
+            </div>
+        </x-container>
+    </x-theme>
+
+    <script>
+        (function () {
+            const theme = document.querySelector('x-theme');
+            const darkModeSwitch = document.querySelector('#dark-mode');
+            const colorPrimary = document.querySelector('#color-primary');
+            const colorBackgroundLight = document.querySelector('#color-background-light');
+            const colorBackgroundDark = document.querySelector('#color-background-dark');
+            const colorTextLight = document.querySelector('#color-text-light');
+            const colorTextDark = document.querySelector('#color-text-dark');
+
+            darkModeSwitch.addEventListener('change', () => {
+                if (darkModeSwitch.checked) {
+                    theme.setAttribute('theme', 'dark');
+                } else {
+                    theme.setAttribute('theme', 'light')
+                }
+            })
+
+
+            colorPrimary.addEventListener('color-change', (event) => {
+                const color = event.detail.color;
+
+                theme.setAttribute('color-primary', color);
+            });
+
+            colorPrimary.addEventListener('color-change', (event) => {
+                const color = event.detail.color;
+
+                theme.setAttribute('color-primary', color);
+            });
+
+            colorBackgroundLight.addEventListener('color-change', (event) => {
+                const color = event.detail.color;
+
+                theme.setAttribute('color-background-light', color);
+            });
+
+            colorBackgroundDark.addEventListener('color-change', (event) => {
+                const color = event.detail.color;
+
+                theme.setAttribute('color-background-dark', color);
+            });
+
+            colorTextLight.addEventListener('color-change', (event) => {
+                const color = event.detail.color;
+
+                theme.setAttribute('color-text-light', color);
+            });
+
+            colorTextDark.addEventListener('color-change', (event) => {
+                const color = event.detail.color;
+
+                theme.setAttribute('color-text-dark', color);
+            });
+
+
+        })()
+    </script>
+
+    <script>
+            (function () {
+                const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+                const isSlow = connection ? ['slow-2g', '2g', '3g'].includes(connection?.effectiveType) : true;
+                const loadingProgress = document.querySelector('x-loading');
+                const loadingProgressColor = document.querySelector('x-theme')?.getAttribute('color-primary') || '#5e5e5e'
+
+                const loadingProgressBar = document.createElement('div');
+
+                if (loadingProgress) {
+                    loadingProgressBar.style.content = "";
+                    loadingProgressBar.style.display = "block";
+                    loadingProgressBar.style.height = "100%";
+                    loadingProgressBar.style.width = "100%";
+                    loadingProgressBar.style.position = "relative";
+                    loadingProgressBar.style.animation = "x-loading-animation 2s linear infinite";
+
+                    if (loadingProgressColor) {
+                        loadingProgressBar.style.backgroundColor = loadingProgressColor;
+                    }
+
+                    loadingProgress.append(loadingProgressBar);
+
+                    if (isSlow) {
+                        loadingProgress.style.display = 'block';
+                    }
+                }
+            })()
+    </script>
 </body>
 
 </html>
