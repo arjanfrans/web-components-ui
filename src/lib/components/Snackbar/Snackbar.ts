@@ -14,19 +14,16 @@ export class Snackbar extends HTMLElement {
     const style = document.createElement("style");
     style.textContent = `
       :host {
-        display: block;
+        display: none;
+        box-sizing: border-box;
         z-index: ${ZIndex.SNACKBAR};
         pointer-events: none;
         width: max-content;
-        max-width: 100%; /* Ensures it doesn't exceed parent width */
-        padding: ${variable("spacing-sm")};
+        max-width: 100%;
         position: relative;
-        background-color: var(--semantic-background-inverted);
-        color: var(--semantic-text-inverted);
-        border-radius: 4px;
-        box-shadow: ${variable("shadow-dark")};
+        background-color: transparent;
+        transition: opacity 0.3s ease, display 0.3s ease allow-discrete;
         opacity: 0;
-        transition: opacity 0.3s ease;
         pointer-events: auto;
       }
 
@@ -34,14 +31,16 @@ export class Snackbar extends HTMLElement {
 
       :host([fixed]) {
         position: fixed;
+        padding: ${variable("spacing-lg")};
         width: 100%;
         left: 0;
         right: 0;
-        max-width: 100%; /* Ensure snackbar doesn't exceed the parent's width */
-        box-sizing: border-box; /* To include padding in the width calculation */
+        max-width: 100%;
+        box-sizing: border-box;
       }
 
       :host([visible]) {
+        display: block;
         opacity: 1;
       }
 
@@ -53,36 +52,85 @@ export class Snackbar extends HTMLElement {
         top: ${variable("app-bar-height")};
       }
 
-      /* Positioning based on attribute */
       :host([position="right"]) {
         right: 0;
-        left: auto; /* Override left centering */
-        transform: none; /* Remove the horizontal transform */
+        left: auto;
+        transform: none;
       }
 
       :host([position="left"]) {
         left: 0;
-        right: auto; /* Override right centering */
-        transform: none; /* Remove the horizontal transform */
+        right: auto;
+        transform: none;
+      }
+
+      /* Child div for content and background */
+      .snackbar-content {
+        box-sizing: border-box;
+        padding: ${variable("spacing-sm")};
+        background-color: var(--semantic-background-inverted);
+        color: var(--semantic-text-inverted);
+        border-radius: 4px;
+        box-shadow: ${variable("shadow-dark")};
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      /* Close button styles */
+      .close-button {
+        background: transparent;
+        border: none;
+        color: var(--semantic-text-inverted);
+        font-size: 16px;
+        cursor: pointer;
+        margin-left: ${variable("spacing-sm")};
       }
 
       /* Slot for message content */
       ::slotted(*) {
-        padding: ${variable("spacing-sm")};
+        display: block;
+        flex-grow: 1;
+      }
+
+      /* Hide the close button when closable is not set */
+      :host([closable]) .close-button {
+        display: block;
+      }
+
+      :host(:not([closable])) .close-button {
+        display: none;
       }
     `;
 
     shadow.appendChild(style);
 
+    // Create the child div for the content and background
+    const snackbarElement = document.createElement("div");
+    snackbarElement.classList.add("snackbar-content");
+
     // Slot for message content
     const slot = document.createElement("slot");
-    shadow.appendChild(slot);
+    snackbarElement.appendChild(slot);
+
+    // Add close button if attribute is set
+    const closeButton = document.createElement("button");
+    closeButton.classList.add("close-button");
+    closeButton.innerHTML = "&#10005;";
+    closeButton.addEventListener("click", () => {
+      this.visible = false; // Trigger the fade-out on click
+    });
+
+    snackbarElement.appendChild(closeButton);
+
+    // Append the content div to the shadow root
+    shadow.appendChild(snackbarElement);
 
     this.setupAutoDismiss();
   }
 
   static get observedAttributes() {
-    return ["visible", "position", "timeout", "offset"];
+    return ["visible", "position", "timeout", "offset", "closable"];
   }
 
   attributeChangedCallback(
@@ -94,6 +142,9 @@ export class Snackbar extends HTMLElement {
       this.toggleVisibility();
     } else if (name === "timeout" && oldValue !== newValue) {
       this.setupAutoDismiss();
+    } else if (name === "closable" && oldValue !== newValue) {
+      // Update the visibility of the close button
+      this.updateCloseButtonVisibility();
     }
   }
 
@@ -102,6 +153,7 @@ export class Snackbar extends HTMLElement {
       this.classList.add("visible");
       this.startAutoDismiss();
     } else {
+      // Start the fade-out by removing the visible class
       this.classList.remove("visible");
     }
   }
@@ -114,7 +166,7 @@ export class Snackbar extends HTMLElement {
     const timeout = this.timeout;
     if (timeout > 0) {
       this.autoDismissTimeout = setTimeout(() => {
-        this.visible = false;
+        this.visible = false; // Auto-dismiss by setting visible to false
       }, timeout);
     }
   }
@@ -122,8 +174,22 @@ export class Snackbar extends HTMLElement {
   private startAutoDismiss() {
     if (this.timeout > 0) {
       this.autoDismissTimeout = setTimeout(() => {
-        this.visible = false;
+        this.removeAttribute("visible");
       }, this.timeout);
+    }
+  }
+
+  private updateCloseButtonVisibility() {
+    const closeButton = this.shadowRoot?.querySelector(
+      ".close-button",
+    ) as HTMLButtonElement;
+
+    if (closeButton) {
+      if (this.hasAttribute("closable")) {
+        closeButton.style.display = "block";
+      } else {
+        closeButton.style.display = "none";
+      }
     }
   }
 
@@ -131,6 +197,7 @@ export class Snackbar extends HTMLElement {
   set visible(value: boolean) {
     if (value) {
       this.setAttribute("visible", "");
+      this.style.display = "block"; // Ensure it's visible before fading in
     } else {
       this.removeAttribute("visible");
     }

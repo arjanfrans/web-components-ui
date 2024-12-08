@@ -829,8 +829,8 @@
 
                                 <x-block>
                                     <x-stack direction="vertical" gap="small">
-                                        <x-snackbar visible>
-                                            <x-typography display="body1">Inline Snackbar</x-typography>
+                                        <x-snackbar closable visible>
+                                            <x-typography display="body1">Inline Closable Snackbar</x-typography>
                                         </x-snackbar>
                                         <x-snackbar visible stretch-horizontal>
                                             <x-typography display="body1">Inline Stretched Snackbar</x-typography>
@@ -891,7 +891,7 @@
                         <x-typography display="body1">Test Snackbar</x-typography>
                     </x-snackbar>
 
-                    <x-snackbar position="left" fixed visible stretch-horizontal offset="bottom-navigation">
+                    <x-snackbar position="left" fixed visible stretch-horizontal offset="bottom-navigation" closable>
                         <x-typography display="body1">Test Stretched Snackbar</x-typography>
                     </x-snackbar>
                 </x-scroll-box>
