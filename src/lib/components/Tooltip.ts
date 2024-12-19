@@ -7,6 +7,9 @@ export class Tooltip extends HTMLElement {
   private isTooltipVisible = false;
   private repositionScheduled = false;
 
+  // Static registry to keep track of active tooltips
+  private static activeTooltips: Tooltip[] = [];
+
   constructor() {
     super();
     const shadow = this.attachShadow({ mode: "open" });
@@ -22,13 +25,13 @@ export class Tooltip extends HTMLElement {
         display: inline-block;
         position: relative;
       }
-      
+
       .tooltip {
-        position: absolute;  /* Tooltip should be absolute within the host */
-        background-color: rgba(0, 0, 0, 0.8);
-        color: white;
-        padding: 8px;
-        border-radius: 4px;
+        position: absolute;
+        background-color: rgba(var(--semantic-background-inverted_rgb), 0.9);
+        color: var(--semantic-text-inverted);
+        padding: ${variable("spacing-sm")};
+        border-radius: ${variable("border-xs")};
         font-size: ${variable("font-size-small")};
         z-index: ${ZIndex.OVERLAY};
         white-space: nowrap;
@@ -72,6 +75,18 @@ export class Tooltip extends HTMLElement {
 
   private showTooltip() {
     if (this.isTooltipVisible) return; // Prevent duplicate toggles
+
+    // Hide any previously visible tooltip by invoking hideTooltip on all active tooltips
+    Tooltip.activeTooltips.forEach((tooltip) => {
+      if (tooltip !== this && tooltip.isTooltipVisible) {
+        tooltip.hideTooltip();
+      }
+    });
+
+    // Add this tooltip to the registry of active tooltips
+    Tooltip.activeTooltips.push(this);
+
+    // Set the tooltip text again in case it has changed dynamically
     this.tooltip.textContent = this.getAttribute("text") || "Tooltip content";
 
     // Calculate position immediately
@@ -80,12 +95,25 @@ export class Tooltip extends HTMLElement {
     // Show the tooltip
     this.tooltip.setAttribute("visible", "true");
     this.isTooltipVisible = true;
+
+    // Auto-hide timeout for mobile
+    if (this.touchTimeout) {
+      clearTimeout(this.touchTimeout); // Clear any existing timeout
+    }
+    this.touchTimeout = window.setTimeout(() => this.hideTooltip(), 3000);
   }
 
   private hideTooltip() {
     // Hide the tooltip
     this.tooltip.removeAttribute("visible");
     this.isTooltipVisible = false;
+
+    // Remove this tooltip from the registry
+    const index = Tooltip.activeTooltips.indexOf(this);
+    if (index !== -1) {
+      Tooltip.activeTooltips.splice(index, 1);
+    }
+
     clearTimeout(this.touchTimeout); // Clear any existing timeout
   }
 
@@ -96,11 +124,6 @@ export class Tooltip extends HTMLElement {
       this.hideTooltip();
     } else {
       this.showTooltip();
-    }
-
-    // Auto-hide after timeout for mobile
-    if (!this.isTooltipVisible) {
-      this.touchTimeout = window.setTimeout(() => this.hideTooltip(), 3000);
     }
   }
 
@@ -126,21 +149,29 @@ export class Tooltip extends HTMLElement {
     const rect = this.getBoundingClientRect();
     const tooltipRect = this.tooltip.getBoundingClientRect();
     const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
 
     // Calculate position relative to the host (shadow root)
     let top = rect.top - tooltipRect.height - 8;
     let left = rect.left + (rect.width - tooltipRect.width) / 2;
 
-    // If it doesn't fit above, place below
+    // First, check if the tooltip fits above the element (preferred position)
     if (top < 0) {
-      top = rect.bottom + 8;
+      top = rect.bottom + 8; // If above doesn't fit, position below
     }
 
-    // Ensure the tooltip doesn't overflow the viewport
+    // Then, check if the tooltip fits on the left side (to avoid overflow on the right)
     if (left < 0) {
-      left = 8; // Add margin if it overflows left
-    } else if (left + tooltipRect.width > viewportWidth) {
-      left = viewportWidth - tooltipRect.width - 8; // Add margin if it overflows right
+      left = rect.left + rect.width + 8; // Position to the right of the target
+    }
+    // Check if the tooltip fits on the right side (to avoid overflow on the left)
+    else if (left + tooltipRect.width > viewportWidth) {
+      left = viewportWidth - tooltipRect.width - 8; // Position to the left of the target
+    }
+
+    // Ensure tooltip fits within the viewport vertically
+    if (top + tooltipRect.height > viewportHeight) {
+      top = rect.top - tooltipRect.height - 8; // If it doesn't fit at the bottom, position at the top
     }
 
     // Apply the computed position
