@@ -58,7 +58,7 @@
 
     <x-loading></x-loading>
 
-    <x-theme style="display: none" theme="auto" font-family-heading="Neue Aachen Regular, sans-serif"
+    <x-theme style="display: none" theme="light" font-family-heading="Neue Aachen Regular, sans-serif"
         font-family-default="sans-serif" color-primary="#217ba3" color-text-light="#000000" color-text-dark="#ffffff"
         color-background-light="#ffffff" color-background-dark="#1f1f1f">
 
@@ -111,9 +111,11 @@
 
                             <x-stack gap="medium">
                                 <x-block>
-                                    <x-typography display="h1">
-                                        <h2>Typography</h2>
-                                    </x-typography>
+                                    <x-tooltip text="Dark or Light mode">
+                                        <x-typography display="h1">
+                                            <h2>Typography</h2>
+                                        </x-typography>
+                                    </x-tooltip>
                                     <x-divider fade></x-divider>
                                 </x-block>
                                 <x-stack gap="small">
