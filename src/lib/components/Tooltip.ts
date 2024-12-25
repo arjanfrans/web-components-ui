@@ -21,11 +21,6 @@ export class Tooltip extends HTMLElement {
     // Tooltip styles
     const style = document.createElement("style");
     style.textContent = `
-      :host {
-        display: inline-block;
-        position: relative;
-      }
-
       .tooltip {
         position: absolute;
         background-color: rgba(var(--semantic-background-inverted_rgb), 0.9);
@@ -148,30 +143,42 @@ export class Tooltip extends HTMLElement {
 
     const rect = this.getBoundingClientRect();
     const tooltipRect = this.tooltip.getBoundingClientRect();
-    const viewportWidth = window.innerWidth;
-    const viewportHeight = window.innerHeight;
+    // const viewportWidth = window.innerWidth;
+    // const viewportHeight = window.innerHeight;
 
-    // Calculate position relative to the host (shadow root)
-    let top = rect.top - tooltipRect.height - 8;
-    let left = rect.left + (rect.width - tooltipRect.width) / 2;
+    // Find the nearest scrollable container (if it exists)
+    const scrollableContainer =
+      this.closest("div[style*='overflow']") || document.documentElement;
 
-    // First, check if the tooltip fits above the element (preferred position)
-    if (top < 0) {
-      top = rect.bottom + 8; // If above doesn't fit, position below
+    // Get the container's bounding rect and scroll offset
+    const containerRect = scrollableContainer.getBoundingClientRect();
+    const scrollTop = scrollableContainer.scrollTop;
+    const scrollLeft = scrollableContainer.scrollLeft;
+
+    // Calculate position relative to the scrollable container
+    let top = rect.top + scrollTop - containerRect.top - tooltipRect.height - 8;
+    let left =
+      rect.left +
+      scrollLeft -
+      containerRect.left +
+      (rect.width - tooltipRect.width) / 2;
+
+    // Check if the tooltip fits above the element (preferred position)
+    if (top < scrollTop) {
+      top = rect.bottom + scrollTop - containerRect.top + 8; // Position below if above doesn't fit
     }
 
-    // Then, check if the tooltip fits on the left side (to avoid overflow on the right)
-    if (left < 0) {
-      left = rect.left + rect.width + 8; // Position to the right of the target
-    }
-    // Check if the tooltip fits on the right side (to avoid overflow on the left)
-    else if (left + tooltipRect.width > viewportWidth) {
-      left = viewportWidth - tooltipRect.width - 8; // Position to the left of the target
+    // Check horizontal overflow: adjust if tooltip overflows the left/right of the container
+    if (left < scrollLeft) {
+      left = rect.left + scrollLeft - containerRect.left + rect.width + 8; // Position to the right
+    } else if (left + tooltipRect.width > containerRect.width + scrollLeft) {
+      left =
+        rect.left + scrollLeft - containerRect.left - tooltipRect.width - 8; // Position to the left
     }
 
-    // Ensure tooltip fits within the viewport vertically
-    if (top + tooltipRect.height > viewportHeight) {
-      top = rect.top - tooltipRect.height - 8; // If it doesn't fit at the bottom, position at the top
+    // Ensure vertical overflow doesn't happen
+    if (top + tooltipRect.height > containerRect.height + scrollTop) {
+      top = rect.top + scrollTop - containerRect.top - tooltipRect.height - 8; // Revert to above
     }
 
     // Apply the computed position
