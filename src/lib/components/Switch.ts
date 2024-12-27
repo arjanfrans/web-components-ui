@@ -1,4 +1,4 @@
-import { register } from "../framework/register";
+import { register, variable } from "../framework/register";
 import { Typography } from "./Typography";
 
 export class Switch extends HTMLElement {
@@ -17,8 +17,7 @@ export class Switch extends HTMLElement {
     style.textContent = `
             :host {
                 display: inline-flex;
-                align-items: center;
-                width: max-content;
+                align-items: flex-start;
             }
 
             .toggle-switch {
@@ -36,7 +35,7 @@ export class Switch extends HTMLElement {
                 width: 20px;
                 height: 20px;
                 background-color: var(--semantic-background-default);
-                border-radius: 50%;
+                border-radius: ${variable("border-sm")};
                 position: absolute;
                 top: 2px;
                 left: 2px;
@@ -61,8 +60,7 @@ export class Switch extends HTMLElement {
             }
 
             .label {
-                margin-left: 8px;
-                white-space: nowrap;
+                margin-left: ${variable("spacing-sm")};
                 cursor: auto;
             }
 
