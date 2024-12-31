@@ -13,7 +13,7 @@ export class BottomNavigation extends HTMLElement {
       :host {
         display: block;
         width: 100%;
-        position: relative; /* Ensure positioning context for inner divs */  
+        position: relative; /* Ensure positioning context for inner divs */
       }
 
       /* Fixed/Sticky navigation styles */
@@ -23,13 +23,14 @@ export class BottomNavigation extends HTMLElement {
         background-color: var(--semantic-background-alternate);
         border-top: 1px solid var(--semantic-stroke-default);
         color: var(--semantic-text-default);
-        padding: ${variable("spacing-sm")};
         box-sizing: border-box;
         position: var(--bottom-nav-position, sticky);
-        bottom: 0;
+        padding-inline: ${variable("spacing-sm")};
+        padding-top: ${variable("spacing-sm")};
+        padding-bottom: calc(${variable("spacing-sm")} + env(safe-area-inset-bottom));
         left: 0;
         transition: bottom 0.3s ease-in-out;
-        height: ${variable("bottom-navigation-height")};
+        height: calc(${variable("bottom-navigation-height")} + env(safe-area-inset-bottom));
         display: flex;
         align-items: center;
       }
