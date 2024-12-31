@@ -29,6 +29,7 @@ export class Theme extends HTMLElement {
     cardMediaSizeLarge: "128px", // Card media size large
     appBarHeight: "64px",
     bottomNavigationHeight: "72px",
+    bottomNavigationOffset: "0px",
   };
 
   constructor() {
@@ -126,6 +127,10 @@ export class Theme extends HTMLElement {
       this.getAttribute("bottom-navigation-height") ||
       this.defaultStyles.bottomNavigationHeight;
 
+    const bottomNavigationOffset =
+      this.getAttribute("bottom-navigation-offset") ||
+      this.defaultStyles.bottomNavigationOffset;
+
     const palette = generateColorPalette(
       colorPrimary, // Primary color
       colorTextLight, // Light mode text color
@@ -185,6 +190,7 @@ export class Theme extends HTMLElement {
 
         --${getPrefix()}-app-bar-height: ${appBarHeight};
         --${getPrefix()}-bottom-navigation-height: ${bottomNavigationHeight};
+        --${getPrefix()}-bottom-navigation-offset: ${bottomNavigationOffset};
       }
 
       @media (min-width: ${Breakpoint.MD}px) {

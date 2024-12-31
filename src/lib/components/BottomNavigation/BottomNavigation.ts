@@ -27,10 +27,10 @@ export class BottomNavigation extends HTMLElement {
         position: var(--bottom-nav-position, sticky);
         padding-inline: ${variable("spacing-sm")};
         padding-top: ${variable("spacing-sm")};
-        padding-bottom: calc(${variable("spacing-sm")} + env(safe-area-inset-bottom));
+        padding-bottom: calc(${variable("spacing-sm")} + ${variable("bottom-navigation-offset")});
         left: 0;
         transition: bottom 0.3s ease-in-out;
-        height: calc(${variable("bottom-navigation-height")} + env(safe-area-inset-bottom));
+        height: calc(${variable("bottom-navigation-height")} + ${variable("bottom-navigation-offset")});
         display: flex;
         align-items: center;
       }
@@ -75,7 +75,18 @@ export class BottomNavigation extends HTMLElement {
   }
 
   static get observedAttributes() {
-    return ["fixed", "static"];
+    return ["fixed", "static", "bottom-offset"];
+  }
+
+  // Handle changes to the 'bottom-offset' attribute
+  attributeChangedCallback(
+    name: string,
+    oldValue: string | null,
+    newValue: string | null,
+  ) {
+    if (name === "bottom-offset" && newValue !== oldValue) {
+      this.style.setProperty("--bottom-offset", newValue || "0px"); // Default to 0px if no value is set
+    }
   }
 }
 

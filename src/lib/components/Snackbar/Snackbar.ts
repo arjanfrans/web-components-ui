@@ -45,7 +45,7 @@ export class Snackbar extends HTMLElement {
       }
 
       :host([offset="${SnackbarOffset.BOTTOM_NAVIGATION}"]) {
-        bottom: ${variable("bottom-navigation-height")};
+        bottom: calc(${variable("bottom-navigation-height")} + ${variable("bottom-navigation-offset")});
       }
 
       :host([offset="${SnackbarOffset.APP_BAR}"]) {
