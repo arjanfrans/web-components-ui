@@ -100,6 +100,7 @@ export class CardMedia extends HTMLElement {
   detectMediaType(src: string | null): string | null {
     if (!src) return null;
     const extension = src.split(".").pop()?.toLowerCase();
+
     if (extension) {
       const imageExtensions = ["jpg", "jpeg", "png", "gif", "bmp", "webp"];
       const videoExtensions = ["mp4", "webm", "ogg"];
@@ -110,7 +111,8 @@ export class CardMedia extends HTMLElement {
         return "video";
       }
     }
-    return null;
+
+    return "image";
   }
 
   // Getters and setters for attributes
