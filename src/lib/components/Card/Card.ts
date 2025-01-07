@@ -32,8 +32,6 @@ export class Card extends HTMLElement {
         `;
     shadow.appendChild(style);
 
-    this.querySelector("x-");
-
     const hasChild =
       this.querySelector(`${getPrefix()}-card-content`) ||
       this.querySelector(`${getPrefix()}-card-media`) ||

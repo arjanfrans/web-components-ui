@@ -44,6 +44,7 @@ export { TabButton } from "../lib/main";
 export { TabButtons } from "../lib/main";
 export { RadioButton, RadioGroup } from "../lib/main";
 export { Loading } from "../lib/main";
+export { NavButton } from "../lib/main";
 export { Splash } from "../lib/main";
 export { BottomNavigation } from "../lib/main";
 export { Snackbar } from "../lib/main";
