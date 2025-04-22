@@ -52,7 +52,7 @@ export class Figure extends HTMLElement {
   }
 
   static get observedAttributes() {
-    return ["size", "width", "height"];
+    return ["size", "width", "height", "loading"];
   }
 
   attributeChangedCallback(
@@ -61,15 +61,20 @@ export class Figure extends HTMLElement {
     newValue: string | null,
   ) {
     // Update size if necessary
-    if (oldValue !== newValue && ["size", "width", "height"].includes(name)) {
+    if (oldValue !== newValue && Figure.observedAttributes.includes(name)) {
       this.updateImageSize();
     }
   }
 
   private updateImageSize() {
     const img = this.querySelector("img")!;
+    const loading = this.getAttribute("loading") || undefined;
     const width = this.getAttribute("width") || undefined;
     const height = this.getAttribute("height") || undefined;
+
+    if (loading) {
+      img.loading = loading === "lazy" ? loading : "eager";
+    }
 
     if (width) {
       img.style.width = width;

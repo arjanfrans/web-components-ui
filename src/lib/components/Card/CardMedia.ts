@@ -47,7 +47,7 @@ export class CardMedia extends HTMLElement {
   }
 
   static get observedAttributes() {
-    return ["src", "size"];
+    return ["src", "size", "loading"];
   }
 
   attributeChangedCallback(
@@ -64,6 +64,7 @@ export class CardMedia extends HTMLElement {
 
   updateMedia() {
     const src = this.getAttribute("src");
+    const loading = this.getAttribute("loading") || undefined;
     const size = this.getAttribute("size") || undefined;
     const type = this.detectMediaType(src);
 
@@ -76,6 +77,11 @@ export class CardMedia extends HTMLElement {
           : document.createElement("video");
 
       mediaElement.src = src;
+
+      if (type === "image") {
+        (mediaElement as HTMLImageElement).loading =
+          loading === "lazy" ? loading : "eager";
+      }
 
       if (size) {
         mediaElement.className = size;
