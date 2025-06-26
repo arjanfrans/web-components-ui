@@ -10,39 +10,41 @@ export class Badge extends HTMLElement {
 
     const style = document.createElement("style");
     style.textContent = `
-      :host {
-        display: inline;
-        width: max-content;
-        position: relative;
-      }
+  :host {
+    display: block;
+    width: max-content;
+    position: relative;
+  }
 
-      .content-wrapper {
-        display: inline-block;
-        position: relative;
-      }
+  .content-wrapper {
+    display: inline-block;
+    position: relative;
+  }
 
-      .badge {
-        position: absolute;
-        top: 0;
-        right: 0;
-        background-color: var(--semantic-background-highlight);
-        color: var(--semantic-text-inverted);
-        border-radius: 15px;
-        padding: 0 6px;
-        height: 20px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 0.75rem;
-        font-weight: bold;
-        transform: translate(75%, -50%);
-        z-index: 1;
-      }
+  .badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: var(--semantic-background-highlight);
+    color: var(--semantic-text-inverted);
+    border-radius: 15px;
+    padding: 0 6px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: bold;
 
-      :host([hidden]) .badge {
-        display: none;
-      }
-    `;
+    /* Use CSS variables for offset with fallback */
+    transform: translate(calc(75% + var(--offset-x, 0px)), calc(-50% + var(--offset-y, 0px)));
+    z-index: 1;
+  }
+
+  :host([hidden]) .badge {
+    display: none;
+  }
+`;
 
     shadow.appendChild(style);
 
@@ -62,10 +64,11 @@ export class Badge extends HTMLElement {
 
     // Initialize badge content
     this.updateBadge();
+    this.updateOffset();
   }
 
   static get observedAttributes() {
-    return ["content", "hidden"];
+    return ["content", "hidden", "offset-x", "offset-y"];
   }
 
   attributeChangedCallback(
@@ -77,6 +80,11 @@ export class Badge extends HTMLElement {
       this.updateBadge();
     } else if (name === "hidden" && oldValue !== newValue) {
       this.updateVisibility();
+    } else if (
+      (name === "offset-x" || name === "offset-y") &&
+      oldValue !== newValue
+    ) {
+      this.updateOffset();
     }
   }
 
@@ -108,6 +116,13 @@ export class Badge extends HTMLElement {
 
   get hidden() {
     return this.hasAttribute("hidden");
+  }
+
+  private updateOffset() {
+    const offsetX = this.getAttribute("offset-x") || "0px";
+    const offsetY = this.getAttribute("offset-y") || "0px";
+    this.badgeElement.style.setProperty("--offset-x", offsetX);
+    this.badgeElement.style.setProperty("--offset-y", offsetY);
   }
 }
 
