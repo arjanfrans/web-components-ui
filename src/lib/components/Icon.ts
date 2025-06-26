@@ -13,7 +13,8 @@ export class Icon extends HTMLElement {
     const style = document.createElement("style");
     style.textContent = `
       :host {
-        display: inline-block;
+        display: flex;
+        justify-content: center;
         overflow: hidden;
         position: relative;
         box-sizing: border-box;
@@ -36,7 +37,6 @@ export class Icon extends HTMLElement {
         fill: var(--icon-color);
         display: block;
         object-fit: contain;
-        width: 100%;
         height: 100%;
       }
 

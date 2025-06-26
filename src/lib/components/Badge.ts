@@ -12,12 +12,6 @@ export class Badge extends HTMLElement {
     style.textContent = `
   :host {
     display: block;
-    width: max-content;
-    position: relative;
-  }
-
-  .content-wrapper {
-    display: inline-block;
     position: relative;
   }
 
@@ -30,7 +24,7 @@ export class Badge extends HTMLElement {
     border-radius: 15px;
     padding: 0 6px;
     height: 20px;
-    display: flex;
+    display: block;
     align-items: center;
     justify-content: center;
     font-size: 0.75rem;
@@ -94,7 +88,7 @@ export class Badge extends HTMLElement {
 
   private updateVisibility() {
     const isHidden = this.hasAttribute("hidden");
-    this.badgeElement.style.display = isHidden ? "none" : "flex";
+    this.badgeElement.style.display = isHidden ? "none" : "block";
   }
 
   // Property setters and getters

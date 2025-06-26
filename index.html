@@ -944,16 +944,22 @@
                 </x-scroll-box>
 
                 <x-bottom-navigation>
-                    <x-bottom-navigation-action svg="/icons/house.svg" label="Home">
-                    </x-bottom-navigation-action>
-
-                    <x-bottom-navigation-action label="Search" active>
-                    </x-bottom-navigation-action>
-
-                    <x-badge content="3" offset-x="-12px" offset-y="12px">
-                        <x-bottom-navigation-action svg="/icons/github.svg">
+                    <x-block>
+                        <x-bottom-navigation-action svg="/icons/house.svg" label="Home">
                         </x-bottom-navigation-action>
-                    </x-badge>
+                    </x-block>
+
+                    <x-block>
+                        <x-bottom-navigation-action label="Search" active>
+                        </x-bottom-navigation-action>
+                    </x-block>
+
+                    <x-block>
+                        <x-badge content="3" offset-x="-12px" offset-y="12px">
+                            <x-bottom-navigation-action svg="/icons/github.svg">
+                            </x-bottom-navigation-action>
+                        </x-badge>
+                    </x-block>
                 </x-bottom-navigation>
             </div>
         </x-container>
