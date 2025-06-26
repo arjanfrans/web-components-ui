@@ -11,8 +11,11 @@ export class Badge extends HTMLElement {
     const style = document.createElement("style");
     style.textContent = `
   :host {
-    display: block;
+    display: flex;
     position: relative;
+    align-items: center;
+    justify-content: center;
+    width: max-content;
   }
 
   .badge {
@@ -22,7 +25,10 @@ export class Badge extends HTMLElement {
     background-color: var(--semantic-background-highlight);
     color: var(--semantic-text-inverted);
     border-radius: 15px;
-    padding: 0 6px;
+    padding-right: 7px;
+    padding-left: 6px;
+    padding-top: 0;
+    padding-bottom: 0;
     height: 20px;
     display: block;
     align-items: center;
