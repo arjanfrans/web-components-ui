@@ -15,8 +15,6 @@ export class Icon extends HTMLElement {
       :host {
         display: flex;
         justify-content: center;
-        overflow: hidden;
-        position: relative;
         box-sizing: border-box;
         --icon-color: var(--semantic-text-default);
       }
