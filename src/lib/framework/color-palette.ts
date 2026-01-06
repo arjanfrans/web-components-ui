@@ -143,7 +143,8 @@ function adjustColor(color: string, amount: number): string {
 }
 
 export function generateColorPalette(
-  primaryColor: string,
+  primaryColorLight: string,
+  primaryColorDark: string,
   textColorLight: string,
   backgroundColorLight: string,
   textColorDark: string,
@@ -215,12 +216,17 @@ export function generateColorPalette(
 
   return {
     light: createPalette(
-      primaryColor,
+      primaryColorLight,
       backgroundColorLight,
       textColorLight,
       false,
     ),
-    dark: createPalette(primaryColor, backgroundColorDark, textColorDark, true),
+    dark: createPalette(
+        primaryColorDark,
+        backgroundColorDark,
+        textColorDark,
+        true
+    ),
   };
 }
 

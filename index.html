@@ -59,20 +59,9 @@
     <x-loading></x-loading>
 
     <x-theme style="display: none" theme="light" font-family-heading="Neue Aachen Regular, sans-serif"
-        font-family-default="sans-serif" color-primary="#217ba3" color-text-light="#000000" color-text-dark="#ffffff"
+        font-family-default="sans-serif" color-primary-light="#217ba3" color-primary-dark="#212b33" color-text-light="#000000" color-text-dark="#ffffff"
         color-background-light="#ffffff" color-background-dark="#1f1f1f" bottom-navigation-offset="20px">
 
-
-        <!-- <x-install>
-        <x-stack direction="vertical" gap="medium" margin-inline="large" margin-block="large" justify-content="center">
-            <x-box justify-content="center">
-                <x-button id="install" size="large" variant="filled">Install</x-button>
-            </x-box>
-            <x-box justify-content="center">
-                <x-button id="no-install" size="large" variant="outlined">Do not install</x-button>
-            </x-box>
-        </x-stack>
-    </x-install> -->
 
         <x-container>
             <!--        <x-splash timeout="1000">-->
@@ -98,7 +87,8 @@
 
                     <x-stack direction="horizontal" gap="medium" margin-inline="medium" margin-block="large">
                         <x-switch id="dark-mode" label="Dark Mode"></x-switch>
-                        <x-color-picker id="color-primary" value="#217ba3" label="Primary"></x-color-picker>
+                        <x-color-picker id="color-primary-light" value="#217ba3" label="Primary Light"></x-color-picker>
+                        <x-color-picker id="color-primary-dark" value="#217ba3" label="Primary Dark"></x-color-picker>
                         <x-color-picker id="color-background-light" value="#ffffff"
                             label="Background Light"></x-color-picker>
                         <x-color-picker id="color-background-dark" value="#1f1f1f"
@@ -969,7 +959,8 @@
         (function () {
             const theme = document.querySelector('x-theme');
             const darkModeSwitch = document.querySelector('#dark-mode');
-            const colorPrimary = document.querySelector('#color-primary');
+            const colorPrimaryLight = document.querySelector('#color-primary-light');
+            const colorPrimaryDark = document.querySelector('#color-primary-dark');
             const colorBackgroundLight = document.querySelector('#color-background-light');
             const colorBackgroundDark = document.querySelector('#color-background-dark');
             const colorTextLight = document.querySelector('#color-text-light');
@@ -983,17 +974,16 @@
                 }
             })
 
-
-            colorPrimary.addEventListener('color-change', (event) => {
+            colorPrimaryLight.addEventListener('color-change', (event) => {
                 const color = event.detail.color;
 
-                theme.setAttribute('color-primary', color);
+                theme.setAttribute('color-primary-light', color);
             });
 
-            colorPrimary.addEventListener('color-change', (event) => {
+            colorPrimaryDark.addEventListener('color-change', (event) => {
                 const color = event.detail.color;
 
-                theme.setAttribute('color-primary', color);
+                theme.setAttribute('color-primary-dark', color);
             });
 
             colorBackgroundLight.addEventListener('color-change', (event) => {

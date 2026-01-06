@@ -5,7 +5,6 @@ export {
 } from "./framework/register";
 
 export { Theme } from "./components/Theme";
-export { Install } from "./components/Install";
 export { AppBar } from "./components/AppBar";
 export { Chip } from "./components/Chip";
 export { Table } from "./components/Table";

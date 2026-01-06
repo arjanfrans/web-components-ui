@@ -53,7 +53,8 @@ export class Theme extends HTMLElement {
       "font-size-md",
       "font-size-sm",
       "font-size-default",
-      "color-primary",
+      "color-primary-light",
+      "color-primary-dark",
       "color-text-dark",
       "color-background-dark",
       "color-text-light",
@@ -96,8 +97,12 @@ export class Theme extends HTMLElement {
       this.getAttribute("font-family-heading") ||
       this.defaultStyles.fontFamilyHeading;
 
-    const colorPrimary =
-      this.getAttribute("color-primary") || this.defaultStyles.colorPrimary;
+
+    const colorPrimaryLight =
+        this.getAttribute("color-primary-light") || this.defaultStyles.colorPrimary;
+
+    const colorPrimaryDark =
+      this.getAttribute("color-primary-dark") || this.defaultStyles.colorPrimary;
     const colorTextLight =
       this.getAttribute("color-text-light") ||
       this.defaultStyles.colorTextLight;
@@ -132,11 +137,12 @@ export class Theme extends HTMLElement {
       this.defaultStyles.bottomNavigationOffset;
 
     const palette = generateColorPalette(
-      colorPrimary, // Primary color
-      colorTextLight, // Light mode text color
-      colorBackgroundLight, // Light mode background color
-      colorTextDark, // Dark mode text color
-      colorBackgroundDark, // Dark mode background color
+      colorPrimaryLight,
+      colorPrimaryDark,
+      colorTextLight,
+      colorBackgroundLight,
+      colorTextDark,
+      colorBackgroundDark,
     );
     const cssVariables = generateCSSVariables(palette);
 

@@ -8,7 +8,6 @@ configurePrefix("x");
 waitForComponents();
 
 export { Theme } from "../lib/main";
-export { Install } from "../lib/main";
 export { AppBar } from "../lib/main";
 export { Chip } from "../lib/main";
 export { Table } from "../lib/main";
