@@ -97,12 +97,13 @@ export class Theme extends HTMLElement {
       this.getAttribute("font-family-heading") ||
       this.defaultStyles.fontFamilyHeading;
 
-
     const colorPrimaryLight =
-        this.getAttribute("color-primary-light") || this.defaultStyles.colorPrimary;
+      this.getAttribute("color-primary-light") ||
+      this.defaultStyles.colorPrimary;
 
     const colorPrimaryDark =
-      this.getAttribute("color-primary-dark") || this.defaultStyles.colorPrimary;
+      this.getAttribute("color-primary-dark") ||
+      this.defaultStyles.colorPrimary;
     const colorTextLight =
       this.getAttribute("color-text-light") ||
       this.defaultStyles.colorTextLight;

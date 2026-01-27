@@ -222,10 +222,10 @@ export function generateColorPalette(
       false,
     ),
     dark: createPalette(
-        primaryColorDark,
-        backgroundColorDark,
-        textColorDark,
-        true
+      primaryColorDark,
+      backgroundColorDark,
+      textColorDark,
+      true,
     ),
   };
 }

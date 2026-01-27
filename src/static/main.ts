@@ -48,6 +48,7 @@ export { Splash } from "../lib/main";
 export { BottomNavigation } from "../lib/main";
 export { Snackbar } from "../lib/main";
 export { BottomNavigationAction } from "../lib/main";
+export { Indent } from "../lib/main";
 
 if (!import.meta.env.DEV) {
   if ("serviceWorker" in navigator) {

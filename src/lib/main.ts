@@ -44,6 +44,7 @@ export { Loading } from "./components/Loading";
 export { Splash } from "./components/Splash";
 export { NavButton } from "./components/NavButton";
 export { Snackbar } from "./components/Snackbar/Snackbar.ts";
+export { Indent } from "./components/Indent.ts";
 
 export { BottomNavigation } from "./components/BottomNavigation/BottomNavigation";
 export { BottomNavigationAction } from "./components/BottomNavigation/BottomNavigationAction";
