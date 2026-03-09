@@ -14,6 +14,7 @@ export class Box extends HTMLElement {
             :host {
                 display: flex;
                 flex-wrap: wrap;
+                box-sizing: border-box;
             }
 
             ${justifyStyle()}
