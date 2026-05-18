@@ -44,7 +44,7 @@ export function waitForComponents() {
     const theme = document.querySelector(themeTag) as Theme | null;
 
     if (!theme) {
-      throw new Error(`Not theme tag found: ${themeTag}`);
+      throw new Error(`No theme tag found: ${themeTag}`);
     }
 
     if (theme.style.display !== "none") {

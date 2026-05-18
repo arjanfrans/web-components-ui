@@ -5,6 +5,7 @@ export class Icon extends HTMLElement {
   private shadow: ShadowRoot;
 
   private static svgCache: Map<string, string> = new Map();
+  private static svgPending: Map<string, Promise<string>> = new Map();
 
   constructor() {
     super();
@@ -82,15 +83,25 @@ export class Icon extends HTMLElement {
     try {
       if (Icon.svgCache.has(src)) {
         this.setSvgContent(Icon.svgCache.get(src)!);
-      } else {
-        const response = await fetch(src);
-        if (!response.ok) {
-          throw new Error(`Failed to load SVG: ${response.statusText}`);
-        }
-        const svgText = await response.text();
-        Icon.svgCache.set(src, svgText);
-        this.setSvgContent(svgText);
+        return;
       }
+
+      if (!Icon.svgPending.has(src)) {
+        const promise = fetch(src)
+          .then((r) => {
+            if (!r.ok) throw new Error(`Failed to load SVG: ${r.statusText}`);
+            return r.text();
+          })
+          .then((text) => {
+            Icon.svgCache.set(src, text);
+            Icon.svgPending.delete(src);
+            return text;
+          });
+        Icon.svgPending.set(src, promise);
+      }
+
+      const svgText = await Icon.svgPending.get(src)!;
+      this.setSvgContent(svgText);
     } catch (error) {
       console.error("Error loading SVG:", error);
     }

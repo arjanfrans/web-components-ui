@@ -18,27 +18,25 @@ export class Figure extends HTMLElement {
 
       ::slotted(img) {
         display: block;
-        object-fit: contain; /* Maintain aspect ratio while fitting within bounds */
-        object-position: center; /* Center the image if there are empty spaces */
+        object-fit: contain;
+        object-position: center;
         max-width: 100%;
+        height: auto;
       }
 
-      :host([size="small"]) ::slotted(img) {
+      :host([size="small"]) {
         width: 128px;
-        height: auto;
       }
 
-      :host([size="medium"]) ::slotted(img) {
+      :host([size="medium"]) {
         width: 256px;
-        height: auto;
       }
 
-      :host([size="large"]) ::slotted(img) {
+      :host([size="large"]) {
         width: 512px;
-        height: auto;
       }
 
-      :host([size="none"]) ::slotted(img) {
+      :host([size="none"]) {
         width: 100%;
         height: 100%;
       }
@@ -78,13 +76,13 @@ export class Figure extends HTMLElement {
 
     if (width) {
       img.style.width = width;
+      this.style.width = width;
     }
 
     if (height) {
       img.style.height = height;
+      this.style.height = height;
     }
-    // This function can handle additional logic if needed when size changes
-    // However, with the current CSS setup, it might not be needed
   }
 }
 
