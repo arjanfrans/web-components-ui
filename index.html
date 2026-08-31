@@ -925,7 +925,7 @@
                                 </x-block>
 
                                 <x-block>
-                                    <x-console-log id="demo-console" style="height: 180px" passive stretch-horizontal></x-console-log>
+                                    <x-console id="demo-console" style="height: 180px" passive stretch-horizontal></x-console>
                                     <x-stack gap="small" direction="horizontal" margin-block="small">
                                         <x-button id="demo-console-log">Log</x-button>
                                         <x-button id="demo-console-warn">Warn</x-button>
@@ -1052,16 +1052,20 @@
             const rejectButton = document.querySelector('#demo-console-reject');
             const captureSwitch = document.querySelector('#demo-console-capture');
 
+            customElements.whenDefined('x-console').then(() => {
+                demoConsole.warn('Example Warning');
+            });
+
             logButton.addEventListener('click', () => {
-                demoConsole.log('Hello from the console component', { count: 1 });
+                console.log('Hello from the console component', { count: 1 });
             });
 
             warnButton.addEventListener('click', () => {
-                demoConsole.warn('Something looks off');
+                console.warn('Something looks off');
             });
 
             errorButton.addEventListener('click', () => {
-                demoConsole.error(new Error('Something went wrong'));
+                console.error(new Error('Something went wrong'));
             });
 
             throwButton.addEventListener('click', () => {

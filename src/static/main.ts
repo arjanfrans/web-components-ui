@@ -4,6 +4,8 @@ import {
   waitForComponents,
 } from "../lib/main";
 
+import { enableConsoleInterception } from "../lib/main";
+
 configurePrefix("x");
 waitForComponents();
 
@@ -70,3 +72,4 @@ if (!import.meta.env.DEV) {
 }
 
 loadComponents();
+enableConsoleInterception();

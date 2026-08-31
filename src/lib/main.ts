@@ -4,6 +4,12 @@ export {
   loadComponents,
 } from "./framework/register";
 
+export {
+  enableConsoleInterception,
+  disableConsoleInterception,
+  isConsoleInterceptionEnabled,
+} from "./framework/console";
+
 export { Theme } from "./components/Theme";
 export { AppBar } from "./components/AppBar";
 export { Chip } from "./components/Chip";

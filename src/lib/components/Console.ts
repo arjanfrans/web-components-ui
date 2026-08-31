@@ -1,9 +1,10 @@
 import { register, variable } from "../framework/register";
+import { isConsoleInterceptionEnabled } from "../framework/console.ts";
+import { ConsoleLogEvent } from "../framework/event/ConsoleLogEvent.ts";
 import { stretchStyle } from "./styles/stretch.ts";
+import { ConsoleMethod } from "../framework/ConsoleMethod.ts";
 
-type ConsoleLevel = "log" | "info" | "warn" | "error" | "debug";
-
-const PREFIXES: Record<ConsoleLevel, string> = {
+const PREFIXES: Record<ConsoleMethod, string> = {
   log: ">",
   info: "i",
   warn: "!",
@@ -19,6 +20,13 @@ export class Console extends HTMLElement {
   };
   private onUnhandledRejection = (event: PromiseRejectionEvent) => {
     this.addEntry("error", ["Unhandled rejection:", event.reason]);
+  };
+  private onConsoleLog = (event: ConsoleLogEvent) => {
+    if (!isConsoleInterceptionEnabled()) {
+      return;
+    }
+
+    this.addEntry(event.detail.method, event.detail.args);
   };
 
   constructor() {
@@ -145,7 +153,7 @@ export class Console extends HTMLElement {
     this.logElement.innerHTML = "";
   }
 
-  private addEntry(level: ConsoleLevel, args: unknown[]) {
+  private addEntry(level: ConsoleMethod, args: unknown[]) {
     const line = document.createElement("div");
     line.className = `console-line console-${level}`;
 
@@ -187,6 +195,10 @@ export class Console extends HTMLElement {
 
     window.addEventListener("error", this.onWindowError);
     window.addEventListener("unhandledrejection", this.onUnhandledRejection);
+    window.addEventListener(
+      ConsoleLogEvent.type(),
+      this.onConsoleLog as EventListener,
+    );
   }
 
   private stopCapture() {
@@ -198,7 +210,11 @@ export class Console extends HTMLElement {
 
     window.removeEventListener("error", this.onWindowError);
     window.removeEventListener("unhandledrejection", this.onUnhandledRejection);
+    window.removeEventListener(
+      ConsoleLogEvent.type(),
+      this.onConsoleLog as EventListener,
+    );
   }
 }
 
-register("console-log", Console);
+register("console", Console);
