@@ -914,6 +914,29 @@
                                 </x-block>
                             </x-stack>
                         </x-block>
+
+                        <x-block>
+                            <x-stack gap="medium">
+                                <x-block>
+                                    <x-typography display="h1">
+                                        <h2>Console</h2>
+                                    </x-typography>
+                                    <x-divider fade></x-divider>
+                                </x-block>
+
+                                <x-block>
+                                    <x-console-log id="demo-console" style="height: 180px" passive stretch-horizontal></x-console-log>
+                                    <x-stack gap="small" direction="horizontal" margin-block="small">
+                                        <x-button id="demo-console-log">Log</x-button>
+                                        <x-button id="demo-console-warn">Warn</x-button>
+                                        <x-button id="demo-console-error">Error</x-button>
+                                        <x-button id="demo-console-throw">Throw uncaught error</x-button>
+                                        <x-button id="demo-console-reject">Reject promise</x-button>
+                                    </x-stack>
+                                    <x-switch id="demo-console-capture" label="Auto-capture window errors"></x-switch>
+                                </x-block>
+                            </x-stack>
+                        </x-block>
                     </x-stack>
 
                     <x-stack justify-content="center" direction="horizontal" margin-block="medium">
@@ -1016,6 +1039,50 @@
             });
 
 
+        })()
+    </script>
+
+    <script>
+        (function () {
+            const demoConsole = document.querySelector('#demo-console');
+            const logButton = document.querySelector('#demo-console-log');
+            const warnButton = document.querySelector('#demo-console-warn');
+            const errorButton = document.querySelector('#demo-console-error');
+            const throwButton = document.querySelector('#demo-console-throw');
+            const rejectButton = document.querySelector('#demo-console-reject');
+            const captureSwitch = document.querySelector('#demo-console-capture');
+
+            logButton.addEventListener('click', () => {
+                demoConsole.log('Hello from the console component', { count: 1 });
+            });
+
+            warnButton.addEventListener('click', () => {
+                demoConsole.warn('Something looks off');
+            });
+
+            errorButton.addEventListener('click', () => {
+                demoConsole.error(new Error('Something went wrong'));
+            });
+
+            throwButton.addEventListener('click', () => {
+                // setTimeout so the throw escapes this click handler and becomes
+                // a genuine uncaught error, which is what the switch below captures.
+                setTimeout(() => {
+                    throw new Error('Uncaught demo error');
+                });
+            });
+
+            rejectButton.addEventListener('click', () => {
+                Promise.reject(new Error('Unhandled demo rejection'));
+            });
+
+            captureSwitch.addEventListener('change', () => {
+                if (captureSwitch.checked) {
+                    demoConsole.removeAttribute('passive');
+                } else {
+                    demoConsole.setAttribute('passive', '');
+                }
+            });
         })()
     </script>
 

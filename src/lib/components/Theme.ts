@@ -19,6 +19,8 @@ export class Theme extends HTMLElement {
     fontSizeDefault: "1rem", // Default font size
     fontFamilyDefault: "sans-serif",
     fontFamilyHeading: "arial",
+    fontFamilyCode:
+      'ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace',
     colorPrimary: "#ed1c24",
     colorTextLight: "#000000",
     colorTextDark: "#ffffff",
@@ -46,6 +48,7 @@ export class Theme extends HTMLElement {
     return [
       "font-family-heading",
       "font-family-default",
+      "font-family-code",
       "font-size-title",
       "font-size-xxl",
       "font-size-xl",
@@ -96,6 +99,9 @@ export class Theme extends HTMLElement {
     const fontFamilyHeading =
       this.getAttribute("font-family-heading") ||
       this.defaultStyles.fontFamilyHeading;
+    const fontFamilyCode =
+      this.getAttribute("font-family-code") ||
+      this.defaultStyles.fontFamilyCode;
 
     const colorPrimaryLight =
       this.getAttribute("color-primary-light") ||
@@ -167,6 +173,7 @@ export class Theme extends HTMLElement {
 
         --${getPrefix()}-font-family-default: ${fontFamilyDefault};
         --${getPrefix()}-font-family-heading: ${fontFamilyHeading};
+        --${getPrefix()}-font-family-code: ${fontFamilyCode};
         --${getPrefix()}-font-size-default: ${fontSizeDefault};
         --${getPrefix()}-font-size-title: ${fontSizeTitle};
         --${getPrefix()}-font-size-xxl: ${fontSizeXxl};
