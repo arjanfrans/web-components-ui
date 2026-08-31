@@ -30,10 +30,11 @@
   "homepage": "https://github.com/arjanfrans/web-components-ui#readme",
   "devDependencies": {
     "@types/node": "^20.7.1",
-    "@typescript-eslint/eslint-plugin": "^6.7.5",
-    "eslint": "^8.51.0",
+    "@typescript-eslint/eslint-plugin": "^8.69.0",
+    "@typescript-eslint/parser": "^8.69.0",
+    "eslint": "^8.57.0",
     "eslint-plugin-prettier": "^5.0.1",
-    "typescript": "^5.2.2",
+    "typescript": "^5.9.3",
     "vite": "^7.3.0",
     "vite-plugin-checker": "^0.6.2",
     "vite-plugin-dts": "^4.0.2"

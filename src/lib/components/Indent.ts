@@ -49,7 +49,11 @@ export class Indent extends HTMLElement {
   }
 
   set strong(value: boolean) {
-    value ? this.setAttribute("strong", "") : this.removeAttribute("strong");
+    if (value) {
+      this.setAttribute("strong", "");
+    } else {
+      this.removeAttribute("strong");
+    }
   }
 
   get strong() {
@@ -57,7 +61,11 @@ export class Indent extends HTMLElement {
   }
 
   set dashed(value: boolean) {
-    value ? this.setAttribute("dashed", "") : this.removeAttribute("dashed");
+    if (value) {
+      this.setAttribute("dashed", "");
+    } else {
+      this.removeAttribute("dashed");
+    }
   }
 
   get dashed() {
