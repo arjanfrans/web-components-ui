@@ -38,6 +38,7 @@ export class Console extends HTMLElement {
       :host {
         display: block;
         box-sizing: border-box;
+        min-width: 0;
         overflow: auto;
         overscroll-behavior: contain;
         -webkit-overflow-scrolling: touch;
@@ -48,7 +49,7 @@ export class Console extends HTMLElement {
         color: #d4d4d4;
         padding: ${variable("spacing-sm")};
       }
-      
+
       ${stretchStyle()}
 
       .console-line {
@@ -56,6 +57,7 @@ export class Console extends HTMLElement {
         gap: ${variable("spacing-sm")};
         white-space: pre-wrap;
         word-break: break-word;
+        overflow-wrap: anywhere;
         border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         padding-block: 2px;
       }
@@ -67,6 +69,11 @@ export class Console extends HTMLElement {
       .console-prefix {
         flex-shrink: 0;
         opacity: 0.7;
+      }
+
+      .console-message {
+        flex: 1 1 auto;
+        min-width: 0;
       }
 
       .console-log .console-prefix,
