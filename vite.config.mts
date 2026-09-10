@@ -6,7 +6,8 @@ import {resolve} from "path";
 const libConfig = defineConfig({
     plugins: [
         dts({
-            include: [resolve(__dirname, "src/lib/main.ts")],
+            include: [resolve(__dirname, "src/lib/**/*.ts")],
+            rollupTypes: true,
         }),
         checker({
             typescript: true,
@@ -28,6 +29,7 @@ const staticConfig = defineConfig({
     plugins: [
         dts({
             include: [resolve(__dirname, "src/static/main.ts")],
+            rollupTypes: true,
         }),
         checker({
             typescript: true,
