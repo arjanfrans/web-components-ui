@@ -94,9 +94,9 @@ export class Icon extends HTMLElement {
           })
           .then((text) => {
             Icon.svgCache.set(src, text);
-            Icon.svgPending.delete(src);
             return text;
-          });
+          })
+          .finally(() => Icon.svgPending.delete(src));
         Icon.svgPending.set(src, promise);
       }
 
