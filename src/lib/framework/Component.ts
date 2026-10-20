@@ -1,5 +1,5 @@
 export class Component extends HTMLElement {
-  static get observedAttributes() {
-    return [];
-  }
+    static get observedAttributes() {
+        return [];
+    }
 }

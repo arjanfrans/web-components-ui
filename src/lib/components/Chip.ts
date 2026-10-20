@@ -1,22 +1,23 @@
-import { register, variable } from "../framework/register";
+import { register, variable } from '../framework/register';
 
-type ChipSize = "small" | "large";
+type ChipSize = 'small' | 'large';
 
 export class Chip extends HTMLElement {
-  private readonly chipContent: HTMLDivElement;
+    private readonly chipContent: HTMLDivElement;
 
-  constructor() {
-    super();
-    // Attach the shadow root
-    const shadow = this.attachShadow({ mode: "open" });
+    constructor() {
+        super();
+        // Attach the shadow root
+        const shadow = this.attachShadow({ mode: 'open' });
 
-    // Create a style element
-    const style = document.createElement("style");
-    style.textContent = `
+        // Create a style element
+        const style = document.createElement('style');
+
+        style.textContent = `
             :host {
                 align-items: center;
                 border: 1px solid var(--semantic-stroke-default);
-                border-radius: ${variable("border-sm")};
+                border-radius: ${variable('border-sm')};
                 display: flex;
                 justify-content: center;
                 text-align: center;
@@ -35,100 +36,98 @@ export class Chip extends HTMLElement {
             }
             
             :host([size="small"]) {
-                font-size: ${variable("font-size-sm")};
-                padding-block: ${variable("spacing-xs")};
-                padding-inline: ${variable("spacing-sm")};
+                font-size: ${variable('font-size-sm')};
+                padding-block: ${variable('spacing-xs')};
+                padding-inline: ${variable('spacing-sm')};
             }
             
             :host([size="large"]) {
-                font-size: ${variable("font-size-md")};
-                padding-block: ${variable("spacing-sm")};
-                padding-inline: ${variable("spacing-md")};
+                font-size: ${variable('font-size-md')};
+                padding-block: ${variable('spacing-sm')};
+                padding-inline: ${variable('spacing-md')};
             }
         `;
 
-    // Append the style to the shadow root
-    shadow.appendChild(style);
+        // Append the style to the shadow root
+        shadow.appendChild(style);
 
-    // Create a div to hold the chip content
-    this.chipContent = document.createElement("div");
-    shadow.appendChild(this.chipContent);
+        // Create a div to hold the chip content
+        this.chipContent = document.createElement('div');
+        shadow.appendChild(this.chipContent);
 
-    // Set initial content
-    this.updateContent();
-
-    if (!this.hasAttribute("size")) {
-      this.setAttribute("size", "small");
+        // Set initial content
+        this.updateContent();
     }
-  }
 
-  // Observe changes to 'value' and 'active' attributes
-  static get observedAttributes() {
-    return ["value", "active", "size"];
-  }
-
-  // Handle changes to attributes
-  attributeChangedCallback(
-    name: string,
-    oldValue: string | null,
-    newValue: string | null,
-  ) {
-    if (name === "value" && oldValue !== newValue) {
-      this.updateContent();
-    } else if (name === "active" && oldValue !== newValue) {
-      this.updateActiveState();
-    } else if (name === "size" && oldValue !== newValue) {
-      this.updateSize();
+    connectedCallback() {
+        if (!this.hasAttribute('size')) {
+            this.setAttribute('size', 'small');
+        }
     }
-  }
 
-  private updateContent() {
-    this.chipContent.textContent = this.value;
-  }
-
-  private updateActiveState() {
-    if (this.active) {
-      this.setAttribute("active", "");
-    } else {
-      this.removeAttribute("active");
+    // Observe changes to 'value' and 'active' attributes
+    static get observedAttributes() {
+        return ['value', 'active', 'size'];
     }
-  }
 
-  private updateSize() {
-    if (this.size) {
-      this.setAttribute("size", this.size);
-    } else {
-      this.removeAttribute("size");
+    // Handle changes to attributes
+    attributeChangedCallback(name: string, oldValue: string | null, newValue: string | null) {
+        if (name === 'value' && oldValue !== newValue) {
+            this.updateContent();
+        } else if (name === 'active' && oldValue !== newValue) {
+            this.updateActiveState();
+        } else if (name === 'size' && oldValue !== newValue) {
+            this.updateSize();
+        }
     }
-  }
 
-  set active(value: boolean) {
-    if (value) {
-      this.setAttribute("active", "");
-    } else {
-      this.removeAttribute("active");
+    private updateContent() {
+        this.chipContent.textContent = this.value;
     }
-  }
 
-  get active() {
-    return this.hasAttribute("active");
-  }
+    private updateActiveState() {
+        if (this.active) {
+            this.setAttribute('active', '');
+        } else {
+            this.removeAttribute('active');
+        }
+    }
 
-  set value(value: string) {
-    this.setAttribute("value", value);
-  }
+    private updateSize() {
+        if (this.size) {
+            this.setAttribute('size', this.size);
+        } else {
+            this.removeAttribute('size');
+        }
+    }
 
-  get value() {
-    return this.getAttribute("value") || "";
-  }
+    set active(value: boolean) {
+        if (value) {
+            this.setAttribute('active', '');
+        } else {
+            this.removeAttribute('active');
+        }
+    }
 
-  set size(value: ChipSize) {
-    this.setAttribute("size", value);
-  }
+    get active() {
+        return this.hasAttribute('active');
+    }
 
-  get size(): ChipSize {
-    return (this.getAttribute("size") as ChipSize) || "small";
-  }
+    set value(value: string) {
+        this.setAttribute('value', value);
+    }
+
+    get value() {
+        return this.getAttribute('value') || '';
+    }
+
+    set size(value: ChipSize) {
+        this.setAttribute('size', value);
+    }
+
+    get size(): ChipSize {
+        return (this.getAttribute('size') as ChipSize) || 'small';
+    }
 }
 
-register("chip", Chip);
+register('chip', Chip);

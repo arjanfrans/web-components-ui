@@ -1,1 +1,1 @@
-export type ConsoleMethod = "log" | "info" | "warn" | "error" | "debug";
+export type ConsoleMethod = 'log' | 'info' | 'warn' | 'error' | 'debug';

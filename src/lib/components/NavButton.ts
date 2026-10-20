@@ -1,17 +1,17 @@
-import { register, variable } from "../framework/register";
-import { stretchStyle } from "./styles/stretch.ts";
+import { register, variable } from '../framework/register';
+import { stretchStyle } from './styles/stretch.ts';
 
 export class NavButton extends HTMLElement {
-  constructor() {
-    super();
-    this.attachShadow({ mode: "open" }).innerHTML = `
+    constructor() {
+        super();
+        this.attachShadow({ mode: 'open' }).innerHTML = `
         <style>
           :host {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: ${variable("spacing-sm")};
-            gap: ${variable("spacing-sm")};
+            padding: ${variable('spacing-sm')};
+            gap: ${variable('spacing-sm')};
             cursor: pointer;
             user-select: none;
           }
@@ -62,31 +62,24 @@ export class NavButton extends HTMLElement {
         </svg>
       `;
 
-    this.update();
-  }
-
-  static get observedAttributes() {
-    return ["border-top", "border-bottom", "arrow"];
-  }
-
-  attributeChangedCallback(
-    name: string,
-    oldValue: string | null,
-    newValue: string | null,
-  ) {
-    if (NavButton.observedAttributes.includes(name) && oldValue !== newValue) {
-      this.update();
+        this.update();
     }
-  }
 
-  private update(): void {
-    if (
-      !this.hasAttribute("border-top") &&
-      !this.hasAttribute("border-bottom")
-    ) {
-      this.setAttribute("border-bottom", "");
+    static get observedAttributes() {
+        return ['border-top', 'border-bottom', 'arrow'];
     }
-  }
+
+    attributeChangedCallback(name: string, oldValue: string | null, newValue: string | null) {
+        if (NavButton.observedAttributes.includes(name) && oldValue !== newValue) {
+            this.update();
+        }
+    }
+
+    private update(): void {
+        if (!this.hasAttribute('border-top') && !this.hasAttribute('border-bottom')) {
+            this.setAttribute('border-bottom', '');
+        }
+    }
 }
 
-register("nav-button", NavButton);
+register('nav-button', NavButton);

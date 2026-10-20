@@ -1,13 +1,15 @@
-import { register, variable } from "../framework/register";
-import { InvalidChildrenError } from "../framework/InvalidChildrenError";
+import { register, variable } from '../framework/register';
+import { InvalidChildrenError } from '../framework/InvalidChildrenError';
+import { onChildrenReady } from '../framework/onChildrenReady';
 
 export class Table extends HTMLElement {
-  constructor() {
-    super();
+    constructor() {
+        super();
 
-    const shadow = this.attachShadow({ mode: "open" });
-    const style = document.createElement("style");
-    style.textContent = `
+        const shadow = this.attachShadow({ mode: 'open' });
+        const style = document.createElement('style');
+
+        style.textContent = `
             :host {
               width: 100%;
             }
@@ -26,7 +28,7 @@ export class Table extends HTMLElement {
             :host table th, :host table td  {
                 text-align: left;
                 border-collapse: collapse;
-                padding: ${variable("spacing-xs")};
+                padding: ${variable('spacing-xs')};
                 border-right: 1px solid var(--semantic-stroke-default);
                 color: var(--semantic-text-default);
             }
@@ -49,18 +51,27 @@ export class Table extends HTMLElement {
             }
         `;
 
-    this.setAttribute("stretch-horizontal", "");
-
-    shadow.appendChild(style);
-
-    const table = this.querySelector("table");
-
-    if (!table) {
-      throw new InvalidChildrenError(this, ["table"]);
+        shadow.appendChild(style);
     }
 
-    shadow.appendChild(table);
-  }
+    connectedCallback() {
+        this.setAttribute('stretch-horizontal', '');
+        onChildrenReady(() => this.moveTableIntoShadow());
+    }
+
+    private moveTableIntoShadow() {
+        if (this.shadowRoot!.querySelector('table')) {
+            return;
+        }
+
+        const table = this.querySelector('table');
+
+        if (!table) {
+            throw new InvalidChildrenError(this, ['table']);
+        }
+
+        this.shadowRoot!.appendChild(table);
+    }
 }
 
-register("table", Table);
+register('table', Table);

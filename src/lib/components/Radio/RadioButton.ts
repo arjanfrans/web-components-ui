@@ -1,18 +1,19 @@
-import { register, variable } from "../../framework/register";
+import { register, variable } from '../../framework/register';
 
 export class RadioButton extends HTMLElement {
-  private radioElement: HTMLInputElement;
+    private radioElement: HTMLInputElement;
 
-  constructor() {
-    super();
-    const shadow = this.attachShadow({ mode: "open" });
+    constructor() {
+        super();
+        const shadow = this.attachShadow({ mode: 'open' });
 
-    const style = document.createElement("style");
-    style.textContent = `
+        const style = document.createElement('style');
+
+        style.textContent = `
       :host {
         display: inline-flex;
         align-items: center;
-        gap: ${variable("spacing-xs")};
+        gap: ${variable('spacing-xs')};
       }
 
       :host([disabled]) {
@@ -24,7 +25,7 @@ export class RadioButton extends HTMLElement {
         display: inline-flex;
         align-items: center;
         cursor: pointer;
-        gap: ${variable("spacing-xs")};
+        gap: ${variable('spacing-xs')};
       }
 
       .radio {
@@ -63,86 +64,88 @@ export class RadioButton extends HTMLElement {
       }
     `;
 
-    shadow.appendChild(style);
+        shadow.appendChild(style);
 
-    // Create the label that wraps both the radio input and the custom slot
-    const label = document.createElement("label");
+        // Create the label that wraps both the radio input and the custom slot
+        const label = document.createElement('label');
 
-    // Create the radio input element
-    this.radioElement = document.createElement("input");
-    this.radioElement.type = "radio";
-    this.radioElement.className = "radio";
-    label.appendChild(this.radioElement);
+        // Create the radio input element
+        this.radioElement = document.createElement('input');
+        this.radioElement.type = 'radio';
+        this.radioElement.className = 'radio';
+        label.appendChild(this.radioElement);
 
-    // Add a slot for the custom label
-    const slot = document.createElement("slot");
-    label.appendChild(slot);
+        // Add a slot for the custom label
+        const slot = document.createElement('slot');
 
-    shadow.appendChild(label);
+        label.appendChild(slot);
 
-    // Ensure clicking triggers a custom event
-    this.radioElement.addEventListener("click", this.handleClick);
+        shadow.appendChild(label);
 
-    this.updateRadio();
-  }
+        // Ensure clicking triggers a custom event
+        this.radioElement.addEventListener('click', this.handleClick);
 
-  static get observedAttributes() {
-    return ["checked", "disabled", "value"];
-  }
-
-  attributeChangedCallback() {
-    this.updateRadio();
-  }
-
-  private updateRadio() {
-    this.radioElement.checked = this.hasAttribute("checked");
-    this.radioElement.disabled = this.hasAttribute("disabled");
-  }
-
-  private handleClick = () => {
-    if (!this.radioElement.disabled) {
-      const value = this.getAttribute("value") || ""; // Get the value of the radio button
-      // Dispatch a custom event 'radio-selected' with the value
-      const event = new CustomEvent("radio-selected", {
-        bubbles: true, // Ensure it bubbles up to the RadioGroup
-        composed: true, // Allow it to pass through shadow DOM
-        detail: { radio: this, value }, // Pass the radio button and its value as detail
-      });
-      this.dispatchEvent(event);
+        this.updateRadio();
     }
-  };
 
-  set checked(value: boolean) {
-    if (value) {
-      this.setAttribute("checked", "");
-    } else {
-      this.removeAttribute("checked");
+    static get observedAttributes() {
+        return ['checked', 'disabled', 'value'];
     }
-  }
 
-  get checked() {
-    return this.hasAttribute("checked");
-  }
-
-  set disabled(value: boolean) {
-    if (value) {
-      this.setAttribute("disabled", "");
-    } else {
-      this.removeAttribute("disabled");
+    attributeChangedCallback() {
+        this.updateRadio();
     }
-  }
 
-  get disabled() {
-    return this.hasAttribute("disabled");
-  }
+    private updateRadio() {
+        this.radioElement.checked = this.hasAttribute('checked');
+        this.radioElement.disabled = this.hasAttribute('disabled');
+    }
 
-  set value(value: string) {
-    this.setAttribute("value", value);
-  }
+    private handleClick = () => {
+        if (!this.radioElement.disabled) {
+            const value = this.getAttribute('value') || ''; // Get the value of the radio button
+            // Dispatch a custom event 'radio-selected' with the value
+            const event = new CustomEvent('radio-selected', {
+                bubbles: true, // Ensure it bubbles up to the RadioGroup
+                composed: true, // Allow it to pass through shadow DOM
+                detail: { radio: this, value }, // Pass the radio button and its value as detail
+            });
 
-  get value() {
-    return this.getAttribute("value") || "";
-  }
+            this.dispatchEvent(event);
+        }
+    };
+
+    set checked(value: boolean) {
+        if (value) {
+            this.setAttribute('checked', '');
+        } else {
+            this.removeAttribute('checked');
+        }
+    }
+
+    get checked() {
+        return this.hasAttribute('checked');
+    }
+
+    set disabled(value: boolean) {
+        if (value) {
+            this.setAttribute('disabled', '');
+        } else {
+            this.removeAttribute('disabled');
+        }
+    }
+
+    get disabled() {
+        return this.hasAttribute('disabled');
+    }
+
+    set value(value: string) {
+        this.setAttribute('value', value);
+    }
+
+    get value() {
+        return this.getAttribute('value') || '';
+    }
 }
 
-register("radio-button", RadioButton);
+register('radio-button', RadioButton);

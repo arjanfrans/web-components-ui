@@ -1,5 +1,5 @@
 export function stretchStyle() {
-  return `
+    return `
         :host([stretch-vertical]) {
             height: 100%;
         }

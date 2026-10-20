@@ -1,14 +1,15 @@
-import { register } from "../../framework/register";
+import { register } from '../../framework/register';
 
 export class TextLink extends HTMLElement {
-  constructor() {
-    super();
-    // Attach the shadow root
-    const shadow = this.attachShadow({ mode: "open" });
+    constructor() {
+        super();
+        // Attach the shadow root
+        const shadow = this.attachShadow({ mode: 'open' });
 
-    // Create a style element
-    const style = document.createElement("style");
-    style.textContent = `
+        // Create a style element
+        const style = document.createElement('style');
+
+        style.textContent = `
             ::slotted(a) {
                 color: var(--semantic-text-highlight);
                 text-decoration: none;
@@ -30,11 +31,12 @@ export class TextLink extends HTMLElement {
             }
         `;
 
-    shadow.appendChild(style);
+        shadow.appendChild(style);
 
-    const slot = document.createElement("slot");
-    shadow.append(slot);
-  }
+        const slot = document.createElement('slot');
+
+        shadow.append(slot);
+    }
 }
 
-register("text-link", TextLink);
+register('text-link', TextLink);

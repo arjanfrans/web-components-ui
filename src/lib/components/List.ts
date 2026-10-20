@@ -1,14 +1,14 @@
-import { register } from "../framework/register";
+import { register } from '../framework/register';
 
 export class List extends HTMLElement {
-  constructor() {
-    super();
-    // Attach the shadow root
-    const shadow = this.attachShadow({ mode: "open" });
+    constructor() {
+        super();
+        // Attach the shadow root
+        const shadow = this.attachShadow({ mode: 'open' });
 
-    const style = document.createElement("style");
+        const style = document.createElement('style');
 
-    style.textContent = `
+        style.textContent = `
       :host {
         display: block;
         padding: 0;
@@ -53,13 +53,14 @@ export class List extends HTMLElement {
       }
     `;
 
-    // Append the style to the shadow root
-    shadow.appendChild(style);
+        // Append the style to the shadow root
+        shadow.appendChild(style);
 
-    // Create and append the slot element
-    const slot = document.createElement("slot");
-    shadow.appendChild(slot);
-  }
+        // Create and append the slot element
+        const slot = document.createElement('slot');
+
+        shadow.appendChild(slot);
+    }
 }
 
-register("list", List);
+register('list', List);

@@ -1,6 +1,6 @@
 {
   "name": "@arjanfrans/web-components-ui",
-  "version": "1.2.1",
+  "version": "1.3.0",
   "private": false,
   "description": "Web Components only UI library",
   "main": "dist/lib/main.mjs",
@@ -9,7 +9,8 @@
     "start": "vite --host --port 3000",
     "build:static": "tsc && TARGET=static vite build",
     "build": "tsc && vite build",
-    "cs": "eslint src --ext ts --fix"
+    "cs": "af-cs --env browser src",
+    "cs:check": "af-cs --check --env browser src"
   },
   "repository": {
     "type": "git",
@@ -29,11 +30,8 @@
   ],
   "homepage": "https://github.com/arjanfrans/web-components-ui#readme",
   "devDependencies": {
+    "@arjanfrans/af-codestyle": "^0.0.6",
     "@types/node": "^20.7.1",
-    "@typescript-eslint/eslint-plugin": "^8.69.0",
-    "@typescript-eslint/parser": "^8.69.0",
-    "eslint": "^8.57.0",
-    "eslint-plugin-prettier": "^5.0.1",
     "typescript": "^5.9.3",
     "vite": "^7.3.0",
     "vite-plugin-checker": "^0.6.2",

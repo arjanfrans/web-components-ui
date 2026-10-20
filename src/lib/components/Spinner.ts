@@ -1,14 +1,15 @@
-import { register } from "../framework/register";
+import { register } from '../framework/register';
 
-type SpinnerSize = "small" | "large";
+type SpinnerSize = 'small' | 'large';
 
 export class Spinner extends HTMLElement {
-  constructor() {
-    super();
-    const shadow = this.attachShadow({ mode: "open" });
+    constructor() {
+        super();
+        const shadow = this.attachShadow({ mode: 'open' });
 
-    const style = document.createElement("style");
-    style.textContent = `
+        const style = document.createElement('style');
+
+        style.textContent = `
             :host {
                 display: inline-block;
                 width: 50px;
@@ -63,62 +64,58 @@ export class Spinner extends HTMLElement {
             }
         `;
 
-    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    svg.setAttribute("viewBox", "0 0 50 50");
+        const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
 
-    const circle = document.createElementNS(
-      "http://www.w3.org/2000/svg",
-      "circle",
-    );
-    circle.setAttribute("cx", "25");
-    circle.setAttribute("cy", "25");
-    circle.setAttribute("r", "20");
+        svg.setAttribute('viewBox', '0 0 50 50');
 
-    svg.appendChild(circle);
-    shadow.appendChild(style);
-    shadow.appendChild(svg);
-  }
+        const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
 
-  static get observedAttributes() {
-    return ["size", "color"];
-  }
+        circle.setAttribute('cx', '25');
+        circle.setAttribute('cy', '25');
+        circle.setAttribute('r', '20');
 
-  attributeChangedCallback(
-    name: string,
-    oldValue: string | null,
-    newValue: string | null,
-  ) {
-    if (name === "size" && oldValue !== newValue) {
-      this.updateSize();
+        svg.appendChild(circle);
+        shadow.appendChild(style);
+        shadow.appendChild(svg);
     }
-    if (name === "color" && oldValue !== newValue) {
-      this.updateColor();
+
+    static get observedAttributes() {
+        return ['size', 'color'];
     }
-  }
 
-  private updateSize() {
-    this.setAttribute("size", this.size);
-  }
+    attributeChangedCallback(name: string, oldValue: string | null, newValue: string | null) {
+        if (name === 'size' && oldValue !== newValue) {
+            this.updateSize();
+        }
 
-  private updateColor() {
-    this.style.setProperty("--spinner-color", this.color);
-  }
+        if (name === 'color' && oldValue !== newValue) {
+            this.updateColor();
+        }
+    }
 
-  set size(value: SpinnerSize) {
-    this.setAttribute("size", value);
-  }
+    private updateSize() {
+        this.setAttribute('size', this.size);
+    }
 
-  get size(): SpinnerSize {
-    return (this.getAttribute("size") as SpinnerSize) || "small";
-  }
+    private updateColor() {
+        this.style.setProperty('--spinner-color', this.color);
+    }
 
-  set color(value: string) {
-    this.setAttribute("color", value);
-  }
+    set size(value: SpinnerSize) {
+        this.setAttribute('size', value);
+    }
 
-  get color(): string {
-    return this.getAttribute("color") || "#000";
-  }
+    get size(): SpinnerSize {
+        return (this.getAttribute('size') as SpinnerSize) || 'small';
+    }
+
+    set color(value: string) {
+        this.setAttribute('color', value);
+    }
+
+    get color(): string {
+        return this.getAttribute('color') || '#000';
+    }
 }
 
-register("spinner", Spinner);
+register('spinner', Spinner);

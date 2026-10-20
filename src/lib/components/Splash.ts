@@ -1,18 +1,18 @@
-import { register, getPrefix } from "../framework/register";
-import { ZIndex } from "./variables/ZIndex";
+import { register } from '../framework/register';
+import { ZIndex } from './variables/ZIndex';
 
 export class Splash extends HTMLElement {
-  constructor() {
-    super();
+    constructor() {
+        super();
 
-    this.disableScroll();
+        this.disableScroll();
 
-    // Attach the shadow root
-    const shadow = this.attachShadow({ mode: "open" });
+        // Attach the shadow root
+        const shadow = this.attachShadow({ mode: 'open' });
 
-    const style = document.createElement("style");
+        const style = document.createElement('style');
 
-    style.textContent = `
+        style.textContent = `
       :host {
         display: block;
         width: 100vw;
@@ -33,53 +33,51 @@ export class Splash extends HTMLElement {
       }
     `;
 
-    // Append the style to the shadow root
-    shadow.appendChild(style);
+        // Append the style to the shadow root
+        shadow.appendChild(style);
 
-    // Create and append the content slot
-    const slot = document.createElement("slot");
-    shadow.appendChild(slot);
-  }
+        // Create and append the content slot
+        const slot = document.createElement('slot');
 
-  static get observedAttributes() {
-    return ["timeout"];
-  }
+        shadow.appendChild(slot);
+    }
 
-  connectedCallback() {
-    // Set the timeout duration (default to 3000ms if not provided)
-    const timeout = Number.parseInt(this.getAttribute("timeout") || "3000");
+    static get observedAttributes() {
+        return ['timeout'];
+    }
 
-    // Automatically hide the splash screen after the specified timeout
-    setTimeout(() => {
-      this.hide();
-    }, timeout);
-  }
+    connectedCallback() {
+        // Set the timeout duration (default to 3000ms if not provided)
+        const timeout = Number.parseInt(this.getAttribute('timeout') || '3000');
 
-  hide() {
-    // Add a class to initiate the fade-out transition
-    this.classList.add("hidden");
+        // Automatically hide the splash screen after the specified timeout
+        setTimeout(() => {
+            this.hide();
+        }, timeout);
+    }
 
-    // Remove the element from the DOM after the transition completes
-    setTimeout(() => {
-      this.enableScroll();
-      const themeTag = `${getPrefix()}-theme`;
-      const theme = document.querySelector(themeTag)!;
+    hide() {
+        // Add a class to initiate the fade-out transition
+        this.classList.add('hidden');
 
-      theme.removeChild(this);
-    }, 1000); // Match this duration with the transition duration in CSS
-  }
+        // Remove the element from the DOM after the transition completes
+        setTimeout(() => {
+            this.enableScroll();
+            this.remove();
+        }, 1000); // Match this duration with the transition duration in CSS
+    }
 
-  disableScroll() {
-    document.body.style.height = "100vh";
-    document.body.style.width = "100vw";
-    document.body.style.overflow = "hidden";
-  }
+    disableScroll() {
+        document.body.style.height = '100vh';
+        document.body.style.width = '100vw';
+        document.body.style.overflow = 'hidden';
+    }
 
-  enableScroll() {
-    document.body.style.height = "";
-    document.body.style.width = "";
-    document.body.style.overflow = "";
-  }
+    enableScroll() {
+        document.body.style.height = '';
+        document.body.style.width = '';
+        document.body.style.overflow = '';
+    }
 }
 
-register("splash", Splash);
+register('splash', Splash);

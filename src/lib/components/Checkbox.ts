@@ -1,18 +1,19 @@
-import { register, variable } from "../framework/register";
+import { register, variable } from '../framework/register';
 
 export class Checkbox extends HTMLElement {
-  private checkboxElement: HTMLInputElement;
+    private checkboxElement: HTMLInputElement;
 
-  constructor() {
-    super();
-    const shadow = this.attachShadow({ mode: "open" });
+    constructor() {
+        super();
+        const shadow = this.attachShadow({ mode: 'open' });
 
-    const style = document.createElement("style");
-    style.textContent = `
+        const style = document.createElement('style');
+
+        style.textContent = `
       :host {
         display: inline-flex;
         align-items: center;
-        gap: ${variable("spacing-xs")};
+        gap: ${variable('spacing-xs')};
         cursor: pointer;
         width: max-content;
       }
@@ -27,7 +28,7 @@ export class Checkbox extends HTMLElement {
         width: 2em;
         height: 2em;
         border: 2px solid var(--semantic-stroke-default);
-        border-radius: ${variable("border-xs")};
+        border-radius: ${variable('border-xs')};
         background-color: transparent;
         display: flex;
         align-items: center;
@@ -56,92 +57,85 @@ export class Checkbox extends HTMLElement {
       }
     `;
 
-    shadow.appendChild(style);
+        shadow.appendChild(style);
 
-    // Create the checkbox input
-    this.checkboxElement = document.createElement("input");
-    this.checkboxElement.type = "checkbox";
-    this.checkboxElement.className = "checkbox";
-    shadow.appendChild(this.checkboxElement);
+        // Create the checkbox input
+        this.checkboxElement = document.createElement('input');
+        this.checkboxElement.type = 'checkbox';
+        this.checkboxElement.className = 'checkbox';
+        shadow.appendChild(this.checkboxElement);
 
-    const labelContainer = document.createElement("div");
-    labelContainer.className = "label";
+        const labelContainer = document.createElement('div');
 
-    const slot = document.createElement("slot");
-    labelContainer.appendChild(slot);
+        labelContainer.className = 'label';
 
-    shadow.append(labelContainer);
+        const slot = document.createElement('slot');
 
-    // Add event listeners for the host element
-    this.addEventListener("click", this.toggleCheckbox);
-    this.addEventListener("pointerdown", (event) => event.preventDefault());
+        labelContainer.appendChild(slot);
 
-    // Prevent checkbox input from receiving its own click events
-    this.checkboxElement.addEventListener("click", (event) => {
-      event.stopPropagation();
-    });
+        shadow.append(labelContainer);
 
-    // Initialize checkbox state
-    this.updateCheckbox();
-  }
+        // Add event listeners for the host element
+        this.addEventListener('click', this.toggleCheckbox);
+        this.addEventListener('pointerdown', (event) => event.preventDefault());
 
-  static get observedAttributes() {
-    return ["checked", "disabled"];
-  }
-
-  attributeChangedCallback(
-    name: string,
-    oldValue: string | null,
-    newValue: string | null,
-  ) {
-    if (Checkbox.observedAttributes.includes(name) && oldValue !== newValue) {
-      this.updateCheckbox();
+        // Initialize checkbox state
+        this.updateCheckbox();
     }
-  }
 
-  private updateCheckbox() {
-    this.checkboxElement.checked = this.hasAttribute("checked");
-    this.checkboxElement.disabled = this.hasAttribute("disabled");
-
-    if (this.checkboxElement.disabled) {
-      this.classList.add("disabled");
-    } else {
-      this.classList.remove("disabled");
+    static get observedAttributes() {
+        return ['checked', 'disabled'];
     }
-  }
 
-  private toggleCheckbox = () => {
-    if (!this.checkboxElement.disabled) {
-      this.checked = !this.checkboxElement.checked;
-
-      this.dispatchEvent(new Event("change"));
+    attributeChangedCallback(name: string, oldValue: string | null, newValue: string | null) {
+        if (Checkbox.observedAttributes.includes(name) && oldValue !== newValue) {
+            this.updateCheckbox();
+        }
     }
-  };
 
-  // Property setters and getters
-  set checked(value: boolean) {
-    if (value) {
-      this.setAttribute("checked", "");
-    } else {
-      this.removeAttribute("checked");
+    private updateCheckbox() {
+        this.checkboxElement.checked = this.hasAttribute('checked');
+        this.checkboxElement.disabled = this.hasAttribute('disabled');
+
+        if (this.checkboxElement.disabled) {
+            this.classList.add('disabled');
+        } else {
+            this.classList.remove('disabled');
+        }
     }
-  }
 
-  get checked() {
-    return this.hasAttribute("checked");
-  }
+    private toggleCheckbox = () => {
+        if (!this.checkboxElement.disabled) {
+            this.checked = !this.checked;
 
-  set disabled(value: boolean) {
-    if (value) {
-      this.setAttribute("disabled", "");
-    } else {
-      this.removeAttribute("disabled");
+            this.dispatchEvent(new Event('change'));
+        }
+    };
+
+    // Property setters and getters
+    set checked(value: boolean) {
+        if (value) {
+            this.setAttribute('checked', '');
+        } else {
+            this.removeAttribute('checked');
+        }
     }
-  }
 
-  get disabled() {
-    return this.hasAttribute("disabled");
-  }
+    get checked() {
+        return this.hasAttribute('checked');
+    }
+
+    set disabled(value: boolean) {
+        if (value) {
+            this.setAttribute('disabled', '');
+        } else {
+            this.removeAttribute('disabled');
+        }
+    }
+
+    get disabled() {
+        return this.hasAttribute('disabled');
+    }
 }
 
-register("checkbox", Checkbox);
+register('checkbox', Checkbox);

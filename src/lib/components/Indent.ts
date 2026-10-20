@@ -1,12 +1,13 @@
-import { register, variable } from "../framework/register";
+import { register, variable } from '../framework/register';
 
 export class Indent extends HTMLElement {
-  constructor() {
-    super();
-    const shadow = this.attachShadow({ mode: "open" });
+    constructor() {
+        super();
+        const shadow = this.attachShadow({ mode: 'open' });
 
-    const style = document.createElement("style");
-    style.textContent = `
+        const style = document.createElement('style');
+
+        style.textContent = `
       :host {
         display: inline-flex;
         align-self: stretch;
@@ -16,7 +17,7 @@ export class Indent extends HTMLElement {
       .indent {
         width: 1px;
         background-color: var(--semantic-stroke-light);
-        margin-inline: ${variable("spacing-sm")};
+        margin-inline: ${variable('spacing-sm')};
         opacity: 0.6;
       }
 
@@ -37,40 +38,41 @@ export class Indent extends HTMLElement {
       }
     `;
 
-    shadow.appendChild(style);
+        shadow.appendChild(style);
 
-    const line = document.createElement("div");
-    line.className = "indent";
-    shadow.appendChild(line);
-  }
+        const line = document.createElement('div');
 
-  static get observedAttributes() {
-    return ["strong", "dashed"];
-  }
-
-  set strong(value: boolean) {
-    if (value) {
-      this.setAttribute("strong", "");
-    } else {
-      this.removeAttribute("strong");
+        line.className = 'indent';
+        shadow.appendChild(line);
     }
-  }
 
-  get strong() {
-    return this.hasAttribute("strong");
-  }
-
-  set dashed(value: boolean) {
-    if (value) {
-      this.setAttribute("dashed", "");
-    } else {
-      this.removeAttribute("dashed");
+    static get observedAttributes() {
+        return ['strong', 'dashed'];
     }
-  }
 
-  get dashed() {
-    return this.hasAttribute("dashed");
-  }
+    set strong(value: boolean) {
+        if (value) {
+            this.setAttribute('strong', '');
+        } else {
+            this.removeAttribute('strong');
+        }
+    }
+
+    get strong() {
+        return this.hasAttribute('strong');
+    }
+
+    set dashed(value: boolean) {
+        if (value) {
+            this.setAttribute('dashed', '');
+        } else {
+            this.removeAttribute('dashed');
+        }
+    }
+
+    get dashed() {
+        return this.hasAttribute('dashed');
+    }
 }
 
-register("indent", Indent);
+register('indent', Indent);

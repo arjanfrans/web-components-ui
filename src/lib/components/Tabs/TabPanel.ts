@@ -1,12 +1,13 @@
-import { register } from "../../framework/register";
+import { register } from '../../framework/register';
 
 export class TabPanel extends HTMLElement {
-  constructor() {
-    super();
+    constructor() {
+        super();
 
-    const shadow = this.attachShadow({ mode: "open" });
-    const style = document.createElement("style");
-    style.textContent = `
+        const shadow = this.attachShadow({ mode: 'open' });
+        const style = document.createElement('style');
+
+        style.textContent = `
       :host {
         display: none;
         background: var(--semantic-background-default);
@@ -17,10 +18,11 @@ export class TabPanel extends HTMLElement {
       }
     `;
 
-    shadow.appendChild(style);
-    const slot = document.createElement("slot");
-    shadow.appendChild(slot);
-  }
+        shadow.appendChild(style);
+        const slot = document.createElement('slot');
+
+        shadow.appendChild(slot);
+    }
 }
 
-register("tab-panel", TabPanel);
+register('tab-panel', TabPanel);

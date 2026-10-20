@@ -1,14 +1,15 @@
-import { register } from "../framework/register";
+import { register } from '../framework/register';
 
 export class Divider extends HTMLElement {
-  private readonly dividerElement: HTMLDivElement;
+    private readonly dividerElement: HTMLDivElement;
 
-  constructor() {
-    super();
-    const shadow = this.attachShadow({ mode: "open" });
+    constructor() {
+        super();
+        const shadow = this.attachShadow({ mode: 'open' });
 
-    const style = document.createElement("style");
-    style.textContent = `
+        const style = document.createElement('style');
+
+        style.textContent = `
       :host {
         display: block;
         width: 100%;
@@ -49,41 +50,41 @@ export class Divider extends HTMLElement {
       }
     `;
 
-    shadow.appendChild(style);
+        shadow.appendChild(style);
 
-    this.dividerElement = document.createElement("div");
-    this.dividerElement.className = "divider";
-    shadow.appendChild(this.dividerElement);
-  }
-
-  static get observedAttributes() {
-    return ["vertical", "light"];
-  }
-
-  // Property setters and getters
-  set vertical(value: boolean) {
-    if (value) {
-      this.setAttribute("vertical", "");
-    } else {
-      this.removeAttribute("vertical");
+        this.dividerElement = document.createElement('div');
+        this.dividerElement.className = 'divider';
+        shadow.appendChild(this.dividerElement);
     }
-  }
 
-  get vertical() {
-    return this.hasAttribute("vertical");
-  }
-
-  set light(value: boolean) {
-    if (value) {
-      this.setAttribute("light", "");
-    } else {
-      this.removeAttribute("light");
+    static get observedAttributes() {
+        return ['vertical', 'light'];
     }
-  }
 
-  get light() {
-    return this.hasAttribute("light");
-  }
+    // Property setters and getters
+    set vertical(value: boolean) {
+        if (value) {
+            this.setAttribute('vertical', '');
+        } else {
+            this.removeAttribute('vertical');
+        }
+    }
+
+    get vertical() {
+        return this.hasAttribute('vertical');
+    }
+
+    set light(value: boolean) {
+        if (value) {
+            this.setAttribute('light', '');
+        } else {
+            this.removeAttribute('light');
+        }
+    }
+
+    get light() {
+        return this.hasAttribute('light');
+    }
 }
 
-register("divider", Divider);
+register('divider', Divider);

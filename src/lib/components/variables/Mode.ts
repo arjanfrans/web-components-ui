@@ -1,5 +1,5 @@
 export enum Mode {
-  LIGHT = "light",
-  DARK = "dark",
-  AUTO = "auto",
+    LIGHT = 'light',
+    DARK = 'dark',
+    AUTO = 'auto',
 }

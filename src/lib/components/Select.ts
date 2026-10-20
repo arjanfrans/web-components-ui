@@ -1,18 +1,21 @@
-import { InvalidChildrenError } from "../framework/InvalidChildrenError";
-import { register, variable } from "../framework/register";
-import { stretchStyle } from "./styles/stretch.ts";
+import { InvalidChildrenError } from '../framework/InvalidChildrenError';
+import { register, variable } from '../framework/register';
+import { onChildrenReady } from '../framework/onChildrenReady';
+import { stretchStyle } from './styles/stretch.ts';
 
 export class Select extends HTMLElement {
-  private readonly select: HTMLSelectElement;
+    private select?: HTMLSelectElement;
+    private readonly selectContainer: HTMLDivElement;
 
-  constructor() {
-    super();
-    // Attach the shadow root
-    const shadow = this.attachShadow({ mode: "open" });
+    constructor() {
+        super();
+        // Attach the shadow root
+        const shadow = this.attachShadow({ mode: 'open' });
 
-    // Create a style element
-    const style = document.createElement("style");
-    style.textContent = `
+        // Create a style element
+        const style = document.createElement('style');
+
+        style.textContent = `
             :host {
                 display: flex;
                 flex-direction: column;
@@ -49,10 +52,9 @@ export class Select extends HTMLElement {
             }
 
             :host select {
-                --select-offset: calc(${variable("spacing-sm")} + 26px);
+                --select-offset: calc(${variable('spacing-sm')} + 26px);
                 /* Reset Select */
                 appearance: none;
-                outline: 10px red;
                 border: 0;
                 box-shadow: none;
                 width: 100%;
@@ -60,9 +62,9 @@ export class Select extends HTMLElement {
 
                 /* Personalize */
                 flex: 1;
-                padding-inline: ${variable("spacing-md")};
+                padding-inline: ${variable('spacing-md')};
                 padding-block: 0;
-                color: var(--text-default);
+                color: var(--semantic-text-default);
                 background: rgba(var(--semantic-background-inverted_rgb), 0.1);
                 background-image: none;
                 cursor: pointer;
@@ -71,51 +73,64 @@ export class Select extends HTMLElement {
             }
         `;
 
-    this.select = this.querySelector("select") as HTMLSelectElement; // Store reference to select element
-    const selectContainer = document.createElement("div");
-
-    selectContainer.classList.add("container");
-
-    if (!this.select) {
-      throw new InvalidChildrenError(this, ["select"]);
+        this.selectContainer = document.createElement('div');
+        this.selectContainer.classList.add('container');
+        shadow.append(style, this.selectContainer);
     }
 
-    selectContainer.append(this.select);
-    shadow.append(style, selectContainer);
-
-    // Add event listener for change event on the select element
-    this.select.addEventListener("change", () => {
-      this.dispatchSelectChange();
-    });
-  }
-
-  // Method to dispatch the select-change event
-  private dispatchSelectChange() {
-    const event = new CustomEvent("select-change", {
-      detail: { value: this.select.value }, // Directly use select value
-      bubbles: true, // Allow the event to bubble up
-      composed: true, // Allow the event to cross shadow DOM boundaries
-    });
-    this.dispatchEvent(event);
-  }
-
-  // Reflect the 'value' attribute to the property
-  static get observedAttributes() {
-    return ["selected"];
-  }
-
-  attributeChangedCallback(
-    name: string,
-    oldValue: string | null,
-    newValue: string | null,
-  ) {
-    if (Select.observedAttributes.includes(name) && oldValue !== newValue) {
-      if (name === "selected") {
-        this.select.value = newValue || "";
-        this.dispatchSelectChange();
-      }
+    connectedCallback() {
+        onChildrenReady(() => this.moveSelectIntoShadow());
     }
-  }
+
+    private moveSelectIntoShadow() {
+        if (this.select) {
+            return;
+        }
+
+        const select = this.querySelector('select');
+
+        if (!select) {
+            throw new InvalidChildrenError(this, ['select']);
+        }
+
+        this.select = select;
+        this.selectContainer.append(select);
+
+        const selected = this.getAttribute('selected');
+
+        if (selected !== null) {
+            select.value = selected;
+        }
+
+        select.addEventListener('change', () => {
+            this.dispatchSelectChange();
+        });
+    }
+
+    // Method to dispatch the select-change event
+    private dispatchSelectChange() {
+        const event = new CustomEvent('select-change', {
+            detail: { value: this.select?.value }, // Directly use select value
+            bubbles: true, // Allow the event to bubble up
+            composed: true, // Allow the event to cross shadow DOM boundaries
+        });
+
+        this.dispatchEvent(event);
+    }
+
+    // Reflect the 'value' attribute to the property
+    static get observedAttributes() {
+        return ['selected'];
+    }
+
+    attributeChangedCallback(name: string, oldValue: string | null, newValue: string | null) {
+        if (Select.observedAttributes.includes(name) && oldValue !== newValue) {
+            if (name === 'selected' && this.select) {
+                this.select.value = newValue || '';
+                this.dispatchSelectChange();
+            }
+        }
+    }
 }
 
-register("select", Select);
+register('select', Select);

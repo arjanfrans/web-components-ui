@@ -1,10 +1,10 @@
-import { mapEnum } from "../../framework/enum";
-import { Justify } from "../variables/Justify";
+import { mapEnum } from '../../framework/enum';
+import { Justify } from '../variables/Justify';
 
 export function justifyStyle() {
-  return `
+    return `
     ${mapEnum(Justify, (justify) => {
-      return `
+        return `
             :host([justify-content="${justify}"]) {
                 justify-content: ${justify};
             }
@@ -13,6 +13,6 @@ export function justifyStyle() {
                 align-items: ${justify};
             }
         `;
-    }).join("")}
+    }).join('')}
       `;
 }

@@ -1,27 +1,29 @@
-import { register, variable } from "../../framework/register";
+import { register, variable } from '../../framework/register';
 
 export class CardContent extends HTMLElement {
-  constructor() {
-    super();
-    // Attach the shadow root
-    const shadow = this.attachShadow({ mode: "open" });
+    constructor() {
+        super();
+        // Attach the shadow root
+        const shadow = this.attachShadow({ mode: 'open' });
 
-    // Create a style element
-    const style = document.createElement("style");
-    style.textContent = `
+        // Create a style element
+        const style = document.createElement('style');
+
+        style.textContent = `
             :host {
                 display: flex;
                 flex-direction: column;
-                padding: ${variable("spacing-sm")};
+                padding: ${variable('spacing-sm')};
                 flex: 1;
             }
         `;
-    shadow.appendChild(style);
+        shadow.appendChild(style);
 
-    // Create a slot for the content
-    const slot = document.createElement("slot");
-    shadow.appendChild(slot);
-  }
+        // Create a slot for the content
+        const slot = document.createElement('slot');
+
+        shadow.appendChild(slot);
+    }
 }
 
-register("card-content", CardContent);
+register('card-content', CardContent);

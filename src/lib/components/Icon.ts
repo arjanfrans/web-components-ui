@@ -1,18 +1,19 @@
-import { register } from "../framework/register";
-import { Color } from "./variables/Color";
+import { register } from '../framework/register';
+import { Color } from './variables/Color';
 
 export class Icon extends HTMLElement {
-  private shadow: ShadowRoot;
+    private shadow: ShadowRoot;
 
-  private static svgCache: Map<string, string> = new Map();
-  private static svgPending: Map<string, Promise<string>> = new Map();
+    private static svgCache: Map<string, string> = new Map();
+    private static svgPending: Map<string, Promise<string>> = new Map();
 
-  constructor() {
-    super();
-    this.shadow = this.attachShadow({ mode: "open" });
+    constructor() {
+        super();
+        this.shadow = this.attachShadow({ mode: 'open' });
 
-    const style = document.createElement("style");
-    style.textContent = `
+        const style = document.createElement('style');
+
+        style.textContent = `
       :host {
         display: flex;
         justify-content: center;
@@ -60,77 +61,82 @@ export class Icon extends HTMLElement {
       }
     `;
 
-    this.shadow.appendChild(style);
-  }
-
-  static get observedAttributes() {
-    return ["size", "svg"];
-  }
-
-  attributeChangedCallback(
-    name: string,
-    oldValue: string | null,
-    newValue: string | null,
-  ) {
-    if (oldValue !== newValue && newValue) {
-      if (name === "svg") {
-        this.loadSvg(newValue);
-      }
+        this.shadow.appendChild(style);
     }
-  }
 
-  private async loadSvg(src: string) {
-    try {
-      if (Icon.svgCache.has(src)) {
-        this.setSvgContent(Icon.svgCache.get(src)!);
-        return;
-      }
-
-      if (!Icon.svgPending.has(src)) {
-        const promise = fetch(src)
-          .then((r) => {
-            if (!r.ok) throw new Error(`Failed to load SVG: ${r.statusText}`);
-            return r.text();
-          })
-          .then((text) => {
-            Icon.svgCache.set(src, text);
-            return text;
-          })
-          .finally(() => Icon.svgPending.delete(src));
-        Icon.svgPending.set(src, promise);
-      }
-
-      const svgText = await Icon.svgPending.get(src)!;
-      this.setSvgContent(svgText);
-    } catch (error) {
-      console.error("Error loading SVG:", error);
+    static get observedAttributes() {
+        return ['size', 'svg'];
     }
-  }
 
-  private setSvgContent(svgText: string) {
-    // Create a temporary DOM element to manipulate the SVG
-    const tempDiv = document.createElement("div");
-    tempDiv.innerHTML = svgText;
-    const svgElement = tempDiv.querySelector("svg");
-
-    if (svgElement) {
-      // Remove any width/height attributes to ensure it scales correctly
-      svgElement.removeAttribute("width");
-      svgElement.removeAttribute("height");
-
-      // Ensure a viewBox is set
-      if (!svgElement.hasAttribute("viewBox")) {
-        const width = svgElement.getAttribute("width") || "100";
-        const height = svgElement.getAttribute("height") || "100";
-        svgElement.setAttribute("viewBox", `0 0 ${width} ${height}`);
-      }
-
-      // Append the processed SVG to the shadow DOM
-      this.shadow.appendChild(svgElement);
-    } else {
-      console.error("No valid SVG element found in the provided content.");
+    attributeChangedCallback(name: string, oldValue: string | null, newValue: string | null) {
+        if (oldValue !== newValue && newValue) {
+            if (name === 'svg') {
+                void this.loadSvg(newValue);
+            }
+        }
     }
-  }
+
+    private async loadSvg(src: string) {
+        try {
+            if (Icon.svgCache.has(src)) {
+                this.setSvgContent(Icon.svgCache.get(src)!);
+                return;
+            }
+
+            if (!Icon.svgPending.has(src)) {
+                const promise = fetch(src)
+                    .then((r) => {
+                        if (!r.ok) {
+                            throw new Error(`Failed to load SVG: ${r.statusText}`);
+                        }
+
+                        return r.text();
+                    })
+                    .then((text) => {
+                        Icon.svgCache.set(src, text);
+                        return text;
+                    })
+                    .finally(() => Icon.svgPending.delete(src));
+
+                Icon.svgPending.set(src, promise);
+            }
+
+            const svgText = await Icon.svgPending.get(src)!;
+
+            if (this.getAttribute('svg') === src) {
+                this.setSvgContent(svgText);
+            }
+        } catch (error) {
+            console.error('Error loading SVG:', error);
+        }
+    }
+
+    private setSvgContent(svgText: string) {
+        // Create a temporary DOM element to manipulate the SVG
+        const tempDiv = document.createElement('div');
+
+        tempDiv.innerHTML = svgText;
+        const svgElement = tempDiv.querySelector('svg');
+
+        if (svgElement) {
+            // Ensure a viewBox is set
+            if (!svgElement.hasAttribute('viewBox')) {
+                const width = svgElement.getAttribute('width') || '100';
+                const height = svgElement.getAttribute('height') || '100';
+
+                svgElement.setAttribute('viewBox', `0 0 ${width} ${height}`);
+            }
+
+            // Remove any width/height attributes to ensure it scales correctly
+            svgElement.removeAttribute('width');
+            svgElement.removeAttribute('height');
+
+            this.shadow.querySelector('svg')?.remove();
+            this.shadow.appendChild(svgElement);
+        } else {
+            console.error('No valid SVG element found in the provided content.');
+        }
+    }
 }
 
-register("icon", Icon);
+register('icon', Icon);

@@ -1,30 +1,28 @@
-import { register, getPrefix } from "../framework/register";
+import { register } from '../framework/register';
 
 /**
  * When the web components are loaded, this logic will be executed and hide the loading component
  * and remove it from the DOM.
  */
 export class Loading extends HTMLElement {
-  constructor() {
-    super();
-    const shadow = this.attachShadow({ mode: "open" });
+    constructor() {
+        super();
+        const shadow = this.attachShadow({ mode: 'open' });
 
-    const style = document.createElement("style");
+        const style = document.createElement('style');
 
-    style.textContent = `
+        style.textContent = `
             :host {
                 display: none;
             }
         `;
 
-    shadow.appendChild(style);
-
-    const loadingProgress = document.querySelector(`${getPrefix()}-loading`);
-
-    if (loadingProgress) {
-      document.body.removeChild(loadingProgress);
+        shadow.appendChild(style);
     }
-  }
+
+    connectedCallback() {
+        this.remove();
+    }
 }
 
-register("loading", Loading);
+register('loading', Loading);

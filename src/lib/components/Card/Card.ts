@@ -1,15 +1,17 @@
-import { getPrefix, register, variable } from "../../framework/register";
-import { CardContent } from "./CardContent";
+import { getPrefix, register, variable } from '../../framework/register';
+import { CardContent } from './CardContent';
+import { onChildrenReady } from '../../framework/onChildrenReady';
 
 export class Card extends HTMLElement {
-  constructor() {
-    super();
-    // Attach the shadow root
-    const shadow = this.attachShadow({ mode: "open" });
+    constructor() {
+        super();
+        // Attach the shadow root
+        const shadow = this.attachShadow({ mode: 'open' });
 
-    // Create a style element
-    const style = document.createElement("style");
-    style.textContent = `
+        // Create a style element
+        const style = document.createElement('style');
+
+        style.textContent = `
             :host {
                 box-sizing: border-box;
                 border: 1px solid var(--semantic-stroke-default);
@@ -17,7 +19,7 @@ export class Card extends HTMLElement {
                 flex-direction: column;
                 overflow: hidden;
                 max-width: 100%;
-                box-shadow: ${variable("shadow-light")};
+                box-shadow: ${variable('shadow-light')};
                 height: 100%; /* Ensure the card takes full height */
             }
 
@@ -30,24 +32,36 @@ export class Card extends HTMLElement {
                 width: 100%;
             }
         `;
-    shadow.appendChild(style);
-
-    const hasChild =
-      this.querySelector(`${getPrefix()}-card-content`) ||
-      this.querySelector(`${getPrefix()}-card-media`) ||
-      this.querySelector(`${getPrefix()}-card-footer`);
-    const slot = document.createElement("slot");
-
-    if (!hasChild) {
-      const cardContentElement = new CardContent();
-
-      cardContentElement.append(slot);
-
-      shadow.append(cardContentElement);
-    } else {
-      shadow.appendChild(slot);
+        shadow.appendChild(style);
     }
-  }
+
+    connectedCallback() {
+        onChildrenReady(() => this.renderSlot());
+    }
+
+    private renderSlot() {
+        const shadow = this.shadowRoot!;
+
+        if (shadow.querySelector('slot')) {
+            return;
+        }
+
+        const hasChild =
+            this.querySelector(`${getPrefix()}-card-content`) ||
+            this.querySelector(`${getPrefix()}-card-media`) ||
+            this.querySelector(`${getPrefix()}-card-footer`);
+        const slot = document.createElement('slot');
+
+        if (!hasChild) {
+            const cardContentElement = new CardContent();
+
+            cardContentElement.append(slot);
+
+            shadow.append(cardContentElement);
+        } else {
+            shadow.appendChild(slot);
+        }
+    }
 }
 
-register("card", Card);
+register('card', Card);

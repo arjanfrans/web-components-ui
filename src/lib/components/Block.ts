@@ -1,13 +1,13 @@
-import { register } from "../framework/register";
-import { stretchStyle } from "./styles/stretch.ts";
+import { register } from '../framework/register';
+import { stretchStyle } from './styles/stretch.ts';
 
 export class Block extends HTMLElement {
-  constructor() {
-    super();
+    constructor() {
+        super();
 
-    const style = document.createElement("style");
+        const style = document.createElement('style');
 
-    style.textContent = `
+        style.textContent = `
             :host {
                 display: flex;
                 flex-wrap: wrap;
@@ -16,15 +16,15 @@ export class Block extends HTMLElement {
             ${stretchStyle()}
       `;
 
-    const shadow = this.attachShadow({ mode: "open" });
+        const shadow = this.attachShadow({ mode: 'open' });
 
-    shadow.appendChild(style);
+        shadow.appendChild(style);
 
-    const slot = document.createElement("slot");
+        const slot = document.createElement('slot');
 
-    shadow.appendChild(slot);
-  }
+        shadow.appendChild(slot);
+    }
 }
 
 // Register the custom element
-register("block", Block);
+register('block', Block);

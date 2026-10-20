@@ -1,12 +1,13 @@
-import { register } from "../../framework/register";
+import { getPrefix, register } from '../../framework/register';
 
 export class TabButtons extends HTMLElement {
-  constructor() {
-    super();
+    constructor() {
+        super();
 
-    const shadow = this.attachShadow({ mode: "open" });
-    const style = document.createElement("style");
-    style.textContent = `
+        const shadow = this.attachShadow({ mode: 'open' });
+        const style = document.createElement('style');
+
+        style.textContent = `
       :host {
         position: relative;
         display: flex;
@@ -18,7 +19,7 @@ export class TabButtons extends HTMLElement {
         width: 100%;
       }
 
-      ::slotted(x-tab-button) {
+      ::slotted(${getPrefix()}-tab-button) {
         flex: 1;
         padding: 10px;
         text-align: center;
@@ -40,45 +41,43 @@ export class TabButtons extends HTMLElement {
       }
     `;
 
-    shadow.appendChild(style);
+        shadow.appendChild(style);
 
-    // Slot for the buttons
-    const slot = document.createElement("slot");
-    shadow.appendChild(slot);
+        // Slot for the buttons
+        const slot = document.createElement('slot');
 
-    // Active indicator element
-    const activeIndicator = document.createElement("div");
-    activeIndicator.className = "active-indicator";
-    shadow.appendChild(activeIndicator);
-  }
+        slot.addEventListener('slotchange', () => this.updateActiveIndicator());
+        shadow.appendChild(slot);
 
-  connectedCallback() {
-    requestAnimationFrame(() => {
-      this.updateActiveIndicator();
-    });
-    this.addEventListener("slotchange", () => this.updateActiveIndicator());
-  }
+        // Active indicator element
+        const activeIndicator = document.createElement('div');
 
-  public updateActiveIndicator() {
-    const slot = this.shadowRoot?.querySelector("slot");
-    const tabButtons = slot?.assignedElements() || [];
-
-    const activeButton = tabButtons.find((button) =>
-      button.hasAttribute("active"),
-    );
-
-    if (activeButton) {
-      const activeIndicator = this.shadowRoot?.querySelector(
-        ".active-indicator",
-      ) as HTMLElement;
-
-      const buttonRect = activeButton.getBoundingClientRect();
-      const containerRect = this.getBoundingClientRect();
-
-      activeIndicator.style.left = `${buttonRect.left - containerRect.left}px`;
-      activeIndicator.style.width = `${buttonRect.width}px`;
+        activeIndicator.className = 'active-indicator';
+        shadow.appendChild(activeIndicator);
     }
-  }
+
+    connectedCallback() {
+        requestAnimationFrame(() => {
+            this.updateActiveIndicator();
+        });
+    }
+
+    public updateActiveIndicator() {
+        const slot = this.shadowRoot?.querySelector('slot');
+        const tabButtons = slot?.assignedElements() || [];
+
+        const activeButton = tabButtons.find((button) => button.hasAttribute('active'));
+
+        if (activeButton) {
+            const activeIndicator = this.shadowRoot?.querySelector('.active-indicator') as HTMLElement;
+
+            const buttonRect = activeButton.getBoundingClientRect();
+            const containerRect = this.getBoundingClientRect();
+
+            activeIndicator.style.left = `${buttonRect.left - containerRect.left}px`;
+            activeIndicator.style.width = `${buttonRect.width}px`;
+        }
+    }
 }
 
-register("tab-buttons", TabButtons);
+register('tab-buttons', TabButtons);

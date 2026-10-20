@@ -1,14 +1,15 @@
-import { register } from "../framework/register";
+import { register } from '../framework/register';
 
 export class Figure extends HTMLElement {
-  private shadow: ShadowRoot;
+    private shadow: ShadowRoot;
 
-  constructor() {
-    super();
-    this.shadow = this.attachShadow({ mode: "open" });
+    constructor() {
+        super();
+        this.shadow = this.attachShadow({ mode: 'open' });
 
-    const style = document.createElement("style");
-    style.textContent = `
+        const style = document.createElement('style');
+
+        style.textContent = `
       :host {
         display: inline-block;
         overflow: hidden;
@@ -42,48 +43,45 @@ export class Figure extends HTMLElement {
       }
     `;
 
-    this.shadow.appendChild(style);
+        this.shadow.appendChild(style);
 
-    // Add the slot element to the shadow DOM
-    const slot = document.createElement("slot");
-    this.shadow.appendChild(slot);
-  }
+        // Add the slot element to the shadow DOM
+        const slot = document.createElement('slot');
 
-  static get observedAttributes() {
-    return ["size", "width", "height", "loading"];
-  }
-
-  attributeChangedCallback(
-    name: string,
-    oldValue: string | null,
-    newValue: string | null,
-  ) {
-    // Update size if necessary
-    if (oldValue !== newValue && Figure.observedAttributes.includes(name)) {
-      this.updateImageSize();
-    }
-  }
-
-  private updateImageSize() {
-    const img = this.querySelector("img")!;
-    const loading = this.getAttribute("loading") || undefined;
-    const width = this.getAttribute("width") || undefined;
-    const height = this.getAttribute("height") || undefined;
-
-    if (loading) {
-      img.loading = loading === "lazy" ? loading : "eager";
+        this.shadow.appendChild(slot);
     }
 
-    if (width) {
-      img.style.width = width;
-      this.style.width = width;
+    static get observedAttributes() {
+        return ['size', 'width', 'height', 'loading'];
     }
 
-    if (height) {
-      img.style.height = height;
-      this.style.height = height;
+    attributeChangedCallback(name: string, oldValue: string | null, newValue: string | null) {
+        // Update size if necessary
+        if (oldValue !== newValue && Figure.observedAttributes.includes(name)) {
+            this.updateImageSize();
+        }
     }
-  }
+
+    private updateImageSize() {
+        const img = this.querySelector('img')!;
+        const loading = this.getAttribute('loading') || undefined;
+        const width = this.getAttribute('width') || undefined;
+        const height = this.getAttribute('height') || undefined;
+
+        if (loading) {
+            img.loading = loading === 'lazy' ? loading : 'eager';
+        }
+
+        if (width) {
+            img.style.width = width;
+            this.style.width = width;
+        }
+
+        if (height) {
+            img.style.height = height;
+            this.style.height = height;
+        }
+    }
 }
 
-register("figure", Figure);
+register('figure', Figure);

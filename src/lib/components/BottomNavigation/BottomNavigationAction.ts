@@ -1,31 +1,32 @@
-import { register, variable } from "../../framework/register";
-import { Typography } from "../Typography";
-import { Icon } from "../Icon"; // Adjust path as necessary
+import { register, variable } from '../../framework/register';
+import { Typography } from '../Typography';
+import { Icon } from '../Icon'; // Adjust path as necessary
 
 export class BottomNavigationAction extends HTMLElement {
-  private shadow: ShadowRoot;
-  private icon?: Icon;
+    private shadow: ShadowRoot;
+    private icon?: Icon;
+    private readonly label: Typography;
 
-  constructor() {
-    super();
-    // Attach the shadow root
-    this.shadow = this.attachShadow({ mode: "open" });
+    constructor() {
+        super();
+        // Attach the shadow root
+        this.shadow = this.attachShadow({ mode: 'open' });
 
-    const style = document.createElement("style");
+        const style = document.createElement('style');
 
-    style.textContent = `
+        style.textContent = `
       :host {
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: ${variable("spacing-xs")};
+        gap: ${variable('spacing-xs')};
         justify-content: center;
-        padding: ${variable("spacing-xs")};
+        padding: ${variable('spacing-xs')};
         box-sizing: border-box;
         text-align: center;
         cursor: pointer;
         transition: color 0.18s ease-in-out;
-        height: calc(${variable("bottom-navigation-height")} - 4px); /* Fixed height */
+        height: calc(${variable('bottom-navigation-height')} - 4px); /* Fixed height */
         width: auto; /* Allow width to adjust based on content */
       }
 
@@ -52,75 +53,58 @@ export class BottomNavigationAction extends HTMLElement {
       }
 
       /* Hide label if not provided */
-      :host([no-label]) .label {
+      :host([no-label]) .label,
+      :host(:not([label])) .label,
+      :host([label=""]) .label {
         display: none;
       }
     `;
 
-    // Create and set up the Icon element
-    const svgSrc = this.getAttribute("svg");
+        this.label = new Typography();
+        this.label.className = 'label';
+        this.label.setAttribute('display', 'h6');
 
-    if (svgSrc) {
-      // Create container for the icon
-      const iconContainer = document.createElement("div");
-      iconContainer.className = "icon-container";
-
-      this.icon = new Icon();
-      this.icon.setAttribute("svg", svgSrc);
-      this.icon.setAttribute("size", "none");
-      this.icon.className = "icon"; // Ensure CSS rules apply
-
-      iconContainer.appendChild(this.icon);
-
-      this.shadow.appendChild(iconContainer);
+        this.shadow.append(style, this.label);
     }
 
-    // Create the label element
-    const label = new Typography();
-    label.className = "label";
-    label.setAttribute("display", "h6");
-    label.textContent = this.getAttribute("label") || "";
-
-    // Check if the label is not provided and add the corresponding attribute
-    if (!this.getAttribute("label")) {
-      this.setAttribute("no-label", "");
+    static get observedAttributes() {
+        return ['svg', 'label'];
     }
 
-    this.shadow.appendChild(style);
-
-    this.shadow.appendChild(label);
-  }
-
-  static get observedAttributes() {
-    return ["svg"];
-  }
-
-  attributeChangedCallback(
-    name: string,
-    oldValue: string | null,
-    newValue: string | null,
-  ) {
-    if (name === "svg" && oldValue !== newValue) {
-      const iconContainer = this.shadow.querySelector(".icon-container");
-      if (this.icon) {
-        if (newValue) {
-          this.icon.setAttribute("svg", newValue);
-        } else {
-          if (iconContainer) {
-            iconContainer.removeChild(this.icon);
-          }
-          this.icon = undefined;
+    attributeChangedCallback(name: string, oldValue: string | null, newValue: string | null) {
+        if (oldValue === newValue) {
+            return;
         }
-      } else if (newValue) {
-        this.icon = new Icon();
-        this.icon.setAttribute("svg", newValue);
-        this.icon.className = "icon"; // Ensure CSS rules apply
-        if (iconContainer) {
-          iconContainer.appendChild(this.icon);
+
+        if (name === 'label') {
+            this.label.textContent = newValue || '';
+        } else if (name === 'svg') {
+            this.updateIcon(newValue);
         }
-      }
     }
-  }
+
+    private updateIcon(svgSrc: string | null) {
+        if (!svgSrc) {
+            this.shadow.querySelector('.icon-container')?.remove();
+            this.icon = undefined;
+            return;
+        }
+
+        if (!this.icon) {
+            const iconContainer = document.createElement('div');
+
+            iconContainer.className = 'icon-container';
+
+            this.icon = new Icon();
+            this.icon.setAttribute('size', 'none');
+            this.icon.className = 'icon'; // Ensure CSS rules apply
+
+            iconContainer.appendChild(this.icon);
+            this.shadow.insertBefore(iconContainer, this.label);
+        }
+
+        this.icon.setAttribute('svg', svgSrc);
+    }
 }
 
-register("bottom-navigation-action", BottomNavigationAction);
+register('bottom-navigation-action', BottomNavigationAction);

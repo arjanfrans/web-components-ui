@@ -1,24 +1,25 @@
-import { register, variable } from "../framework/register.ts";
-import { Typography } from "./Typography.ts";
-import { Size } from "./variables/Size.ts";
-import { stretchStyle } from "./styles/stretch.ts";
+import { register, variable } from '../framework/register.ts';
+import { Typography } from './Typography.ts';
+import type { Size } from './variables/Size.ts';
+import { stretchStyle } from './styles/stretch.ts';
 
-type ButtonVariant = "filled" | "outlined";
+type ButtonVariant = 'filled' | 'outlined';
 
 export class Button extends HTMLElement {
-  private button: HTMLButtonElement;
+    private button: HTMLButtonElement;
 
-  constructor() {
-    super();
-    const shadow = this.attachShadow({ mode: "open" });
+    constructor() {
+        super();
+        const shadow = this.attachShadow({ mode: 'open' });
 
-    // Create the button element
-    this.button = document.createElement("button");
-    this.button.classList.add("button");
+        // Create the button element
+        this.button = document.createElement('button');
+        this.button.classList.add('button');
 
-    // Create and append the styles
-    const style = document.createElement("style");
-    style.textContent = `
+        // Create and append the styles
+        const style = document.createElement('style');
+
+        style.textContent = `
       :host {
         width: max-content;
         height: max-content;
@@ -26,12 +27,12 @@ export class Button extends HTMLElement {
 
       .button {
         border: none;
-        border-radius: ${variable("border-xs")};
+        border-radius: ${variable('border-xs')};
         cursor: pointer;
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        padding: ${variable("spacing-md")};
+        padding: ${variable('spacing-md')};
         text-align: center;
         transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1), border-color 250ms cubic-bezier(0.4, 0, 0.2, 1), color 250ms cubic-bezier(0.4, 0, 0.2, 1);
         white-space: nowrap;
@@ -53,7 +54,7 @@ export class Button extends HTMLElement {
       :host([variant="filled"]:active) .button {
         background-color: var(--semantic-background-hover);
         color: var(--semantic-text-inverted);
-        box-shadow: ${variable("shadow-light")};
+        box-shadow: ${variable('shadow-light')};
       }
 
       :host([variant="outlined"]) .button {
@@ -70,110 +71,106 @@ export class Button extends HTMLElement {
       }
 
       :host([size="small"]) .button {
-        padding-block: ${variable("spacing-xs")};
-        padding-inline: ${variable("spacing-sm")};
+        padding-block: ${variable('spacing-xs')};
+        padding-inline: ${variable('spacing-sm')};
       }
 
       :host([size="medium"]) .button {
-        padding-block: ${variable("spacing-sm")};
-        padding-inline: ${variable("spacing-md")};
+        padding-block: ${variable('spacing-sm')};
+        padding-inline: ${variable('spacing-md')};
       }
 
       :host([size="large"]) .button {
-        padding-block: ${variable("spacing-md")};
-        padding-inline: ${variable("spacing-lg")};
+        padding-block: ${variable('spacing-md')};
+        padding-inline: ${variable('spacing-lg')};
       }
 
       .button:focus {
         outline: 2px solid var(--button-focus-outline);
       }
     `;
-    shadow.appendChild(style);
+        shadow.appendChild(style);
 
-    const label = new Typography();
-    label.display = "button";
+        const label = new Typography();
 
-    // Create a slot for button content
-    const slot = document.createElement("slot");
-    label.append(slot);
-    this.button.appendChild(label);
+        label.display = 'button';
 
-    shadow.appendChild(this.button);
+        // Create a slot for button content
+        const slot = document.createElement('slot');
 
-    // Set default attributes
-    if (!this.hasAttribute("variant")) {
-      this.setAttribute("variant", "filled");
+        label.append(slot);
+        this.button.appendChild(label);
+
+        shadow.appendChild(this.button);
+
+        // Add touch event listeners
+        this.button.addEventListener('touchstart', this.handleTouchStart.bind(this), { passive: true });
+        this.button.addEventListener('touchend', this.handleTouchEnd.bind(this), {
+            passive: true,
+        });
+        this.button.addEventListener(
+            'touchcancel',
+            this.handleTouchEnd.bind(this),
+
+            { passive: true },
+        );
     }
-    if (!this.hasAttribute("size")) {
-      this.setAttribute("size", "medium");
+
+    connectedCallback() {
+        if (!this.hasAttribute('variant')) {
+            this.setAttribute('variant', 'filled');
+        }
+
+        if (!this.hasAttribute('size')) {
+            this.setAttribute('size', 'medium');
+        }
     }
 
-    // Add touch event listeners
-    this.button.addEventListener(
-      "touchstart",
-      this.handleTouchStart.bind(this),
-      { passive: true },
-    );
-    this.button.addEventListener("touchend", this.handleTouchEnd.bind(this), {
-      passive: true,
-    });
-    this.button.addEventListener(
-      "touchcancel",
-      this.handleTouchEnd.bind(this),
-
-      { passive: true },
-    );
-  }
-
-  private handleTouchStart() {
-    this.button.classList.add("button-active");
-  }
-
-  private handleTouchEnd() {
-    this.button.classList.remove("button-active");
-  }
-
-  // Observe changes to 'variant' and 'size' attributes
-  static get observedAttributes() {
-    return ["variant", "size", "stretch"];
-  }
-
-  // Handle changes to attributes
-  attributeChangedCallback(
-    name: string,
-    oldValue: string | null,
-    newValue: string | null,
-  ) {
-    if (name === "variant" && oldValue !== newValue) {
-      this.updateVariant();
-    } else if (name === "size" && oldValue !== newValue) {
-      this.updateSize();
+    private handleTouchStart() {
+        this.button.classList.add('button-active');
     }
-  }
 
-  private updateVariant() {
-    this.setAttribute("variant", this.variant);
-  }
+    private handleTouchEnd() {
+        this.button.classList.remove('button-active');
+    }
 
-  private updateSize() {
-    this.setAttribute("size", this.size);
-  }
+    // Observe changes to 'variant' and 'size' attributes
+    static get observedAttributes() {
+        return ['variant', 'size', 'stretch'];
+    }
 
-  set variant(value: ButtonVariant) {
-    this.setAttribute("variant", value);
-  }
+    // Handle changes to attributes
+    attributeChangedCallback(name: string, oldValue: string | null, newValue: string | null) {
+        if (name === 'variant' && oldValue !== newValue) {
+            this.updateVariant();
+        } else if (name === 'size' && oldValue !== newValue) {
+            this.updateSize();
+        }
+    }
 
-  get variant(): ButtonVariant {
-    return (this.getAttribute("variant") as ButtonVariant) || "filled";
-  }
+    private updateVariant() {
+        this.setAttribute('variant', this.variant);
+    }
 
-  set size(value: Size) {
-    this.setAttribute("size", value);
-  }
+    private updateSize() {
+        this.setAttribute('size', this.size);
+    }
 
-  get size(): Size {
-    return (this.getAttribute("size") as Size) || "medium";
-  }
+    set variant(value: ButtonVariant) {
+        this.setAttribute('variant', value);
+    }
+
+    get variant(): ButtonVariant {
+        return (this.getAttribute('variant') as ButtonVariant) || 'filled';
+    }
+
+    set size(value: Size) {
+        this.setAttribute('size', value);
+    }
+
+    get size(): Size {
+        return (this.getAttribute('size') as Size) || 'medium';
+    }
 }
 
-register("button", Button);
+register('button', Button);
