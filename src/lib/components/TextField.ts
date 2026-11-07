@@ -43,9 +43,9 @@ export class TextField extends HTMLElement {
         width: 100%;
         height: 2em;
         padding-inline: ${variable('spacing-sm')};
-        border: 1px solid var(--semantic-stroke-default);
+        border: 1px solid rgba(var(--semantic-text-default_rgb), 0.4);
         border-radius: ${variable('border-xs')};
-        background: rgba(var(--semantic-background-inverted_rgb), 0.05);
+        background: var(--semantic-background-default);
         color: var(--semantic-text-default);
         font-family: ${variable('font-family-default')};
         font-size: ${variable('font-size-default')};
@@ -53,7 +53,7 @@ export class TextField extends HTMLElement {
       }
 
       input::placeholder {
-        color: rgba(var(--semantic-text-default_rgb), 0.5);
+        color: rgba(var(--semantic-text-default_rgb), 0.6);
       }
 
       input:hover:not(:disabled) {
@@ -68,6 +68,7 @@ export class TextField extends HTMLElement {
 
       input:disabled {
         cursor: not-allowed;
+        background: rgba(var(--semantic-background-inverted_rgb), 0.05);
       }
     `;
 

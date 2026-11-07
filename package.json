@@ -1,6 +1,6 @@
 {
   "name": "@arjanfrans/web-components-ui",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "private": false,
   "sideEffects": true,
   "description": "Web Components only UI library",
