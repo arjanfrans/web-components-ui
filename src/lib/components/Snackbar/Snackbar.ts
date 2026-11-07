@@ -18,7 +18,6 @@ export class Snackbar extends HTMLElement {
         display: none;
         box-sizing: border-box;
         z-index: ${ZIndex.SNACKBAR};
-        pointer-events: none;
         width: max-content;
         max-width: 100%;
         position: relative;
@@ -110,6 +109,8 @@ export class Snackbar extends HTMLElement {
         const snackbarElement = document.createElement('div');
 
         snackbarElement.classList.add('snackbar-content');
+        snackbarElement.setAttribute('role', 'status');
+        snackbarElement.setAttribute('aria-live', 'polite');
 
         // Slot for message content
         const slot = document.createElement('slot');
@@ -120,7 +121,8 @@ export class Snackbar extends HTMLElement {
         const closeButton = document.createElement('button');
 
         closeButton.classList.add('close-button');
-        closeButton.innerHTML = '&#10005;';
+        closeButton.textContent = '\u2715';
+        closeButton.setAttribute('aria-label', 'Close');
         closeButton.addEventListener('click', () => {
             this.visible = false; // Trigger the fade-out on click
         });
@@ -136,25 +138,9 @@ export class Snackbar extends HTMLElement {
     }
 
     attributeChangedCallback(name: string, oldValue: string | null, newValue: string | null) {
-        if (name === 'visible' && oldValue !== newValue) {
-            this.toggleVisibility();
-        } else if (name === 'timeout' && oldValue !== newValue) {
+        if ((name === 'visible' || name === 'timeout') && oldValue !== newValue) {
             this.restartAutoDismiss();
-        } else if (name === 'closable' && oldValue !== newValue) {
-            // Update the visibility of the close button
-            this.updateCloseButtonVisibility();
         }
-    }
-
-    private toggleVisibility() {
-        if (this.visible) {
-            this.classList.add('visible');
-        } else {
-            // Start the fade-out by removing the visible class
-            this.classList.remove('visible');
-        }
-
-        this.restartAutoDismiss();
     }
 
     private restartAutoDismiss() {
@@ -167,18 +153,6 @@ export class Snackbar extends HTMLElement {
             this.autoDismissTimeout = window.setTimeout(() => {
                 this.visible = false;
             }, this.timeout);
-        }
-    }
-
-    private updateCloseButtonVisibility() {
-        const closeButton = this.shadowRoot?.querySelector('.close-button') as HTMLButtonElement;
-
-        if (closeButton) {
-            if (this.hasAttribute('closable')) {
-                closeButton.style.display = 'block';
-            } else {
-                closeButton.style.display = 'none';
-            }
         }
     }
 

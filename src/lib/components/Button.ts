@@ -85,8 +85,9 @@ export class Button extends HTMLElement {
         padding-inline: ${variable('spacing-lg')};
       }
 
-      .button:focus {
-        outline: 2px solid var(--button-focus-outline);
+      .button:focus-visible {
+        outline: 2px solid var(--semantic-stroke-highlight);
+        outline-offset: 2px;
       }
     `;
         shadow.appendChild(style);

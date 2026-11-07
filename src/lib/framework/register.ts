@@ -15,7 +15,11 @@ export function register(
     options?: ElementDefinitionOptions,
 ): void {
     componentList.push(() => {
-        window.customElements.define(`${componentPrefix}-${name}`, constructor, options);
+        const tagName = `${componentPrefix}-${name}`;
+
+        if (!window.customElements.get(tagName)) {
+            window.customElements.define(tagName, constructor, options);
+        }
     });
 }
 

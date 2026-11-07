@@ -108,7 +108,7 @@ export class Checkbox extends HTMLElement {
         if (!this.checkboxElement.disabled) {
             this.checked = !this.checked;
 
-            this.dispatchEvent(new Event('change'));
+            this.dispatchEvent(new Event('change', { bubbles: true, composed: true }));
         }
     };
 

@@ -48,6 +48,8 @@ export { Snackbar } from '../lib/main';
 export { BottomNavigationAction } from '../lib/main';
 export { Indent } from '../lib/main';
 export { Console } from '../lib/main';
+export { TextField } from '../lib/main';
+export { Dialog } from '../lib/main';
 
 if (!import.meta.env.DEV) {
     if ('serviceWorker' in navigator) {

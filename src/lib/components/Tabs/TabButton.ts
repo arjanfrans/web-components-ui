@@ -23,7 +23,12 @@ export class TabButton extends HTMLElement {
       }
 
       :host(:hover) {
-        background: #e0e0e0;
+        background: rgba(var(--semantic-background-highlight_rgb), 0.1);
+      }
+
+      :host(:focus-visible) {
+        outline: 2px solid var(--semantic-stroke-highlight);
+        outline-offset: -2px;
       }
     `;
 

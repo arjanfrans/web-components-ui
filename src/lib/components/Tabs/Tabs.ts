@@ -19,65 +19,115 @@ export class Tabs extends HTMLElement {
         shadow.appendChild(slot);
 
         this.addEventListener('click', this.handleClick);
+        this.addEventListener('keydown', this.handleKeydown);
+    }
+
+    static get observedAttributes() {
+        return ['selected'];
     }
 
     connectedCallback() {
         onChildrenReady(() => this.initializeTabs());
     }
 
+    attributeChangedCallback(name: string, oldValue: string | null, newValue: string | null) {
+        if (name === 'selected' && oldValue !== newValue && newValue && this.isConnected) {
+            this.selectTab(newValue);
+        }
+    }
+
+    private static tabName(element: Element): string {
+        return element.getAttribute('name') || element.getAttribute('id') || '';
+    }
+
+    private ownButtons(): HTMLElement[] {
+        return this.ownElements<HTMLElement>(`${getPrefix()}-tab-button`);
+    }
+
+    private ownPanels(): HTMLElement[] {
+        return this.ownElements<HTMLElement>(`${getPrefix()}-tab-panel`);
+    }
+
+    private ownElements<T extends Element>(selector: string): T[] {
+        return Array.from(this.querySelectorAll<T>(selector)).filter(
+            (element) => element.closest(`${getPrefix()}-tabs`) === this,
+        );
+    }
+
     private handleClick = (event: Event) => {
         const button = (event.target as Element).closest(`${getPrefix()}-tab-button`);
-        const id = button?.getAttribute('id');
 
-        if (id && button?.closest(`${getPrefix()}-tabs`) === this) {
-            this.selectTab(id);
+        if (button && button.closest(`${getPrefix()}-tabs`) === this) {
+            this.selectTab(Tabs.tabName(button));
         }
     };
 
+    private handleKeydown = (event: KeyboardEvent) => {
+        const buttons = this.ownButtons();
+        const current = buttons.indexOf(event.target as HTMLElement);
+
+        if (current === -1) {
+            return;
+        }
+
+        const targets: Record<string, number> = {
+            ArrowRight: (current + 1) % buttons.length,
+            ArrowLeft: (current - 1 + buttons.length) % buttons.length,
+            Home: 0,
+            End: buttons.length - 1,
+            Enter: current,
+            ' ': current,
+        };
+
+        const target = targets[event.key];
+
+        if (target === undefined) {
+            return;
+        }
+
+        event.preventDefault();
+        this.selectTab(Tabs.tabName(buttons[target]));
+        buttons[target].focus();
+    };
+
     private initializeTabs() {
-        const tabButtons = Array.from(this.querySelectorAll(`${getPrefix()}-tab-button`));
-        const tabPanels = Array.from(this.querySelectorAll(`${getPrefix()}-tab-panel`));
+        const tabButtons = this.ownButtons();
+        const tabPanels = this.ownPanels();
 
         if (tabButtons.length === 0 || tabPanels.length === 0) {
             console.error('No tab buttons or panels found.');
             return;
         }
 
-        const selectedId = this.getAttribute('selected') || tabButtons[0]?.getAttribute('id') || '';
+        this.querySelector(`${getPrefix()}-tab-buttons`)?.setAttribute('role', 'tablist');
+        tabButtons.forEach((button) => button.setAttribute('role', 'tab'));
+        tabPanels.forEach((panel) => panel.setAttribute('role', 'tabpanel'));
 
-        if (selectedId) {
-            this.selectTab(selectedId);
-        } else if (tabButtons.length > 0) {
-            this.selectTab(tabButtons[0].getAttribute('id') || '');
-        }
+        const selected = this.getAttribute('selected') || Tabs.tabName(tabButtons[0]);
+
+        this.selectTab(selected);
     }
 
-    private selectTab(id: string) {
-        const tabButtons = Array.from(this.querySelectorAll(`${getPrefix()}-tab-button`));
-        const tabPanels = Array.from(this.querySelectorAll(`${getPrefix()}-tab-panel`));
+    private selectTab(name: string) {
+        this.ownButtons().forEach((button) => {
+            const active = Tabs.tabName(button) === name;
 
-        tabButtons.forEach((button) => {
-            if (button.getAttribute('id') === id) {
-                button.setAttribute('active', '');
-            } else {
-                button.removeAttribute('active');
-            }
+            button.toggleAttribute('active', active);
+            button.setAttribute('aria-selected', String(active));
+            button.tabIndex = active ? 0 : -1;
         });
 
-        tabPanels.forEach((panel) => {
-            if (panel.getAttribute('id') === id) {
-                panel.setAttribute('active', '');
-            } else {
-                panel.removeAttribute('active');
-            }
+        this.ownPanels().forEach((panel) => {
+            panel.toggleAttribute('active', Tabs.tabName(panel) === name);
         });
 
-        // Update the active indicator in the TabButtons component
-        const tabButtonsContainer = this.querySelector(`${getPrefix()}-tab-buttons`) as TabButtons;
-
-        if (tabButtonsContainer && typeof tabButtonsContainer.updateActiveIndicator === 'function') {
-            tabButtonsContainer.updateActiveIndicator();
+        if (this.getAttribute('selected') !== name) {
+            this.setAttribute('selected', name);
         }
+
+        const tabButtonsContainer = this.querySelector<TabButtons>(`${getPrefix()}-tab-buttons`);
+
+        tabButtonsContainer?.updateActiveIndicator?.();
     }
 }
 

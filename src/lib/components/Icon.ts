@@ -111,14 +111,29 @@ export class Icon extends HTMLElement {
         }
     }
 
+    private static removeScripts(svgElement: SVGSVGElement) {
+        svgElement.querySelectorAll('script, foreignObject').forEach((element) => element.remove());
+
+        for (const element of [svgElement, ...svgElement.querySelectorAll('*')]) {
+            for (const attribute of Array.from(element.attributes)) {
+                const isEventHandler = attribute.name.toLowerCase().startsWith('on');
+                const isScriptUrl = /^\s*javascript:/i.test(attribute.value);
+
+                if (isEventHandler || isScriptUrl) {
+                    element.removeAttribute(attribute.name);
+                }
+            }
+        }
+    }
+
     private setSvgContent(svgText: string) {
         // Create a temporary DOM element to manipulate the SVG
-        const tempDiv = document.createElement('div');
-
-        tempDiv.innerHTML = svgText;
-        const svgElement = tempDiv.querySelector('svg');
+        const svgDocument = new DOMParser().parseFromString(svgText, 'image/svg+xml');
+        const svgElement = svgDocument.querySelector('svg');
 
         if (svgElement) {
+            Icon.removeScripts(svgElement);
+
             // Ensure a viewBox is set
             if (!svgElement.hasAttribute('viewBox')) {
                 const width = svgElement.getAttribute('width') || '100';

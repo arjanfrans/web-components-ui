@@ -354,32 +354,32 @@
                                     <x-box margin-inline="small" stretch-horizontal>
                                         <x-tabs selected="tab1">
                                             <x-tab-buttons>
-                                                <x-tab-button id="tab1">
+                                                <x-tab-button name="tab1">
                                                     <x-typography display="button">Tab 1</x-typography>
                                                 </x-tab-button>
-                                                <x-tab-button id="tab2">
+                                                <x-tab-button name="tab2">
                                                     <x-typography display="button">Tab 2</x-typography>
                                                 </x-tab-button>
-                                                <x-tab-button id="tab3">
+                                                <x-tab-button name="tab3">
                                                     <x-typography display="button">Tab 3</x-typography>
                                                 </x-tab-button>
                                             </x-tab-buttons>
 
                                             <x-tab-panels>
                                                 <x-box margin-inline="small" margin-block="small">
-                                                    <x-tab-panel id="tab1">
+                                                    <x-tab-panel name="tab1">
                                                         <x-typography display="body1">
                                                             Content for Tab 1
                                                         </x-typography>
                                                     </x-tab-panel>
 
-                                                    <x-tab-panel id="tab2">
+                                                    <x-tab-panel name="tab2">
                                                         <x-typography display="body1">
                                                             Content for Tab 2
                                                         </x-typography>
                                                     </x-tab-panel>
 
-                                                    <x-tab-panel id="tab3">
+                                                    <x-tab-panel name="tab3">
                                                         <x-typography display="body1">
                                                             Content for Tab 3
                                                         </x-typography>
@@ -536,6 +536,54 @@
                                             <x-typography display="body1">Unchecked Disabled</x-typography>
                                         </x-checkbox>
                                     </x-stack>
+                                </x-block>
+                            </x-stack>
+                        </x-block>
+
+                        <x-block>
+                            <x-stack gap="medium">
+                                <x-block>
+                                    <x-typography display="h1">
+                                        <h2>Text Field</h2>
+                                    </x-typography>
+                                    <x-divider fade></x-divider>
+                                </x-block>
+
+                                <x-block>
+                                    <x-stack gap="small" direction="vertical">
+                                        <x-text-field placeholder="Without label"></x-text-field>
+                                        <x-text-field placeholder="Your name">
+                                            <span slot="label">Name</span>
+                                        </x-text-field>
+                                        <x-text-field type="email" placeholder="you@example.com" stretch-horizontal>
+                                            <span slot="label">Email (stretched)</span>
+                                        </x-text-field>
+                                        <x-text-field value="Disabled" disabled>
+                                            <span slot="label">Disabled</span>
+                                        </x-text-field>
+                                    </x-stack>
+                                </x-block>
+                            </x-stack>
+                        </x-block>
+
+                        <x-block>
+                            <x-stack gap="medium">
+                                <x-block>
+                                    <x-typography display="h1">
+                                        <h2>Dialog</h2>
+                                    </x-typography>
+                                    <x-divider fade></x-divider>
+                                </x-block>
+
+                                <x-block>
+                                    <x-button id="open-dialog">Open dialog</x-button>
+                                    <x-dialog id="example-dialog" closable light-dismiss>
+                                        <x-typography slot="header" display="h4">Dialog title</x-typography>
+                                        <x-typography display="body1">
+                                            Close with the button, Escape or a click on the backdrop.
+                                        </x-typography>
+                                        <x-button slot="actions" id="close-dialog" variant="outlined">Close</x-button>
+                                    </x-dialog>
                                 </x-block>
                             </x-stack>
                         </x-block>
@@ -993,6 +1041,11 @@
             const colorBackgroundDark = document.querySelector('#color-background-dark');
             const colorTextLight = document.querySelector('#color-text-light');
             const colorTextDark = document.querySelector('#color-text-dark');
+
+            const exampleDialog = document.querySelector('#example-dialog');
+
+            document.querySelector('#open-dialog').addEventListener('click', () => exampleDialog.show());
+            document.querySelector('#close-dialog').addEventListener('click', () => exampleDialog.close());
 
             darkModeSwitch.addEventListener('change', () => {
                 if (darkModeSwitch.checked) {

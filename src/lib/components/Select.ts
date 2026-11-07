@@ -127,7 +127,6 @@ export class Select extends HTMLElement {
         if (Select.observedAttributes.includes(name) && oldValue !== newValue) {
             if (name === 'selected' && this.select) {
                 this.select.value = newValue || '';
-                this.dispatchSelectChange();
             }
         }
     }
